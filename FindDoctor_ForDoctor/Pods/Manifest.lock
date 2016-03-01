@@ -1,0 +1,10 @@
+PODS:
+  - tingyunApp (2.2.2.1)
+
+DEPENDENCIES:
+  - tingyunApp
+
+SPEC CHECKSUMS:
+  tingyunApp: 539e34a578651ec6cd58da8f4022c3131c432b77
+
+COCOAPODS: 0.39.0

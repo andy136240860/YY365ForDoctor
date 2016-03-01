@@ -1,0 +1,6 @@
+FRAMEWORK_SEARCH_PATHS = $(inherited) "$(PODS_ROOT)/tingyunApp/nbs-newlens-ios-2.2.2.1/**"
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/tingyunApp"
+OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/tingyunApp"
+OTHER_LDFLAGS = $(inherited) -ObjC -l"z" -framework "CoreTelephony" -framework "Security" -framework "SystemConfiguration" -framework "tingyunApp"
+PODS_ROOT = ${SRCROOT}/Pods
