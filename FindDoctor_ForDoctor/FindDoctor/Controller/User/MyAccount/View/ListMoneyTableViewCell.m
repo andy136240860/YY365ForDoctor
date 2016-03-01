@@ -30,7 +30,7 @@
 }
 
 - (void)createSubViews{
-    int feeLabelWidth = 100;
+    int feeLabelWidth = 20;
     
     massegeLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 10, kScreenWidth, 14)];
 //    massegeLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 10, kScreenWidth - feeLabelWidth, 14)];
@@ -59,7 +59,7 @@
 - (void)setMassage:(NSString *)massage{
     _massage = massage;
     massegeLabel.text = _massage;
-    CGSize size = [self sizeWithString:_massage font:massegeLabel.font lableWith:massegeLabel.frameWidth];
+    CGSize size = [self sizeWithString:_massage font:massegeLabel.font lableWith:kScreenWidth - 20];
     massegeLabel.frame = CGRectMake(massegeLabel.frameX, massegeLabel.frameY, size.width, size.height);
 }
 
