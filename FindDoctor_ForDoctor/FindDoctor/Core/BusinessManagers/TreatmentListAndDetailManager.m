@@ -464,10 +464,11 @@ SINGLETON_IMPLENTATION(TreatmentListAndDetailManager);
                 }
                 
 //                NSMutableArray *arr = [NSMutableArray new];
-//                for (int i = 0; i < 6; i++) {
-//                    if (i < resultArray.count) {
-//                        [arr addObject:[resultArray objectAtIndex:i]];
-//                    }
+//                for (int i = 0; i < resultArray.count; i++) {
+//                    [arr addObject:[resultArray objectAtIndex:i]];
+//                }
+//                for (int i = 0; i < resultArray.count; i++) {
+//                    [arr addObject:[resultArray objectAtIndex:i]];
 //                }
                 result.parsedModelObject = resultArray;
             }

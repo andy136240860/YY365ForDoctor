@@ -30,6 +30,8 @@
 
 @interface HomeViewController (){
     NSMutableArray *dataArray;
+    NSMutableArray *tipDataArray;
+    NSInteger   tipLineNum;
 }
 
 @end
@@ -67,7 +69,12 @@
             NSInteger err_code = [[result.responseObject valueForKeySafely:@"errorCode"] integerValue];
             if (err_code == 0) {
                 dataArray = result.parsedModelObject;
+                tipDataArray = [NSMutableArray new];
+                for (int i = 0 ; i < (dataArray.count < tipLineNum + 1 ? dataArray.count : tipLineNum + 1); i++) {
+                    [tipDataArray addObject:[dataArray objectAtIndex:i]];
+                }
                 [tipTableView reloadData];
+                [self performSelector:@selector(scroll) withObject:nil afterDelay:3.f];
             }
             else{
                 [TipHandler showHUDText:[result.responseObject valueForKeySafely:@"data"]  inView:self.view];
@@ -133,11 +140,13 @@
         tipTableView = [[UITableView alloc]init];
     }
     tipTableView.frame = CGRectMake(kScreenWidth *0.05, CGRectGetMaxY(treatmentOrderButton.frame) + 40, kScreenWidth*0.9,  floor((([self.contentView frameHeight]-CGRectGetMaxY(treatmentOrderButton.frame) )/ 40))*40 - 40);
+    tipLineNum = tipTableView.frameHeight/40;
     tipTableView.backgroundColor = [UIColor clearColor];
     tipTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     tipTableView.scrollEnabled = NO;
     tipTableView.delegate = self;
     tipTableView.dataSource = self;
+//    tipTableView.userInteractionEnabled =NO;
     [self.contentView addSubview:tipTableView];
 
 }
@@ -146,7 +155,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return dataArray.count;
+    return tipDataArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -155,7 +164,7 @@
     UITableViewCell *cell = [[UITableViewCell alloc]init];
     
     //数据倒入
-    TipMessageData *data = [dataArray objectAtIndex:indexPath.row];
+    TipMessageData *data = [tipDataArray objectAtIndex:indexPath.row];
     //画图
     [cell setFrameWidth:kScreenWidth*0.9];
     cell.backgroundColor = [UIColor clearColor];
@@ -200,12 +209,33 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     [self performSelector:@selector(deselect) withObject:nil afterDelay:0.5f];
-
 }
-
 
 - (void)deselect{
     [self.tipTableView deselectRowAtIndexPath:[self.tipTableView indexPathForSelectedRow] animated:YES];
+}
+
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView{
+    [self.tipTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+    [self resetData];
+    [self.tipTableView reloadData];
+    [self performSelector:@selector(scroll) withObject:nil afterDelay:3.f];
+}
+
+- (void)resetData{
+    NSInteger index = [dataArray indexOfObject:[tipDataArray objectAtIndex:1]];
+    tipDataArray = [NSMutableArray new];
+    for (int i = 0; i < tipLineNum + 1; i++) {
+        [tipDataArray addObject:[dataArray objectAtIndex:index]];
+        if (index == dataArray.count - 1) {
+            index = -1;
+        }
+        index++;
+    }
+}
+
+- (void)scroll{
+    [self.tipTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
 }
 #pragma mark - 其他
 
