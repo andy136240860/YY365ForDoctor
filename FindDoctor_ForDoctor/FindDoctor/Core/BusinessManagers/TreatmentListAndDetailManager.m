@@ -53,29 +53,6 @@ SINGLETON_IMPLENTATION(TreatmentListAndDetailManager);
     [[AppCore sharedInstance].apiManager POST:URL_AfterBase parameters:param callbackRunInGlobalQueue:YES parser:nil parseMethod:nil resultBlock:^(SNHTTPRequestOperation *request, SNServerAPIResultData *result){
 #if !LOCAL
         if (!result.hasError){
-//            NSInteger err_code = [[result.responseObject valueForKeySafely:@"errorCode"] integerValue];
-//            if (err_code == 0) {
-//                SNBaseListModel *listModel = [[SNBaseListModel alloc] init];
-//                NSArray *data = [result.responseObject valueForKeySafely:@"data"];
-//                NSLog(@"data.count = %d",data.count);
-//                for(int i = 0;i < data.count;i++){
-//                    Patient  *currentTreatment = [[Patient alloc] init];
-//                    currentTreatment.diagnosisID = [NSString stringWithFormat:@"%@",[[data objectAtIndexSafely:i] valueForKeySafely:@"diagnosisID"]];
-////                    currentTreatment.UserHeaderImageURL = [NSString stringWithFormat:@"%@",[[data objectAtIndexSafely:i] valueForKeySafely:@"ftppath"]];
-//                    currentTreatment.UserName = [[data objectAtIndexSafely:i] valueForKeySafely:@"userName"];
-//                    currentTreatment.UserAge= [[[data objectAtIndexSafely:i] valueForKeySafely:@"userAge"] integerValue];
-//                    currentTreatment.UserSex = [[[data objectAtIndexSafely:i] valueForKeySafely:@"userSex"] integerValue];
-//                    currentTreatment.UserCellPhone = [[data objectAtIndexSafely:i] valueForKeySafely:@"userPhone"];
-//                    currentTreatment.orderNo = [[[data objectAtIndexSafely:i] valueForKeySafely:@"orderNo"] integerValue];
-//                    currentTreatment.clinicAddress = [NSString stringWithFormat:@"%@",[[data objectAtIndexSafely:i] valueForKeySafely:@"clinicAddress"]];;
-//                    currentTreatment.diagnosisFee = [[[data objectAtIndexSafely:i] valueForKeySafely:@"fee"] integerValue];
-//                    currentTreatment.diagnosisID = [[data objectAtIndex:i] valueForKey:@"diagnosisID"];
-//                    currentTreatment.state = [[[data objectAtIndex:i] valueForKey:@"state"] integerValue];
-//                    currentTreatment.illnessDescription =   [[data objectAtIndex:i] valueForKey:@"illnessDescription"];
-//                    [listModel.items addObject:currentTreatment];
-//                }
-//                result.parsedModelObject = listModel;
-//            }
             NSInteger err_code = [[result.responseObject valueForKeySafely:@"errorCode"] integerValue];
             if (err_code == 0) {
                 SNBaseListModel *listModel = [[SNBaseListModel alloc] init];
@@ -92,17 +69,22 @@ SINGLETON_IMPLENTATION(TreatmentListAndDetailManager);
                     zhenLiaoRecord.diagnosisID = [dic objectForKeySafely:@"diagnosisID"];
                     zhenLiaoRecord.state = [[dic objectForKeySafely:@"state"] integerValue];
                     zhenLiaoRecord.diagnosisTime = [[dic objectForKeySafely:@"diagnosisTime"] integerValue];
+                    if (zhenLiaoRecord.diagnosisTime == 0) {
+                        zhenLiaoRecord.diagnosisTime = [[dic objectForKeySafely:@"orderStartTime"] integerValue];
+                    }
                     zhenLiaoRecord.submitTime = [[dic objectForKeySafely:@"submitTime"] integerValue];
                     zhenLiaoRecord.doctorName = [dic objectForKeySafely:@"doctorName"];
                     zhenLiaoRecord.doctorTitle = [dic objectForKeySafely:@"title"];
                     zhenLiaoRecord.clinicAddress = [dic objectForKeySafely:@"clinicAddress"];
                     zhenLiaoRecord.clinicName = [dic objectForKeySafely:@"clinicName"];
-                    zhenLiaoRecord.illnessDescription = [dic objectForKeySafely:@"illnessDescription"];
-                    zhenLiaoRecord.illnessPic =[dic objectForKeySafely:@"illnessPic"];
+                    zhenLiaoRecord.illnessDescription = [NSString stringWithFormat:@"%@",[dic objectForKeySafely:@"illnessDescription"]];
+                    zhenLiaoRecord.illnessPic = [[dic valueForKey:@"illnessPic"] componentsSeparatedByString:@","];
                     zhenLiaoRecord.orderNo =[[dic objectForKeySafely:@"orderNo"] integerValue];
-                    zhenLiaoRecord.diagnosisContent = [dic objectForKeySafely:@"diagnosisContent"];
+                    zhenLiaoRecord.diagnosisContent = [NSString stringWithFormat:@"%@",[dic objectForKeySafely:@"diagnosisContent"]];;
                     zhenLiaoRecord.recipeNum = [[dic objectForKeySafely:@"recipeNum"] integerValue];
                     zhenLiaoRecord.recipePic = [dic objectForKeySafely:@"recipePic"];
+                    zhenLiaoRecord.orderStartTime = [[dic objectForKeySafely:@"orderStartTime"] integerValue];
+                    zhenLiaoRecord.orderEndTime = [[dic objectForKeySafely:@"orderEndTime"] integerValue];
                     
                     zhenLiaoRecord.recipeData = [NSMutableArray new];
                     NSMutableArray *recipeDataArray = [dic objectForKeySafely:@"recipeData"];
@@ -185,22 +167,26 @@ SINGLETON_IMPLENTATION(TreatmentListAndDetailManager);
                     zhenLiaoRecord.UserSex = [[dic objectForKeySafely:@"userSex"] integerValue];
                     zhenLiaoRecord.UserAge = [[dic objectForKeySafely:@"userAge"] integerValue];
                     zhenLiaoRecord.UserCellPhone = [dic objectForKey:@"userPhone"];
-                    zhenLiaoRecord.diagnosisID = [dic objectForKeySafely:@"diagnosisID"];
+                    zhenLiaoRecord.diagnosisID = [NSString stringWithFormat:@"%@",[dic objectForKeySafely:@"diagnosisID"]];
                     zhenLiaoRecord.state = [[dic objectForKeySafely:@"state"] integerValue];
                     zhenLiaoRecord.diagnosisTime = [[dic objectForKeySafely:@"diagnosisTime"] integerValue];
+                    if (zhenLiaoRecord.diagnosisTime == 0) {
+                        zhenLiaoRecord.diagnosisTime = [[dic objectForKeySafely:@"orderStartTime"] integerValue];
+                    }
                     zhenLiaoRecord.submitTime = [[dic objectForKeySafely:@"submitTime"] integerValue];
                     zhenLiaoRecord.doctorName = [dic objectForKeySafely:@"doctorName"];
                     zhenLiaoRecord.doctorTitle = [dic objectForKeySafely:@"title"];
                     zhenLiaoRecord.clinicAddress = [dic objectForKeySafely:@"clinicAddress"];
                     zhenLiaoRecord.clinicName = [dic objectForKeySafely:@"clinicName"];
-                    zhenLiaoRecord.illnessDescription = [dic objectForKeySafely:@"illnessDescription"];
-                    zhenLiaoRecord.illnessPic =[dic objectForKeySafely:@"illnessPic"];
+                    zhenLiaoRecord.illnessDescription = [NSString stringWithFormat:@"%@",[dic objectForKeySafely:@"illnessDescription"]];
+                    zhenLiaoRecord.illnessPic = [[dic valueForKey:@"illnessPic"] componentsSeparatedByString:@","];
                     zhenLiaoRecord.orderNo =[[dic objectForKeySafely:@"orderNo"] integerValue];
-                    zhenLiaoRecord.diagnosisContent = [dic objectForKeySafely:@"diagnosisContent"];
+                    zhenLiaoRecord.diagnosisContent = [NSString stringWithFormat:@"%@",[dic objectForKeySafely:@"diagnosisContent"]];
                     zhenLiaoRecord.recipeNum = [[dic objectForKeySafely:@"recipeNum"] integerValue];
                     zhenLiaoRecord.recipePic = [dic objectForKeySafely:@"recipePic"];
                     zhenLiaoRecord.orderStartTime = [[dic objectForKeySafely:@"orderStartTime"] integerValue];
                     zhenLiaoRecord.orderEndTime = [[dic objectForKeySafely:@"orderEndTime"] integerValue];
+                    
                     
                     zhenLiaoRecord.recipeData = [NSMutableArray new];
                     NSMutableArray *recipeDataArray = [dic objectForKeySafely:@"recipeData"];
@@ -312,19 +298,23 @@ SINGLETON_IMPLENTATION(TreatmentListAndDetailManager);
                     zhenLiaoRecord.diagnosisID = [dic objectForKeySafely:@"diagnosisID"];
                     zhenLiaoRecord.state = [[dic objectForKeySafely:@"state"] integerValue];
                     zhenLiaoRecord.diagnosisTime = [[dic objectForKeySafely:@"diagnosisTime"] integerValue];
+                    if (zhenLiaoRecord.diagnosisTime == 0) {
+                        zhenLiaoRecord.diagnosisTime = [[dic objectForKeySafely:@"orderStartTime"] integerValue];
+                    }
                     zhenLiaoRecord.submitTime = [[dic objectForKeySafely:@"submitTime"] integerValue];
                     zhenLiaoRecord.doctorName = [dic objectForKeySafely:@"doctorName"];
                     zhenLiaoRecord.doctorTitle = [dic objectForKeySafely:@"title"];
                     zhenLiaoRecord.clinicAddress = [dic objectForKeySafely:@"clinicAddress"];
                     zhenLiaoRecord.clinicName = [dic objectForKeySafely:@"clinicName"];
-                    zhenLiaoRecord.illnessDescription = [dic objectForKeySafely:@"illnessDescription"];
-                    zhenLiaoRecord.illnessPic =[dic objectForKeySafely:@"illnessPic"];
+                    zhenLiaoRecord.illnessDescription = [NSString stringWithFormat:@"%@",[dic objectForKeySafely:@"illnessDescription"]];
+                    zhenLiaoRecord.illnessPic = [[dic valueForKey:@"illnessPic"] componentsSeparatedByString:@","];
                     zhenLiaoRecord.orderNo =[[dic objectForKeySafely:@"orderNo"] integerValue];
-                    zhenLiaoRecord.diagnosisContent = [dic objectForKeySafely:@"diagnosisContent"];
+                    zhenLiaoRecord.diagnosisContent = [NSString stringWithFormat:@"%@",[dic objectForKeySafely:@"diagnosisContent"]];
                     zhenLiaoRecord.recipeNum = [[dic objectForKeySafely:@"recipeNum"] integerValue];
                     zhenLiaoRecord.recipePic = [dic objectForKeySafely:@"recipePic"];
                     zhenLiaoRecord.orderStartTime = [[dic objectForKeySafely:@"orderStartTime"] integerValue];
                     zhenLiaoRecord.orderEndTime = [[dic objectForKeySafely:@"orderEndTime"] integerValue];
+                    zhenLiaoRecord.state = 4;
                     
                     zhenLiaoRecord.recipeData = [NSMutableArray new];
                     NSMutableArray *recipeDataArray = [dic objectForKeySafely:@"recipeData"];

@@ -339,6 +339,7 @@
 		BCE0B20B1C4F851E00BC5A7E /* Patient.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE0B20A1C4F851E00BC5A7E /* Patient.m */; };
 		BCE191011BDA883E006116DE /* editButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCE191001BDA883E006116DE /* editButton@2x.png */; };
 		BCE191031BDA8B09006116DE /* editButton_complete@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCE191021BDA8B09006116DE /* editButton_complete@2x.png */; };
+		BCF0D2471C8993CF00D16245 /* PhotosShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = BCF0D2461C8993CF00D16245 /* PhotosShowView.m */; };
 		BCF2CC011BBCD594005AEC6B /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCF2CC001BBCD594005AEC6B /* LoginViewController.m */; };
 		BCFB0B911C04554D003C9C85 /* Clinic.m in Sources */ = {isa = PBXBuildFile; fileRef = BCFB0B901C04554D003C9C85 /* Clinic.m */; };
 		BCFFCA491B9E667100EE315F /* DoctorFaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = BCFFCA461B9E667100EE315F /* DoctorFaceView.m */; };
@@ -1080,6 +1081,8 @@
 		BCE0B20A1C4F851E00BC5A7E /* Patient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Patient.m; sourceTree = "<group>"; };
 		BCE191001BDA883E006116DE /* editButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "editButton@2x.png"; sourceTree = "<group>"; };
 		BCE191021BDA8B09006116DE /* editButton_complete@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "editButton_complete@2x.png"; sourceTree = "<group>"; };
+		BCF0D2451C8993CF00D16245 /* PhotosShowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotosShowView.h; sourceTree = "<group>"; };
+		BCF0D2461C8993CF00D16245 /* PhotosShowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotosShowView.m; sourceTree = "<group>"; };
 		BCF2CBFF1BBCD594005AEC6B /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		BCF2CC001BBCD594005AEC6B /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		BCFB0B8F1C04554D003C9C85 /* Clinic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Clinic.h; sourceTree = "<group>"; };
@@ -3376,6 +3379,8 @@
 		E1EB1D511B70A43B0048B8EB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				BCF0D2451C8993CF00D16245 /* PhotosShowView.h */,
+				BCF0D2461C8993CF00D16245 /* PhotosShowView.m */,
 				BC9EFBA71C2122710061273F /* SZCalendarPicker */,
 				E17B69181B837A690079DDB5 /* Extension */,
 				E1EB1D521B70A43B0048B8EB /* AMBlurView.h */,
@@ -4004,6 +4009,7 @@
 				3EDEBAB61A961C4800E72809 /* NSSet+SNExtension.m in Sources */,
 				E1AD6F321B7CCED100FB3C55 /* CUDoctorManager.m in Sources */,
 				E1EB1ED31B70A4D70048B8EB /* MD5DataSigner.m in Sources */,
+				BCF0D2471C8993CF00D16245 /* PhotosShowView.m in Sources */,
 				E17B691D1B837A920079DDB5 /* UILabel+Rect.m in Sources */,
 				BC9EFBB71C2122710061273F /* UIColor+ZXLazy.m in Sources */,
 				3EFB223B1AB5B5A4000872F3 /* SNTopTabBar.m in Sources */,

@@ -74,6 +74,7 @@
                     [tipDataArray addObject:[dataArray objectAtIndex:i]];
                 }
                 [tipTableView reloadData];
+                [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(scroll) object:nil];
                 [self performSelector:@selector(scroll) withObject:nil afterDelay:3.f];
             }
             else{
@@ -235,7 +236,9 @@
 }
 
 - (void)scroll{
-    [self.tipTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    if (tipDataArray.count > 1){
+        [self.tipTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    }
 }
 #pragma mark - 其他
 

@@ -22,32 +22,30 @@
 
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
-    [aCoder encodeObject:self.token forKey:Key_CUUser_Token];
     [aCoder encodeInteger:self.userId forKey:Key_CUUser_UserId];
     [aCoder encodeObject:self.profile forKey:Key_CUUser_profile];
     [aCoder encodeObject:self.nickName forKey:Key_CUUser_nickName];
     [aCoder encodeObject:self.cellPhone forKey:Key_CUUser_cellPhone];
     [aCoder encodeObject:self.hiddenCellPhone forKey:Key_CUUser_hiddenCellPhone];
     [aCoder encodeInteger:self.points forKey:Key_CUUser_points];
-    
     [aCoder encodeInteger:self.doctorId forKey:Key_CUUser_docotorId];
     [aCoder encodeObject:self.icon forKey:Key_CUUser_icon];
+    [aCoder encodeObject:self.token forKey:Key_CUUser_Token];
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     if (self = [self init])
     {
-        self.token = [aDecoder decodeObjectForKey:Key_CUUser_Token];
         self.userId = [aDecoder decodeIntegerForKey:Key_CUUser_UserId];
         self.profile = [aDecoder decodeObjectForKey:Key_CUUser_profile];
         self.nickName = [aDecoder decodeObjectForKey:Key_CUUser_nickName];
         self.points = [aDecoder decodeIntegerForKey:Key_CUUser_points];
         self.cellPhone = [aDecoder decodeObjectForKey:Key_CUUser_cellPhone];
         self.hiddenCellPhone = [aDecoder decodeObjectForKey:Key_CUUser_hiddenCellPhone];
-        
         self.doctorId = [aDecoder decodeIntegerForKey:Key_CUUser_docotorId];
         self.icon = [aDecoder decodeObjectForKey:Key_CUUser_icon];
+        self.token = [aDecoder decodeObjectForKey:Key_CUUser_Token];
     }
     return self;
 }

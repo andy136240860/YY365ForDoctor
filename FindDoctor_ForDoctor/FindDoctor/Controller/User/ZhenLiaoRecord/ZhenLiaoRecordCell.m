@@ -85,7 +85,7 @@
     label2.text = [NSString stringWithFormat:@"约诊人: %@，%@，%ld岁，诊金￥%.2lf",_data.UserName,(_data.UserSex == 0 ? @"女":@"男"),_data.UserAge,_data.diagnosisFee/100.f];
     
     
-    label3.text = [NSString stringWithFormat:@"下单时间: %@",[[NSDate dateWithTimeIntervalSince1970:_data.submitTime] stringWithDateFormat:@"yyyy-MM-dd HH:mm"]];
+    label3.text = [NSString stringWithFormat:@"就诊时间: %@",[[NSDate dateWithTimeIntervalSince1970:_data.diagnosisTime] stringWithDateFormat:@"yyyy-MM-dd HH:mm"]];
     
     label4.text = [NSString stringWithFormat:@"约诊地点: %@",_data.clinicAddress];
     

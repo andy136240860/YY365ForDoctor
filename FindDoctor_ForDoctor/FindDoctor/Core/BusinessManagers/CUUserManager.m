@@ -126,16 +126,16 @@ SINGLETON_IMPLENTATION(CUUserManager);
             switch (err_code) {
                 case 0:{
                     NSDictionary *data = [result.responseObject valueForKey:@"data"];
-                    blockSelf.user.token = [data valueForKey:@"token"];
+
 //                    blockSelf.user.cellPhone = [data valueForKey:@"phone"];
                     blockSelf.user.userId = [[data valueForKey:@"accID"] intValue];
                     blockSelf.user.doctorId = [[data valueForKey:@"accID"] intValue];
                     blockSelf.user.nickName = [data valueForKey:@"name"];
                     blockSelf.user.icon = [data valueForKey:@"icon"];
-                    
                     NSLog(@"cellPhone:%@",blockSelf.user.cellPhone);
                     NSLog(@"userId:%d",blockSelf.user.userId );
                     NSLog(@"doctorId:%d",blockSelf.user.doctorId );
+                    blockSelf.user.token = [data valueForKey:@"token"];
                     
                     [blockSelf save];
                 }

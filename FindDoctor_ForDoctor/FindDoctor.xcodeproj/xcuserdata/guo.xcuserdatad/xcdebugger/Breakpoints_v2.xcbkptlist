@@ -16,15 +16,6 @@
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "-[NSObject doesNotRecognizeSelector:]"
-                  moduleName = "libobjc.A.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  offsetFromSymbolStart = "0">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
                   symbolName = "-[NSObject(NSObject) doesNotRecognizeSelector:]"
                   moduleName = "CoreFoundation"
                   usesParentBreakpointCondition = "Yes"
@@ -143,13 +134,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "FindDoctor/Core/BusinessManagers/TreatmentListAndDetailManager.m"
-            timestampString = "478596464.302319"
+            filePath = "FindDoctor/View/YYZhenDanLineView.m"
+            timestampString = "479030789.164472"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "279"
-            endingLineNumber = "279"
-            landmarkName = "-getZhenLiaoRecordListWithPageNum:pageSize:resultBlock:pageName:"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
+            landmarkName = "-getframeHeight"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

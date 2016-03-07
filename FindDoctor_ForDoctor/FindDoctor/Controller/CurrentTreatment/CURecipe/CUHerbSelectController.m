@@ -190,12 +190,13 @@
     selectcell.indexPath = indexPath;
     selectcell.isLastCell = indexPath.row==_selectHerbs.count-1;
     selectcell.herbselect = _selectHerbs[indexPath.row];
+    __weak __block CUHerbSelectController *blockSelf = self;
     selectcell.deleteHerbBlock = ^(CUHerbSelect *herb){
         for (int i = 0; i < _selectHerbs.count; i++) {
             CUHerbSelect *selectherb = _selectHerbs[i];
             if ([selectherb.name isEqualToString:herb.name]) {
                 [_selectHerbs removeObjectAtIndex:i];
-                [self.contentTableView reloadData];
+                [blockSelf reloadContentTable];
                 break;
             }
         }

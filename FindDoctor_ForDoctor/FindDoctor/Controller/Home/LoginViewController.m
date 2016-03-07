@@ -115,11 +115,11 @@
     password = [[UITextField alloc]init];
     password.frame = CGRectMake((kScreenWidth-passwordBackground.frameWidth)/2 + 50, CGRectGetMaxY(view.frame)+intervalY-3, passwordBackground.frameWidth - 50, passwordBackground.frameHeight);
     password.backgroundColor = [UIColor clearColor];
-    password.placeholder = @"请输入密码";
+    password.placeholder = @"请输入验证码";
     password.tintColor = [UIColor whiteColor];
     password.delegate = self;
     password.clearButtonMode = UITextFieldViewModeUnlessEditing;
-    password.secureTextEntry = YES;
+//    password.secureTextEntry = YES;
     password.keyboardType = UIKeyboardTypeNumberPad;
     password.textColor = [UIColor whiteColor];
     [password setValue:[UIColor colorWithRed:1 green:1 blue:1 alpha:0.3] forKeyPath:@"_placeholderLabel.textColor"];

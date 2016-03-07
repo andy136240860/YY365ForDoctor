@@ -105,23 +105,27 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    Patient *patient = self.listModel.items[indexPath.row];
-    switch (patient.state) {
-        case 4:{
-            ZhenLiaoDetailViewController *detailVC = [[ZhenLiaoDetailViewController alloc] initWithPageName:@"ZhenLiaoDetailViewController"];
-            detailVC.data = self.listModel.items[indexPath.row];
-            [self.slideNavigationController pushViewController:detailVC animated:YES];
-        }
-            break;
-            
-        default:{
-            YueZhenDanViewController *detailVC = [[YueZhenDanViewController alloc] initWithPageName:@"YueZhenDanViewController"];
-            detailVC.data = self.listModel.items[indexPath.row];
-            [self.slideNavigationController pushViewController:detailVC animated:YES];
-        }
-            
-            break;
-    }
+//    Patient *patient = self.listModel.items[indexPath.row];
+    
+    ZhenLiaoDetailViewController *detailVC = [[ZhenLiaoDetailViewController alloc] initWithPageName:@"ZhenLiaoDetailViewController"];
+    detailVC.data = self.listModel.items[indexPath.row];
+    [self.slideNavigationController pushViewController:detailVC animated:YES];
+//    switch (patient.state) {
+//        case 4:{
+//            ZhenLiaoDetailViewController *detailVC = [[ZhenLiaoDetailViewController alloc] initWithPageName:@"ZhenLiaoDetailViewController"];
+//            detailVC.data = self.listModel.items[indexPath.row];
+//            [self.slideNavigationController pushViewController:detailVC animated:YES];
+//        }
+//            break;
+//            
+//        default:{
+//            YueZhenDanViewController *detailVC = [[YueZhenDanViewController alloc] initWithPageName:@"YueZhenDanViewController"];
+//            detailVC.data = self.listModel.items[indexPath.row];
+//            [self.slideNavigationController pushViewController:detailVC animated:YES];
+//        }
+//            
+//            break;
+//    }
 
 }
 

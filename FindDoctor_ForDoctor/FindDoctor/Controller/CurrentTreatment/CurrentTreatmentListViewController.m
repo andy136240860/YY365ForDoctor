@@ -111,7 +111,7 @@
     Patient *patient = self.listModel.items[indexPath.row];
     switch (patient.state) {
         case 1:{
-            YueZhenDanViewController *detailVC = [[YueZhenDanViewController alloc] initWithPageName:@"YueZhenDanViewController"];
+            ZhenLiaoDetailViewController *detailVC = [[ZhenLiaoDetailViewController alloc] initWithPageName:@"ZhenLiaoDetailViewController"];
             detailVC.data = self.listModel.items[indexPath.row];
             [self.slideNavigationController pushViewController:detailVC animated:YES];
         }

@@ -23,7 +23,8 @@
 
 #import "TreatmentOrderManager.h"
 #import "TreatmentListAndDetailManager.h"
-#import "YueZhenDanViewController.h"
+//#import "YueZhenDanViewController.h"
+#import "ZhenLiaoDetailViewController.h"
 
 
 #define commitViewHeight 50
@@ -100,7 +101,7 @@
     CurrentTreatmentDetailHeaderView *headerView = [[CurrentTreatmentDetailHeaderView alloc]initWithFrame:CGRectMake(0,7, kScreenWidth, 105)];
     [headerView setDataWithName:_data.UserName sex:(_data.UserSex == 0 ? @"女":@"男") cellPhone:_data.UserCellPhone age:_data.UserAge orderNo:[_data.diagnosisID longLongValue]];
     headerView.yueZhenDanBlock = ^{
-        YueZhenDanViewController *detailVC = [[YueZhenDanViewController alloc]initWithPageName:@"YueZhenDanViewController"];
+        ZhenLiaoDetailViewController *detailVC = [[ZhenLiaoDetailViewController alloc]initWithPageName:@"YueZhenDanViewController"];
         detailVC.data = _data;
         [self.slideNavigationController pushViewController:detailVC animated:YES];
     };
