@@ -173,9 +173,9 @@
 		BC0BA6A91C4608610073D5CE /* TimeSegChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC0BA6A81C4608610073D5CE /* TimeSegChooseView.m */; };
 		BC193C8C1C1E8FB100ECF15B /* CurrentTreatmentDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC193C8B1C1E8FB100ECF15B /* CurrentTreatmentDetailHeaderView.m */; };
 		BC1AA5691C020E1F009CF7C5 /* CurrentTreatmentDetailsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1AA5671C020E1F009CF7C5 /* CurrentTreatmentDetailsManager.m */; };
-		BC1CE0A41C8FB6F3006B95BE /* Icon-76.png in Resources */ = {isa = PBXBuildFile; fileRef = BC1CE0A11C8FB6F3006B95BE /* Icon-76.png */; };
-		BC1CE0A51C8FB6F3006B95BE /* Icon-120.png in Resources */ = {isa = PBXBuildFile; fileRef = BC1CE0A21C8FB6F3006B95BE /* Icon-120.png */; };
-		BC1CE0A61C8FB6F3006B95BE /* Icon-152.png in Resources */ = {isa = PBXBuildFile; fileRef = BC1CE0A31C8FB6F3006B95BE /* Icon-152.png */; };
+		BC1CE0AA1C8FBB4B006B95BE /* Icon-76.png in Resources */ = {isa = PBXBuildFile; fileRef = BC1CE0A71C8FBB4B006B95BE /* Icon-76.png */; };
+		BC1CE0AB1C8FBB4B006B95BE /* Icon-120.png in Resources */ = {isa = PBXBuildFile; fileRef = BC1CE0A81C8FBB4B006B95BE /* Icon-120.png */; };
+		BC1CE0AC1C8FBB4B006B95BE /* Icon-152.png in Resources */ = {isa = PBXBuildFile; fileRef = BC1CE0A91C8FBB4B006B95BE /* Icon-152.png */; };
 		BC29855A1BABD582001999EA /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC2985591BABD582001999EA /* LoginView.m */; };
 		BC29855D1BABE679001999EA /* passwordTextFieldBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC29855B1BABE679001999EA /* passwordTextFieldBackground@2x.png */; };
 		BC29855E1BABE679001999EA /* userNameTextFieldBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC29855C1BABE679001999EA /* userNameTextFieldBackground@2x.png */; };
@@ -851,9 +851,9 @@
 		BC193C8B1C1E8FB100ECF15B /* CurrentTreatmentDetailHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CurrentTreatmentDetailHeaderView.m; path = View/CurrentTreatmentDetailHeaderView.m; sourceTree = "<group>"; };
 		BC1AA5671C020E1F009CF7C5 /* CurrentTreatmentDetailsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentTreatmentDetailsManager.m; sourceTree = "<group>"; };
 		BC1AA5681C020E1F009CF7C5 /* CurrentTreatmentDetailsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentTreatmentDetailsManager.h; sourceTree = "<group>"; };
-		BC1CE0A11C8FB6F3006B95BE /* Icon-76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-76.png"; path = "CurrentTreatment/Icon-76.png"; sourceTree = "<group>"; };
-		BC1CE0A21C8FB6F3006B95BE /* Icon-120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-120.png"; path = "CurrentTreatment/Icon-120.png"; sourceTree = "<group>"; };
-		BC1CE0A31C8FB6F3006B95BE /* Icon-152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-152.png"; path = "CurrentTreatment/Icon-152.png"; sourceTree = "<group>"; };
+		BC1CE0A71C8FBB4B006B95BE /* Icon-76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-76.png"; sourceTree = "<group>"; };
+		BC1CE0A81C8FBB4B006B95BE /* Icon-120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-120.png"; sourceTree = "<group>"; };
+		BC1CE0A91C8FBB4B006B95BE /* Icon-152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-152.png"; sourceTree = "<group>"; };
 		BC2985581BABD582001999EA /* LoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginView.h; path = User/LoginView.h; sourceTree = "<group>"; };
 		BC2985591BABD582001999EA /* LoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginView.m; path = User/LoginView.m; sourceTree = "<group>"; };
 		BC29855B1BABE679001999EA /* passwordTextFieldBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "passwordTextFieldBackground@2x.png"; sourceTree = "<group>"; };
@@ -3056,10 +3056,10 @@
 		E1EB1BA21B70A43A0048B8EB /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				BC1CE0A11C8FB6F3006B95BE /* Icon-76.png */,
+				BC1CE0A71C8FBB4B006B95BE /* Icon-76.png */,
+				BC1CE0A81C8FBB4B006B95BE /* Icon-120.png */,
+				BC1CE0A91C8FBB4B006B95BE /* Icon-152.png */,
 				BCDB29F61BC8020C00A0621F /* CurrentTreatment */,
-				BC1CE0A21C8FB6F3006B95BE /* Icon-120.png */,
-				BC1CE0A31C8FB6F3006B95BE /* Icon-152.png */,
 				BC7F29F91C2FD77D00AD7D86 /* Default.png */,
 				BCC4BE811BC547A200D35A63 /* Icon@2x.png */,
 				BCA769BB1BC42507002AD8E2 /* ZhenLiaoRecord */,
@@ -3775,7 +3775,7 @@
 				BCA30B901BA1208D003F9720 /* pic1@2x.png in Resources */,
 				BC833F341BD6039B00D76319 /* 200810231005252061@2x.jpg in Resources */,
 				BC556A091BA937B400ECB709 /* button_release_num@2x.png in Resources */,
-				BC1CE0A41C8FB6F3006B95BE /* Icon-76.png in Resources */,
+				BC1CE0AA1C8FBB4B006B95BE /* Icon-76.png in Resources */,
 				E689E9A01BA876E700A3ED3C /* home_find_doctor_button@2x.png in Resources */,
 				E1EB1E471B70A43B0048B8EB /* UMSCommentInputControlleriPad.xib in Resources */,
 				E10EDCE81B8CB3940035B6E7 /* detail_map_btn_sel@2x.png in Resources */,
@@ -3809,13 +3809,13 @@
 				BCD1D84D1C0D50760015B5AC /* edit_treatmentOrderListItem@2x.png in Resources */,
 				BC29855D1BABE679001999EA /* passwordTextFieldBackground@2x.png in Resources */,
 				BC2C97691BD0A70F00789774 /* time_segment_small_mid_Normal@2x.png in Resources */,
-				BC1CE0A51C8FB6F3006B95BE /* Icon-120.png in Resources */,
+				BC1CE0AB1C8FBB4B006B95BE /* Icon-120.png in Resources */,
 				BC2C976B1BD0A70F00789774 /* time_segment_small_right_HighLight@2x.png in Resources */,
 				E68CBEAE1B94A795005A247D /* comment_zan_button@2x.png in Resources */,
 				E10EDCE01B8CB3430035B6E7 /* menu_arrow_down@2x.png in Resources */,
 				E1EB1E491B70A43B0048B8EB /* UMShareEditViewControlleriPad.xib in Resources */,
 				E124D7B01B92ECA80007B85E /* login_icon_lock@2x.png in Resources */,
-				BC1CE0A61C8FB6F3006B95BE /* Icon-152.png in Resources */,
+				BC1CE0AC1C8FBB4B006B95BE /* Icon-152.png in Resources */,
 				3E6F0DA11AB67CAC00D6742A /* flotageBackgroud@2x.png in Resources */,
 				BC8E36F81C28295200304637 /* zhenLiao@2x.png in Resources */,
 				BC7FF1D71BC39151007C861A /* VIPicon@2x.png in Resources */,
