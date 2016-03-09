@@ -10,16 +10,16 @@
 #import "SNTabViewController.h"
 #import "AppCore.h"
 #import "CUUIContant.h"
-#import "BMapKit.h"
+//#import "BMapKit.h"
 #import "CUUserManager.h"
 
-#import "UMSocial.h"
-#import "UMSocialWechatHandler.h"
-#import "UMSocialQQHandler.h"
-#import "UMSocialSinaHandler.h"
-#import "UMSocialSinaSSOHandler.h"
+//#import "UMSocial.h"
+//#import "UMSocialWechatHandler.h"
+//#import "UMSocialQQHandler.h"
+//#import "UMSocialSinaHandler.h"
+//#import "UMSocialSinaSSOHandler.h"
 
-#import "MobClick.h"
+//#import "MobClick.h"
 #import "CUShareConstant.h"
 
 #import "SNTabBarItem.h"
@@ -39,7 +39,8 @@
 #import "LoginView.h"
 
 
-@interface AppDelegate () <BMKGeneralDelegate>
+@interface AppDelegate ()
+//<BMKGeneralDelegate>
 
 @property (nonatomic,strong)SNTabViewController * tabController;
 
@@ -48,9 +49,9 @@
 
 @implementation AppDelegate
 {
-    BMKMapManager *_mapManager;
-    BMKLocationService *_locService;
-    BMKGeoCodeSearch   *_geoSearcher;
+//    BMKMapManager *_mapManager;
+//    BMKLocationService *_locService;
+//    BMKGeoCodeSearch   *_geoSearcher;
     BOOL isLogin;
 }
 
@@ -96,60 +97,60 @@
 
 - (void)initShare
 {
-    // 友盟分享
-    [UMSocialData setAppKey:UmengAppkey];
-    
-    [UMSocialConfig hiddenNotInstallPlatforms:@[UMShareToQQ,UMShareToQzone,UMShareToWechatSession,UMShareToWechatTimeline]];
-    [UMSocialConfig setFinishToastIsHidden:YES position:UMSocialiToastPositionCenter];
-    
-    //设置微信AppId，设置分享url，默认使用友盟的网址
-    [UMSocialWechatHandler setWXAppId:@"wx2bdc2e8d006e143a" appSecret:@"98ab890642e1bb1144334ab140abb1cd" url:kAppShareURL];
-    
-    //打开新浪微博的SSO开关
-    //[UMSocialSinaHandler openSSOWithRedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
-    [UMSocialSinaSSOHandler openNewSinaSSOWithRedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
-    
-    //设置分享到QQ空间的应用Id，和分享url 链接
-    [UMSocialQQHandler setQQWithAppId:@"1104732674" appKey:@"hskafPocswDChVyA" url:kAppShareURL];
-    //设置支持没有客户端情况下使用SSO授权
-    [UMSocialQQHandler setSupportWebView:YES];
-    
-    [UMSocialConfig setNavigationBarConfig:^(UINavigationBar *bar,
-                                             UIButton *closeButton,
-                                             UIButton *backButton,
-                                             UIButton *postButton,
-                                             UIButton *refreshButton,
-                                             UINavigationItem * navigationItem){
-        bar.frame = CGRectMake(0, 0, kScreenWidth, kNavigationHeight);
-        
-        if ([bar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)]) {
-            [bar setBackgroundImage:[UIImage imageNamed:ImgStr_NavBackground] forBarMetrics:UIBarMetricsDefault];
-        }
-        
-        [closeButton setImage:[UIImage imageNamed:imgStr_CloseBtn] forState:UIControlStateNormal];
-        [backButton setImage:[UIImage imageNamed:ImgStr_BackBtn] forState:UIControlStateNormal];
-        
-        [postButton setImage:nil forState:UIControlStateNormal];
-        [postButton setTitle:@"发送" forState:UIControlStateNormal];
-        [postButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        
-        [refreshButton setImage:nil forState:UIControlStateNormal];
-        refreshButton.userInteractionEnabled = NO;
-        
-        UILabel *titleLabel = (id)navigationItem.titleView;
-        if ([titleLabel isKindOfClass:[UILabel class]]) {
-            titleLabel.textColor = [UIColor whiteColor];
-        }
-        
-        UIBarButtonItem *leftSpacer = [[UIBarButtonItem alloc]
-                                           initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
-                                           target:nil action:nil];
-        leftSpacer.width = -15;
-        
-        if (navigationItem.leftBarButtonItems.count == 1) {
-            navigationItem.leftBarButtonItems = [NSArray arrayWithObjects:leftSpacer, [navigationItem.leftBarButtonItems objectAtIndex:0], nil];
-        }
-    }];
+//    // 友盟分享
+//    [UMSocialData setAppKey:UmengAppkey];
+//    
+//    [UMSocialConfig hiddenNotInstallPlatforms:@[UMShareToQQ,UMShareToQzone,UMShareToWechatSession,UMShareToWechatTimeline]];
+//    [UMSocialConfig setFinishToastIsHidden:YES position:UMSocialiToastPositionCenter];
+//    
+//    //设置微信AppId，设置分享url，默认使用友盟的网址
+//    [UMSocialWechatHandler setWXAppId:@"wx2bdc2e8d006e143a" appSecret:@"98ab890642e1bb1144334ab140abb1cd" url:kAppShareURL];
+//    
+//    //打开新浪微博的SSO开关
+//    //[UMSocialSinaHandler openSSOWithRedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
+//    [UMSocialSinaSSOHandler openNewSinaSSOWithRedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
+//    
+//    //设置分享到QQ空间的应用Id，和分享url 链接
+//    [UMSocialQQHandler setQQWithAppId:@"1104732674" appKey:@"hskafPocswDChVyA" url:kAppShareURL];
+//    //设置支持没有客户端情况下使用SSO授权
+//    [UMSocialQQHandler setSupportWebView:YES];
+//    
+//    [UMSocialConfig setNavigationBarConfig:^(UINavigationBar *bar,
+//                                             UIButton *closeButton,
+//                                             UIButton *backButton,
+//                                             UIButton *postButton,
+//                                             UIButton *refreshButton,
+//                                             UINavigationItem * navigationItem){
+//        bar.frame = CGRectMake(0, 0, kScreenWidth, kNavigationHeight);
+//        
+//        if ([bar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)]) {
+//            [bar setBackgroundImage:[UIImage imageNamed:ImgStr_NavBackground] forBarMetrics:UIBarMetricsDefault];
+//        }
+//        
+//        [closeButton setImage:[UIImage imageNamed:imgStr_CloseBtn] forState:UIControlStateNormal];
+//        [backButton setImage:[UIImage imageNamed:ImgStr_BackBtn] forState:UIControlStateNormal];
+//        
+//        [postButton setImage:nil forState:UIControlStateNormal];
+//        [postButton setTitle:@"发送" forState:UIControlStateNormal];
+//        [postButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//        
+//        [refreshButton setImage:nil forState:UIControlStateNormal];
+//        refreshButton.userInteractionEnabled = NO;
+//        
+//        UILabel *titleLabel = (id)navigationItem.titleView;
+//        if ([titleLabel isKindOfClass:[UILabel class]]) {
+//            titleLabel.textColor = [UIColor whiteColor];
+//        }
+//        
+//        UIBarButtonItem *leftSpacer = [[UIBarButtonItem alloc]
+//                                           initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
+//                                           target:nil action:nil];
+//        leftSpacer.width = -15;
+//        
+//        if (navigationItem.leftBarButtonItems.count == 1) {
+//            navigationItem.leftBarButtonItems = [NSArray arrayWithObjects:leftSpacer, [navigationItem.leftBarButtonItems objectAtIndex:0], nil];
+//        }
+//    }];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -159,7 +160,7 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    [_locService stopUserLocationService];
+//    [_locService stopUserLocationService];
     
     [[AppCore sharedInstance] save];
 }
@@ -171,7 +172,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-    [_locService startUserLocationService];
+//    [_locService startUserLocationService];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
@@ -283,23 +284,23 @@
     return customTabBarItem;
 }
 
-- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
-{
-    if ([[CUOrderManager sharedInstance] isThirdPayURL:url]) {
-        [[CUOrderManager sharedInstance] handleThirdPayOpenURL:url];
-    }
-    
-    return  [UMSocialSnsService handleOpenURL:url wxApiDelegate:nil];
-}
+//- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+//{
+//    if ([[CUOrderManager sharedInstance] isThirdPayURL:url]) {
+//        [[CUOrderManager sharedInstance] handleThirdPayOpenURL:url];
+//    }
+//    
+//    return  [UMSocialSnsService handleOpenURL:url wxApiDelegate:nil];
+//}
 
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
-{
-    if ([[CUOrderManager sharedInstance] isThirdPayURL:url]) {
-        [[CUOrderManager sharedInstance] handleThirdPayOpenURL:url];
-    }
-    
-    return  [UMSocialSnsService handleOpenURL:url wxApiDelegate:nil];
-}
+//- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+//{
+//    if ([[CUOrderManager sharedInstance] isThirdPayURL:url]) {
+//        [[CUOrderManager sharedInstance] handleThirdPayOpenURL:url];
+//    }
+//    
+//    return  [UMSocialSnsService handleOpenURL:url wxApiDelegate:nil];
+//}
 
 #pragma mark - BMKMapManager Delegate
 
@@ -327,56 +328,56 @@
 #pragma mark - MKMapView Delegate
 
 //处理位置坐标更新
-- (void)didUpdateUserLocation:(BMKUserLocation *)userLocation
-{
-    NSLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
-    if (userLocation) {
-        NSString *baiduLat = [[NSString alloc] initWithFormat:@"%f",userLocation.location.coordinate.latitude];
-        
-        NSString *baiduLng = [[NSString alloc] initWithFormat:@"%f",userLocation.location.coordinate.longitude];
-        NSLog(@"x=%@,y=%@",baiduLat,baiduLng);
-        [[NSUserDefaults standardUserDefaults] setObject:baiduLat forKey:@"lat"];
-        [[NSUserDefaults standardUserDefaults] setObject:baiduLng forKey:@"lng"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-        [_locService stopUserLocationService];
-        
-        BMKReverseGeoCodeOption *option = [[BMKReverseGeoCodeOption alloc] init];
-        option.reverseGeoPoint = userLocation.location.coordinate;
-        [_geoSearcher reverseGeoCode:option];
-    }
-}
+//- (void)didUpdateUserLocation:(BMKUserLocation *)userLocation
+//{
+//    NSLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
+//    if (userLocation) {
+//        NSString *baiduLat = [[NSString alloc] initWithFormat:@"%f",userLocation.location.coordinate.latitude];
+//        
+//        NSString *baiduLng = [[NSString alloc] initWithFormat:@"%f",userLocation.location.coordinate.longitude];
+//        NSLog(@"x=%@,y=%@",baiduLat,baiduLng);
+//        [[NSUserDefaults standardUserDefaults] setObject:baiduLat forKey:@"lat"];
+//        [[NSUserDefaults standardUserDefaults] setObject:baiduLng forKey:@"lng"];
+//        [[NSUserDefaults standardUserDefaults] synchronize];
+//        [_locService stopUserLocationService];
+//        
+//        BMKReverseGeoCodeOption *option = [[BMKReverseGeoCodeOption alloc] init];
+//        option.reverseGeoPoint = userLocation.location.coordinate;
+//        [_geoSearcher reverseGeoCode:option];
+//    }
+//}
 
-- (void)didFailToLocateUserWithError:(NSError *)error
-{}
+//- (void)didFailToLocateUserWithError:(NSError *)error
+//{}
 
-- (void)onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKReverseGeoCodeResult *)result errorCode:(BMKSearchErrorCode)error
-{
-    if (error == BMK_SEARCH_NO_ERROR) {
-        NSString *cityName = [result.addressDetail.city stringByReplacingOccurrencesOfString:@"市" withString:@""];
-        NSLog(@"当前城市是 %@", cityName);
-    }
-    else {
-        NSLog(@"抱歉，未找到结果");
-    }
-}
-
-- (void)initMapService
-{
-    // 要使用百度地图，请先启动BaiduMapManager
-    // com.wallet.BaiduFinance iECHAdtn1ql3FlkGKasXyGbs
-    // com.jiayu.eshijia hm8ufnt0raPVEUrMRSdrb8qq
-    _mapManager = [[BMKMapManager alloc]init];
-    BOOL ret = [_mapManager start:@"iECHAdtn1ql3FlkGKasXyGbs" generalDelegate:self];
-    if (!ret) {
-        NSLog(@"manager start failed!");
-    }
-    
-    //初始化BMKLocationService
-    _locService = [[BMKLocationService alloc]init];
-    _locService.delegate = (id)self;
-    
-    _geoSearcher = [[BMKGeoCodeSearch alloc]init];
-    _geoSearcher.delegate = (id)self;
-}
+//- (void)onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKReverseGeoCodeResult *)result errorCode:(BMKSearchErrorCode)error
+//{
+//    if (error == BMK_SEARCH_NO_ERROR) {
+//        NSString *cityName = [result.addressDetail.city stringByReplacingOccurrencesOfString:@"市" withString:@""];
+//        NSLog(@"当前城市是 %@", cityName);
+//    }
+//    else {
+//        NSLog(@"抱歉，未找到结果");
+//    }
+//}
+//
+//- (void)initMapService
+//{
+//    // 要使用百度地图，请先启动BaiduMapManager
+//    // com.wallet.BaiduFinance iECHAdtn1ql3FlkGKasXyGbs
+//    // com.jiayu.eshijia hm8ufnt0raPVEUrMRSdrb8qq
+//    _mapManager = [[BMKMapManager alloc]init];
+//    BOOL ret = [_mapManager start:@"iECHAdtn1ql3FlkGKasXyGbs" generalDelegate:self];
+//    if (!ret) {
+//        NSLog(@"manager start failed!");
+//    }
+//    
+//    //初始化BMKLocationService
+//    _locService = [[BMKLocationService alloc]init];
+//    _locService.delegate = (id)self;
+//    
+//    _geoSearcher = [[BMKGeoCodeSearch alloc]init];
+//    _geoSearcher.delegate = (id)self;
+//}
 
 @end
