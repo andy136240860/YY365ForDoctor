@@ -8,8 +8,6 @@
 	<string>优医365医生端</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
-	<key>CFBundleIcons</key>
-	<dict/>
 	<key>CFBundleIconFiles</key>
 	<array>
 		<string>Icon-152.png</string>
@@ -17,6 +15,8 @@
 		<string>Icon-76.png</string>
 		<string>Icon@2x.png</string>
 	</array>
+	<key>CFBundleIcons</key>
+	<dict/>
 	<key>CFBundleIcons~ipad</key>
 	<dict/>
 	<key>CFBundleIdentifier</key>

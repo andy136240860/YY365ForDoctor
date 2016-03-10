@@ -18,25 +18,18 @@
         self.backgroundColor = [UIColor clearColor];
         _headerLabel = [[UILabel alloc]init];
         _headerLabel.text = title;
-        _headerLabel.textAlignment = NSTextAlignmentCenter;
         _headerLabel.font =[UIFont systemFontOfSize:14];
-        _headerLabel.textColor = UIColorFromHex(Color_Hex_NavBackground);
+        _headerLabel.textColor = UIColorFromHex(0x51b526);
         CGSize size =  [self sizeWithString:title font:[UIFont systemFontOfSize:14]];
-        _headerLabel.frame = CGRectMake((kScreenWidth-size.width)/2,self.frameHeight/2 - size.height/2,size.width,size.height);
+        _headerLabel.frame = CGRectMake((kScreenWidth-size.width)/2,10,size.width,size.height);
         [self addSubview:_headerLabel];
         
-        UIImage *image1 = [UIImage imageNamed:@"titleLine1"];
-        UIImage *image2 = [UIImage imageNamed:@"titleLine2"];
-        UIImageView *headerlionView1 = [[UIImageView alloc]init];
-        headerlionView1.image = image1;
-        UIImageView *headerlionView2 = [[UIImageView alloc]init];
-        headerlionView2.image = image2;
-        
-        float lineWith = image1.size.width/image1.size.height*3.5;
-        float textWith = size.width + 15;
-        headerlionView1.frame = CGRectMake(kScreenWidth/2 - textWith/2 - lineWith,(self.frameHeight-3.5)/2,lineWith,3.5);
+        UIImage *headerline = [UIImage imageNamed:@"headerline"];
+        UIImageView *headerlionView1 = [[UIImageView alloc]initWithImage:headerline];
+        UIImageView *headerlionView2 = [[UIImageView alloc]initWithImage:headerline];
+        headerlionView1.frame = CGRectMake(0,17,((kScreenWidth-size.width)/2.0-10),1);
         headerlionView1.contentMode = 0;
-        headerlionView2.frame = CGRectMake(kScreenWidth/2 + textWith/2,(self.frameHeight-3.5)/2,lineWith,3.5);
+        headerlionView2.frame = CGRectMake((kScreenWidth+size.width)/2+10,17,((kScreenWidth-size.width)/2.0-10),1);
         headerlionView2.contentMode = 0;
         
         [self addSubview:headerlionView1];

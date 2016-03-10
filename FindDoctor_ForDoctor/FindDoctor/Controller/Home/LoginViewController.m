@@ -276,54 +276,22 @@
     __weak LoginViewController * blockSelf = self;
     SNServerAPIResultBlock handler = ^(SNHTTPRequestOperation *request, SNServerAPIResultData *result)
     {
-        if (result.hasError) {
-            if (result.errorType == SNServerAPIErrorType_NetWorkFailure) {
-                [TipHandler showHUDText:@"网络错误" inView:blockSelf.view];
-            }
-            if (result.errorType == SNServerAPIErrorType_DataError) {
-                [TipHandler showHUDText:@"数据错误" inView:blockSelf.view];
-            }
-            
-        }
+        [blockSelf hideProgressView];
         if (!result.hasError)
         {
-            NSInteger err_code = [[result.responseObject valueForKey:@"err_code"] integerValue];
-            switch (err_code) {
-                case 1:
-                {
-                    [TipHandler showHUDText:@"用户名不存在" inView:blockSelf.view];
-                    break;
+            NSInteger err_code = [[result.responseObject valueForKey:@"errorCode"] integerValue];
+            if (err_code == 0) {
+                if ([CUUserManager sharedInstance].user.doctorId == -1){
+                    [TipHandler showHUDText:@"对不起，您还并未签约，请联系客服" inView:blockSelf.view];
                 }
-                    
-                case 2:{
-                    [TipHandler showHUDText:@"密码错误" inView:blockSelf.view];
-                    break;
+                else {
+                    [TipHandler showHUDText:@"登录成功" inView:blockSelf.view];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"loginSuccess" object:nil];
                 }
-                    
-                case 0:{
-                    if ([CUUserManager sharedInstance].user.doctorId == -1){
-                        [TipHandler showHUDText:@"对不起，您还并未签约，请联系客服" inView:blockSelf.view];
-                    }
-                    else {
-                        [TipHandler showHUDText:@"登录成功" inView:blockSelf.view];
-                        [[NSNotificationCenter defaultCenter] postNotificationName:@"loginSuccess" object:nil];
-                        }
-                }
-                    break;
-                
-                    
-                default:{
-                    [TipHandler showHUDText:@"密码错误" inView:blockSelf.view];
-                    break;
-                }
-                    
             }
-            
-            //调用userInfo
         }
         else
         {
-            [blockSelf hideProgressView];
             [TipHandler showHUDText:[result.error.userInfo valueForKey:NSLocalizedDescriptionKey] inView:blockSelf.contentView];
         }
     };
