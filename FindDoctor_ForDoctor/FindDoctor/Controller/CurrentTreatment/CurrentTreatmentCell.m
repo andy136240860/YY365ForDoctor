@@ -99,9 +99,9 @@
     
     label1.text = [NSString stringWithFormat:@"单   号: %@",_data.diagnosisID];
     
-    label2.text = [NSString stringWithFormat:@"约诊号: 第 %d 号",_data.orderNo];
+    label2.text = [NSString stringWithFormat:@"约诊号: 第 %ld 号",(long)_data.orderNo];
     
-    label3.text = [NSString stringWithFormat:@"患者: %@ , %@ , %d岁",_data.UserName,(_data.UserSex == 0 ? @"女":@"男"),_data.UserAge];
+    label3.text = [NSString stringWithFormat:@"患者: %@ , %@ , %ld岁",_data.UserName,(_data.UserSex == 0 ? @"女":@"男"),(long)_data.UserAge];
     
     label4.text = [NSString stringWithFormat:@"地点: %@",_data.clinicAddress];
     
@@ -122,6 +122,9 @@
             _stateImageView.image = [UIImage imageNamed:@"icon_unfinish"];
         }break;
         case 4:{//开方已完成
+            _stateImageView.image = [UIImage imageNamed:@"icon_finish"];
+        }break;
+        case 5:{//开方已完成
             _stateImageView.image = [UIImage imageNamed:@"icon_finish"];
         }break;
         default:

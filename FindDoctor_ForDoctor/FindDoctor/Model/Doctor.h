@@ -40,6 +40,8 @@ typedef NS_ENUM(NSInteger, DoctorSortType) {
 @property NSInteger queueNumber;  // 已预约数量
 @property NSInteger queueCount;   // 可预约总数
 
+@property (nonatomic, strong) NSMutableArray *flagList;
+
 - (NSString *)availableDesc;
 
 @end

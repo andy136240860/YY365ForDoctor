@@ -12,7 +12,6 @@
 #import "CurrentTreatmentDetailViewController.h"
 #import "CURecipeController.h"
 #import "ZhenLiaoDetailViewController.h"
-#import "YueZhenDanViewController.h"
 
 @interface CurrentTreatmentListViewController ()<DOPDropDownMenuDataSource, DOPDropDownMenuDelegate>
 
@@ -116,7 +115,25 @@
             [self.slideNavigationController pushViewController:detailVC animated:YES];
         }
             break;
+        case 2:{
+            CurrentTreatmentDetailViewController *detailVC = [[CurrentTreatmentDetailViewController alloc] initWithPageName:@"CurrentTreatmentDetailViewController"];
+            detailVC.data = self.listModel.items[indexPath.row];
+            [self.slideNavigationController pushViewController:detailVC animated:YES];
+        }
+            break;
+        case 3:{
+            CurrentTreatmentDetailViewController *detailVC = [[CurrentTreatmentDetailViewController alloc] initWithPageName:@"CurrentTreatmentDetailViewController"];
+            detailVC.data = self.listModel.items[indexPath.row];
+            [self.slideNavigationController pushViewController:detailVC animated:YES];
+        }
+            break;
         case 4:{
+            ZhenLiaoDetailViewController *detailVC = [[ZhenLiaoDetailViewController alloc] initWithPageName:@"ZhenLiaoDetailViewController"];
+            detailVC.data = self.listModel.items[indexPath.row];
+            [self.slideNavigationController pushViewController:detailVC animated:YES];
+        }
+            break;
+        case 5:{
             ZhenLiaoDetailViewController *detailVC = [[ZhenLiaoDetailViewController alloc] initWithPageName:@"ZhenLiaoDetailViewController"];
             detailVC.data = self.listModel.items[indexPath.row];
             [self.slideNavigationController pushViewController:detailVC animated:YES];
@@ -124,9 +141,7 @@
             break;
             
         default:{
-            CurrentTreatmentDetailViewController *detailVC = [[CurrentTreatmentDetailViewController alloc] initWithPageName:@"CurrentTreatmentDetailViewController"];
-            detailVC.data = self.listModel.items[indexPath.row];
-            [self.slideNavigationController pushViewController:detailVC animated:YES];
+
         }
             break;
     }

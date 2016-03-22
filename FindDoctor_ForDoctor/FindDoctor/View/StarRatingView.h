@@ -13,17 +13,21 @@
 
 #define kImageSpace_B         4.0
 
-#define kImageWidth_B         20.0
-#define kImageHeight_B        20.0
+#define kImageWidth_B         40.0
+#define kImageHeight_B        40.0
 
-#define kStarImageBlank_B     @"praise_grade_normal"
-#define kStarImageFull_B      @"praise_grade_highlighted"
-#define kStarImageHalf_B      @"comment_star_yellow_half_big"
+//#define kStarImageBlank_B     @"praise_grade_normal"
+//#define kStarImageFull_B      @"praise_grade_highlighted"
+//#define kStarImageHalf_B      @"comment_star_yellow_half_big"
+
+#define kStarImageBlank_B     @"comment_star_gray"
+#define kStarImageFull_B      @"comment_star_yellow"
+#define kStarImageHalf_B      @"comment_star_yellow_half"
 
 #define kImageSpace_S         3.0
 
-#define kImageWidth_S         12.0
-#define kImageHeight_S        12.0
+#define kImageWidth_S         16.0
+#define kImageHeight_S        16.0
 
 #define kStarImageBlank_S     @"comment_star_gray"
 #define kStarImageFull_S      @"comment_star_yellow"
@@ -43,7 +47,7 @@ typedef enum : NSUInteger {
 
 @end
 
-@interface StarRatingView : UIView
+@interface StarRatingView : UIControl
 
 - (id)initWithFrame:(CGRect)frame type:(StarType)type;
 

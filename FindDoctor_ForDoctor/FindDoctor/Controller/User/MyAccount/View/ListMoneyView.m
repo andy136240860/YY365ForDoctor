@@ -147,7 +147,6 @@
         cell.massage = [self.data.incomeDetailList[indexPath.row] massage];
         return [cell CellHeight];
     }
-
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

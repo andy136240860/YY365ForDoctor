@@ -153,7 +153,7 @@
         temPrecipe_sentence = [temPrecipe_sentence substringFromIndex:1];
     }
 
-    NSString *tempDiagnose = [NSString stringWithFormat:@"%@,%@,%@,%@",_chinessRecipeField.text,_dialecticsField.text,_westernRecipeField.text,_medicineStyleField.text];
+//    NSString *tempDiagnose = [NSString stringWithFormat:@"%@,%@,%@,%@",_chinessRecipeField.text,_dialecticsField.text,_westernRecipeField.text,_medicineStyleField.text];
 //    [[TreatmentOrderManager sharedInstance] medicineWithOrderNumber:_orderno recipeData:self. number:[_medicineNumberField.text integerValue] diagnose:tempDiagnose resultBlock:^(SNHTTPRequestOperation *request, SNServerAPIResultData *result) {
 //        if (!result.hasError) {
 //            NSInteger err_code = [[result.responseObject valueForKeySafely:@"err_code"] integerValue];

@@ -17,6 +17,8 @@
 #import "SNBaseListModel.h"
 
 #import "Patient.h"
+#import "Comment.h"
+#import "CommentListModel.h"
 
 #import "TipMessageData.h"
 #import "MyAccount.h"
@@ -24,6 +26,7 @@
 #import "AppDelegate.h"
 
 #import "CUHerbSelect.h"
+#import "TipHandler+HUD.h"
 
 
 @implementation TreatmentListAndDetailManager
@@ -37,7 +40,7 @@ SINGLETON_IMPLENTATION(TreatmentListAndDetailManager);
 - (void)getCurrentTreatmentListWithPageNum:(NSInteger)pageNum pageSize:(NSInteger)pageSize resultBlock:(SNServerAPIResultBlock)resultBlock pageName:(NSString *)pageName
 {
     NSMutableDictionary * param = [NSMutableDictionary dictionary];
-    [param setObjectSafely:@"ios" forKey:@"from"];
+    [param setObjectSafely:kPlatformFrom forKey:@"from"];
     [param setObjectSafely:[CUUserManager sharedInstance].user.token forKey:@"token"];
     [param setObjectSafely:@"TodayUserDiagnosis" forKey:@"require"];
     [param setObjectSafely:@(22001) forKey:@"interfaceID"];
@@ -78,7 +81,11 @@ SINGLETON_IMPLENTATION(TreatmentListAndDetailManager);
                     zhenLiaoRecord.clinicAddress = [dic objectForKeySafely:@"clinicAddress"];
                     zhenLiaoRecord.clinicName = [dic objectForKeySafely:@"clinicName"];
                     zhenLiaoRecord.illnessDescription = [NSString stringWithFormat:@"%@",[dic objectForKeySafely:@"illnessDescription"]];
-                    zhenLiaoRecord.illnessPic = [[dic valueForKey:@"illnessPic"] componentsSeparatedByString:@","];
+                    
+                    if ([[[dic valueForKey:@"illnessPic"] class] isKindOfClass:[NSString class]]) {
+                        zhenLiaoRecord.illnessPic = [[dic valueForKey:@"illnessPic"] componentsSeparatedByString:@","];
+                    }
+                    
                     zhenLiaoRecord.orderNo =[[dic objectForKeySafely:@"orderNo"] integerValue];
                     zhenLiaoRecord.diagnosisContent = [NSString stringWithFormat:@"%@",[dic objectForKeySafely:@"diagnosisContent"]];;
                     zhenLiaoRecord.recipeNum = [[dic objectForKeySafely:@"recipeNum"] integerValue];
@@ -107,23 +114,6 @@ SINGLETON_IMPLENTATION(TreatmentListAndDetailManager);
 #else
         SNBaseListModel *listModel = [[SNBaseListModel alloc] init];
         for(int i = 0;i < 20;i++){
-            CurrentTreatment  *currentTreatment = [[CurrentTreatment alloc] init];
-            currentTreatment.queueId = @"123";
-//            currentTreatment.UserHeaderImageURL = [NSString stringWithFormat:@"%@",[[data objectAtIndexSafely:i] valueForKeySafely:@"ftppath"]];
-            currentTreatment.UserNickName = @"131313";
-            currentTreatment.queueNumber = @"2342423";
-//
-//            NSString *date = [NSString stringWithFormat:@"%@",[[data objectAtIndexSafely:i] valueForKeySafely:@"startdiagnosistime"]];
-//            date = [date substringToIndex:10];
-//            NSLog(@"%@",date);
-//            currentTreatment.queueTime = [NSDate convertDateIntervalToStringWith:date];
-//            currentTreatment.DiseaseDescription = [[data objectAtIndexSafely:i] valueForKeySafely:@"description"];
-            currentTreatment.isVIP = NO;
-            currentTreatment.queueAddress = @"123";
-            currentTreatment.queueState = @"243424";
-            currentTreatment.orderno = 12313131312;
-            currentTreatment.state = 0;
-            [listModel.items addObject:currentTreatment];
         }
         result.parsedModelObject = listModel;
         resultBlock(nil, result);
@@ -137,7 +127,7 @@ SINGLETON_IMPLENTATION(TreatmentListAndDetailManager);
 - (void)getYueZhenRecordListWithPageNum:(NSInteger)pageNum pageSize:(NSInteger)pageSize resultBlock:(SNServerAPIResultBlock)resultBlock pageName:(NSString *)pageName
 {
     NSMutableDictionary * param = [NSMutableDictionary dictionary];
-    [param setObjectSafely:@"ios" forKey:@"from"];
+    [param setObjectSafely:kPlatformFrom forKey:@"from"];
     [param setObjectSafely:[CUUserManager sharedInstance].user.token forKey:@"token"];
     [param setObjectSafely:@"ReleaseOrderRecords" forKey:@"require"];
     [param setObjectSafely:@(23002) forKey:@"interfaceID"];
@@ -179,7 +169,9 @@ SINGLETON_IMPLENTATION(TreatmentListAndDetailManager);
                     zhenLiaoRecord.clinicAddress = [dic objectForKeySafely:@"clinicAddress"];
                     zhenLiaoRecord.clinicName = [dic objectForKeySafely:@"clinicName"];
                     zhenLiaoRecord.illnessDescription = [NSString stringWithFormat:@"%@",[dic objectForKeySafely:@"illnessDescription"]];
-                    zhenLiaoRecord.illnessPic = [[dic valueForKey:@"illnessPic"] componentsSeparatedByString:@","];
+                    if ([[[dic valueForKey:@"illnessPic"] class] isKindOfClass:[NSString class]]) {
+                        zhenLiaoRecord.illnessPic = [[dic valueForKey:@"illnessPic"] componentsSeparatedByString:@","];
+                    }
                     zhenLiaoRecord.orderNo =[[dic objectForKeySafely:@"orderNo"] integerValue];
                     zhenLiaoRecord.diagnosisContent = [NSString stringWithFormat:@"%@",[dic objectForKeySafely:@"diagnosisContent"]];
                     zhenLiaoRecord.recipeNum = [[dic objectForKeySafely:@"recipeNum"] integerValue];
@@ -265,7 +257,7 @@ SINGLETON_IMPLENTATION(TreatmentListAndDetailManager);
 - (void)getZhenLiaoRecordListWithPageNum:(NSInteger)pageNum pageSize:(NSInteger)pageSize resultBlock:(SNServerAPIResultBlock)resultBlock pageName:(NSString *)pageName
 {
     NSMutableDictionary * param = [NSMutableDictionary dictionary];
-    [param setObjectSafely:@"ios" forKey:@"from"];
+    [param setObjectSafely:kPlatformFrom forKey:@"from"];
     [param setObjectSafely:[CUUserManager sharedInstance].user.token forKey:@"token"];
     [param setObjectSafely:@"DoctorDiagnosisRecords" forKey:@"require"];
     [param setObjectSafely:@(23003) forKey:@"interfaceID"];
@@ -307,7 +299,9 @@ SINGLETON_IMPLENTATION(TreatmentListAndDetailManager);
                     zhenLiaoRecord.clinicAddress = [dic objectForKeySafely:@"clinicAddress"];
                     zhenLiaoRecord.clinicName = [dic objectForKeySafely:@"clinicName"];
                     zhenLiaoRecord.illnessDescription = [NSString stringWithFormat:@"%@",[dic objectForKeySafely:@"illnessDescription"]];
-                    zhenLiaoRecord.illnessPic = [[dic valueForKey:@"illnessPic"] componentsSeparatedByString:@","];
+                    if ([[[dic valueForKey:@"illnessPic"] class] isKindOfClass:[NSString class]]) {
+                        zhenLiaoRecord.illnessPic = [[dic valueForKey:@"illnessPic"] componentsSeparatedByString:@","];
+                    }
                     zhenLiaoRecord.orderNo =[[dic objectForKeySafely:@"orderNo"] integerValue];
                     zhenLiaoRecord.diagnosisContent = [NSString stringWithFormat:@"%@",[dic objectForKeySafely:@"diagnosisContent"]];
                     zhenLiaoRecord.recipeNum = [[dic objectForKeySafely:@"recipeNum"] integerValue];
@@ -394,7 +388,7 @@ SINGLETON_IMPLENTATION(TreatmentListAndDetailManager);
 - (void)getHomeTipListWithResultBlock:(SNServerAPIResultBlock)resultBlock pageName:(NSString *)pageName
 {
     NSMutableDictionary * param = [NSMutableDictionary dictionary];
-    [param setObjectSafely:@"ios" forKey:@"from"];
+    [param setObjectSafely:kPlatformFrom forKey:@"from"];
     [param setObjectSafely:[CUUserManager sharedInstance].user.token forKey:@"token"];
     [param setObjectSafely:@"DoctorAppMainPush" forKey:@"require"];
     [param setObjectSafely:@(20001) forKey:@"interfaceID"];
@@ -481,7 +475,7 @@ SINGLETON_IMPLENTATION(TreatmentListAndDetailManager);
 - (void)getMyAccountWithResultBlock:(SNServerAPIResultBlock)resultBlock pageName:(NSString *)pageName
 {
     NSMutableDictionary * param = [NSMutableDictionary dictionary];
-    [param setObjectSafely:@"ios" forKey:@"from"];
+    [param setObjectSafely:kPlatformFrom forKey:@"from"];
     [param setObjectSafely:[CUUserManager sharedInstance].user.token forKey:@"token"];
     [param setObjectSafely:@"DoctorConsumeRecords" forKey:@"require"];
     [param setObjectSafely:@(23004) forKey:@"interfaceID"];
@@ -527,10 +521,8 @@ SINGLETON_IMPLENTATION(TreatmentListAndDetailManager);
                 [[AppDelegate app] launchMainView];
 #endif
             }
-
-            
-            resultBlock(nil, result);
         }
+        resultBlock(nil, result);
 #else
         MyAccount *myAccount = [[MyAccount alloc]init];
         myAccount.totalCost = 1255.3;
@@ -558,6 +550,103 @@ SINGLETON_IMPLENTATION(TreatmentListAndDetailManager);
 }
 
 
+//我的点评
+- (void)getCommentWithLastID:(CommentListFilter *)filter resultBlock:(SNServerAPIResultBlock)resultBlock pageName:(NSString *)pageName
+{
+    NSMutableDictionary * param = [NSMutableDictionary dictionary];
+    [param setObjectSafely:kPlatformFrom forKey:@"from"];
+    [param setObjectSafely:[CUUserManager sharedInstance].user.token forKey:@"token"];
+    [param setObjectSafely:@"DoctorMyRemarks" forKey:@"require"];
+    [param setObjectSafely:@(11904) forKey:@"interfaceID"];
+    [param setObjectSafely:@((NSInteger)[NSDate timeIntervalSince1970]) forKey:@"timestamp"];
+    
+    NSMutableDictionary * dataParam = [NSMutableDictionary dictionary];
+    [dataParam setObjectSafely:@([CUUserManager sharedInstance].user.userId) forKey:@"accID"];
+    [dataParam setObjectSafely:@(filter.lastID) forKey:@"lastID"];
+    [dataParam setObjectSafely:@(kPageSize) forKey:@"num"];
+    [param setObjectSafely:[dataParam JSONString] forKey:@"data"];
+    
+    NSLog(@"%@",param);
+    
+    
+    [[AppCore sharedInstance].apiManager POST:URL_AfterBase parameters:param callbackRunInGlobalQueue:YES parser:nil parseMethod:nil resultBlock:^(SNHTTPRequestOperation *request, SNServerAPIResultData *result){
+#if !LOCAL
+        if (!result.hasError){
+            NSInteger err_code = [[result.responseObject valueForKeySafely:@"errorCode"] integerValue];
+            if (err_code == 0) {
+                CommentListModel *listModel = [[CommentListModel alloc]init];
+                Doctor *doctor = [[Doctor alloc]init];
+                listModel.data = doctor;
+                NSMutableDictionary  *dic = [result.responseObject valueForKeySafely:@"data"];
+                if([dic isKindOfClass:[NSDictionary class]]){
+                    NSMutableArray *arr = [dic objectForKey:@"flagList"];
+                    NSMutableArray *recv = [NSMutableArray new];
+                    
+                    [arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                        FlagListInfo *item = [[FlagListInfo alloc]init];
+                        item.ID = [[obj valueForKey:@"ID"] integerValue];
+                        item.icon = [obj valueForKey:@"icon"];
+                        item.money = [[obj valueForKey:@"money"] integerValue];
+                        item.name = [obj valueForKey:@"name"];
+                        item.scoreForDoctorOnece = [[obj valueForKey:@"score"] integerValue];
+                        item.num = [[obj valueForKey:@"num"] integerValue];
+                        [recv addObject:item];
+                    }];
+                    doctor.flagList = recv;
+                    
+                    arr = [dic objectForKey:@"obtainFlagList"];
+                    recv = [NSMutableArray new];
+                    
+                    if ([arr isKindOfClass:[NSMutableArray class]]) {
+                        for (int k = 0 ; k < arr.count; k++) {
+                            for (int i = 0 ; i < doctor.flagList.count; i++) {
+                                FlagListInfo *temp = [doctor.flagList objectAtIndex:i];
+                                if ([[[arr objectAtIndex:k] valueForKey:@"ID"] integerValue] == temp.ID)
+                                    temp.num = [[[arr objectAtIndex:k] valueForKey:@"num"] integerValue];
+                            }
+                        }
+                        
+                    }
+                    arr = [dic objectForKey:@"remarkList"];
+                    recv = [NSMutableArray new];
+                    
+                    [arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                        CommentListInfo *item = [[CommentListInfo alloc]init];
+                        item.content = [NSString stringWithFormat:@"%@",[obj valueForKey:@"content"]];
+                        item.flagName = [obj valueForKey:@"flagName"];
+                        item.numStar = [[obj valueForKey:@"numStar"] integerValue];
+                        item.time = [[obj valueForKey:@"time"] integerValue];
+                        item.userName = [obj valueForKey:@"userName"];
+                        item.num = [[obj valueForKey:@"num"] integerValue];
+                        [recv addObject:item];
+                    }];
+                    listModel.items = recv;
+                    result.parsedModelObject = listModel;
+                }
+            }
+            else if (err_code < 0){
+                [TipHandler showTipOnlyTextWithNsstring:[result.responseObject valueForKey:@"data"]];
+            }
+        }
+        resultBlock(nil, result);
+
+#else
+        CommentListModel *listModel = [[CommentListModel alloc]init];
+        Comment *comment = [[Comment alloc]init];
+        NSMutableArray *arr = [NSMutableArray new];
+        for (int i = 0 ; i < 3; i++) {
+            FlagListInfo *flag = [[FlagListInfo alloc]init];
+            flag.num = 10;
+            flag.icon = @"www.baidu.com";
+            [arr addObject:flag];
+        }
+        comment.flagList = arr;
+        listModel.data = comment;
+        result.parsedModelObject = listModel;
+        resultBlock(nil, result);
+#endif
+    } forKey:@"HomeTipList" forPageNameGroup:pageName];
+}
 
 
 

@@ -8,6 +8,7 @@
 
 #import "SNBusinessMananger.h"
 #import "SNServerAPIDefine.h"
+#import "Comment.h"
 
 
 @interface TreatmentListAndDetailManager : SNBusinessMananger
@@ -39,5 +40,7 @@ SINGLETON_DECLARE(TreatmentListAndDetailManager);
 
 //我的账户
 - (void)getMyAccountWithResultBlock:(SNServerAPIResultBlock)resultBlock pageName:(NSString *)pageName;
+
+- (void)getCommentWithLastID:(CommentListFilter *)filter resultBlock:(SNServerAPIResultBlock)resultBlock pageName:(NSString *)pageName;
 
 @end

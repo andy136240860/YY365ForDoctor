@@ -138,7 +138,7 @@
     
     
     
-    if (_data.state == 4) {
+    if (_data.state == 4 || _data.state == 5) {
         view10 = [[YYZhenDanLineView alloc]initWithFrame:CGRectMake(paadingLeft, 0, kScreenWidth - paadingLeft*2, 0)];
         [view10 setTitle:@"诊断信息:"];
         [view10 setContentText:@"暂无"];
@@ -146,6 +146,7 @@
         if(![_data.diagnosisContent isEmpty]){
             [view10 setContentText:[NSString stringWithFormat:@"%@",_data.diagnosisContent]];
             view10.frame = CGRectMake(paadingLeft, _contentScrollView.contentSize.height - 10, kScreenWidth - paadingLeft*2, [view10 getframeHeight]);
+            
         }
         
         

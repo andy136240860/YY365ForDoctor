@@ -25,7 +25,7 @@
 @interface CUListViewController ()<SNListEmptyViewDelegate>
 
 @property (nonatomic,strong) UIView * content;
-@property (nonatomic,strong) UIView * emptyView;
+
 
 @end
 
@@ -231,7 +231,7 @@
         if (!result.hasError)
         {
 #if useErrCodeForLogout
-            NSInteger err_code = [[result.responseObject valueForKeySafely:@"err_code"] integerValue];
+            NSInteger err_code = [[result.responseObject valueForKeySafely:@"errorCode"] integerValue];
             if (err_code == 0) {
                 
                 [self.freshControl refreshLastUpdatedTime:[NSDate date]];
@@ -318,7 +318,7 @@
         if (!result.hasError)
         {
 #if useErrCodeForLogout
-            NSInteger err_code = [[result.responseObject valueForKeySafely:@"err_code"] integerValue];
+            NSInteger err_code = [[result.responseObject valueForKeySafely:@"errorCode"] integerValue];
             if (err_code == 0){
                 // height
                 [self.heightDictOfCells removeAllObjects];

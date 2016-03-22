@@ -36,7 +36,7 @@
         _imageArray  = [NSMutableArray new];
         imageViewArray   = [NSMutableArray new];
         __weak __block  NSMutableArray *blockImageArray = _imageArray;
-        __weak __block  NSMutableArray *_blockImageURLArray = _imageURLArray;
+        __weak __block  NSArray *_blockImageURLArray = _imageURLArray;
         __weak __block  PhotosShowView *blockSelf = self;
         for (int i = 0; i < _imageURLArray.count; i++ ) {
             UIImageView *imageView = [[UIImageView alloc]init];
@@ -46,7 +46,7 @@
             imageView.clipsToBounds = YES;
             imageView.contentMode = 2;
             imageView.userInteractionEnabled = YES;
-            [imageView setImageWithURL:[_imageURLArray objectAtIndex:i] success:^(UIImage *image, BOOL cached) {
+            [imageView setImageWithURL:[_blockImageURLArray objectAtIndex:i] success:^(UIImage *image, BOOL cached) {
                 blockImageView.image = image;
                 [blockImageArray addObject:image];
                 if (blockImageArray.count == _blockImageURLArray.count) {

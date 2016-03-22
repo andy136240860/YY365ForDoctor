@@ -33,7 +33,7 @@ SINGLETON_IMPLENTATION(TreatmentOrderManager);
 {
 #if !LOCAL
     NSMutableDictionary * param = [NSMutableDictionary dictionary];
-    [param setObjectSafely:@"ios" forKey:@"from"];
+    [param setObjectSafely:kPlatformFrom forKey:@"from"];
     [param setObjectSafely:[CUUserManager sharedInstance].user.token forKey:@"token"];
     [param setObjectSafely:@"ClinicListName" forKey:@"require"];
     [param setObjectSafely:@(21101) forKey:@"interfaceID"];
@@ -48,16 +48,21 @@ SINGLETON_IMPLENTATION(TreatmentOrderManager);
     
     [[AppCore sharedInstance].apiManager POST:URL_AfterBase parameters:param callbackRunInGlobalQueue:YES parser:nil parseMethod:nil resultBlock:^(SNHTTPRequestOperation *request, SNServerAPIResultData *result){
         if (!result.hasError){
-
-            NSArray *array = [result.responseObject valueForKeySafely:@"data"];
-            NSMutableArray *clinicArray = [NSMutableArray new];
-            for (int i = 0; i < array.count; i++) {
-                NSDictionary *dic = [array objectAtIndexSafely:i];
-                Clinic *clinic = [[Clinic alloc]init];
-                clinic.ID = [[dic valueForKeySafely:@"dataID"] integerValue];
-                clinic.name = [dic valueForKeySafely:@"name"];
-                [clinicArray addObjectSafely:clinic];
-                result.parsedModelObject = clinicArray;
+            NSInteger errorCode = [[result.responseObject valueForKeySafely:@"errorCode"] integerValue];
+            if (errorCode == 0) {
+                NSArray *array = [result.responseObject valueForKeySafely:@"data"];
+                NSMutableArray *clinicArray = [NSMutableArray new];
+                for (int i = 0; i < array.count; i++) {
+                    NSDictionary *dic = [array objectAtIndexSafely:i];
+                    Clinic *clinic = [[Clinic alloc]init];
+                    clinic.ID = [[dic valueForKeySafely:@"dataID"] integerValue];
+                    clinic.name = [dic valueForKeySafely:@"name"];
+                    [clinicArray addObjectSafely:clinic];
+                    result.parsedModelObject = clinicArray;
+                }
+            }
+            else {
+            
             }
         }
         resultBlock(nil, result);
@@ -84,7 +89,7 @@ SINGLETON_IMPLENTATION(TreatmentOrderManager);
                                     resultBlock:(SNServerAPIResultBlock)resultBlock pageName:(NSString *)pageName;
 {
     NSMutableDictionary * param = [NSMutableDictionary dictionary];
-    [param setObjectSafely:@"ios" forKey:@"from"];
+    [param setObjectSafely:kPlatformFrom forKey:@"from"];
     [param setObjectSafely:[CUUserManager sharedInstance].user.token forKey:@"token"];
     [param setObjectSafely:@"ClinicDiagnosisTime" forKey:@"require"];
     [param setObjectSafely:@(21102) forKey:@"interfaceID"];
@@ -101,7 +106,7 @@ SINGLETON_IMPLENTATION(TreatmentOrderManager);
     
     [[AppCore sharedInstance].apiManager POST:URL_AfterBase parameters:param callbackRunInGlobalQueue:YES parser:nil parseMethod:nil resultBlock:^(SNHTTPRequestOperation *request, SNServerAPIResultData *result){
         if (!result.hasError){
-            NSInteger err_code = [[result.responseObject valueForKeySafely:@"err_code"] integerValue];
+            NSInteger err_code = [[result.responseObject valueForKeySafely:@"errorCode"] integerValue];
             if (err_code == 0) {
                 NSMutableArray *array = [[result.responseObject valueForKeySafely:@"data"] valueForKeySafely:@"usedTime"];
                 clinic.timeUesdArray = [NSMutableArray new];
@@ -131,7 +136,7 @@ SINGLETON_IMPLENTATION(TreatmentOrderManager);
             resultBlock:(SNServerAPIResultBlock)resultBlock pageName:(NSString *)pageName
 {
     NSMutableDictionary * param = [NSMutableDictionary dictionary];
-    [param setObjectSafely:@"ios" forKey:@"from"];
+    [param setObjectSafely:kPlatformFrom forKey:@"from"];
     [param setObjectSafely:[CUUserManager sharedInstance].user.token forKey:@"token"];
     [param setObjectSafely:@"ReleaseDiagnosis" forKey:@"require"];
     [param setObjectSafely:@(21103) forKey:@"interfaceID"];
@@ -163,7 +168,7 @@ SINGLETON_IMPLENTATION(TreatmentOrderManager);
 //放号列表
 - (void)getListWithresultBlock:(SNServerAPIResultBlock)resultBlock pageName:(NSString *)pageName{
     NSMutableDictionary * param = [NSMutableDictionary dictionary];
-    [param setObjectSafely:@"ios" forKey:@"from"];
+    [param setObjectSafely:kPlatformFrom forKey:@"from"];
     [param setObjectSafely:[CUUserManager sharedInstance].user.token forKey:@"token"];
     [param setObjectSafely:@"ReleaseDiagnosisRecords" forKey:@"require"];
     [param setObjectSafely:@(23001) forKey:@"interfaceID"];
@@ -220,7 +225,7 @@ SINGLETON_IMPLENTATION(TreatmentOrderManager);
 //放号删除
 - (void)deleteOrderWithOrderNumber:(long long)orderNo resultBlock:(SNServerAPIResultBlock)resultBlock pageName:(NSString *)pageName{
     NSMutableDictionary * param = [NSMutableDictionary dictionary];
-    [param setObjectSafely:@"ios" forKey:@"from"];
+    [param setObjectSafely:kPlatformFrom forKey:@"from"];
     [param setObjectSafely:[CUUserManager sharedInstance].user.token forKey:@"token"];
     [param setObjectSafely:@"DoctorDelRelease" forKey:@"require"];
     [param setObjectSafely:@(23001) forKey:@"interfaceID"];
@@ -246,7 +251,7 @@ SINGLETON_IMPLENTATION(TreatmentOrderManager);
 //放号详情
 - (void)getOrderDetailWithOrderNumber:(NSInteger)orderno resultBlock:(SNServerAPIResultBlock)resultBlock pageName:(NSString *)pageName{
     NSMutableDictionary * param = [NSMutableDictionary dictionary];
-    [param setObjectSafely:@"ios doctor" forKey:@"from"];
+    [param setObjectSafely:kPlatformFrom forKey:@"from"];
     [param setObjectSafely:@"V1.0" forKey:@"version"];
     [param setObjectSafely:[SNPlatformManager deviceId] forKey:@"deviceinfo"];
     [param setObjectSafely:[CUUserManager sharedInstance].user.token forKey:@"token"];
@@ -298,7 +303,7 @@ SINGLETON_IMPLENTATION(TreatmentOrderManager);
                        diagnose:(NSString *)diagnose
                     resultBlock:(SNServerAPIResultBlock)resultBlock pageName:(NSString *)pageName{
     NSMutableDictionary * param = [NSMutableDictionary dictionary];
-    [param setObjectSafely:@"ios" forKey:@"from"];
+    [param setObjectSafely:kPlatformFrom forKey:@"from"];
     [param setObjectSafely:[CUUserManager sharedInstance].user.token forKey:@"token"];
     [param setObjectSafely:@"SubmitDiagnosisData" forKey:@"require"];
     [param setObjectSafely:@(22101) forKey:@"interfaceID"];
@@ -341,7 +346,7 @@ SINGLETON_IMPLENTATION(TreatmentOrderManager);
                        diagnose:(NSString *)diagnose
                     resultBlock:(SNServerAPIResultBlock)resultBlock pageName:(NSString *)pageName{
     NSMutableDictionary * param = [NSMutableDictionary dictionary];
-    [param setObjectSafely:@"ios" forKey:@"from"];
+    [param setObjectSafely:kPlatformFrom forKey:@"from"];
     [param setObjectSafely:[CUUserManager sharedInstance].user.token forKey:@"token"];
     [param setObjectSafely:@"SubmitDiagnosisData" forKey:@"require"];
     [param setObjectSafely:@(22101) forKey:@"interfaceID"];

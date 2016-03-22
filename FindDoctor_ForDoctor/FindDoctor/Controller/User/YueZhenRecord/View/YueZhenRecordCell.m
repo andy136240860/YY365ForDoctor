@@ -91,15 +91,19 @@
     
     
     switch (_data.state) {
-        case 0:
-        {
+        case 1:{
             _stateImageView.image = [UIImage imageNamed:@"pay_no"];
         }break;
-        case 3:
-        {
+        case 2:{
+            _stateImageView.image = [UIImage imageNamed:@"icon_unfinish"];
+        }break;
+        case 3:{
             _stateImageView.image = [UIImage imageNamed:@"icon_unfinish"];
         }break;
         case 4:{
+            _stateImageView.image = [UIImage imageNamed:@"icon_finish"];
+        }break;
+        case 5:{
             _stateImageView.image = [UIImage imageNamed:@"icon_finish"];
         }break;
         default:

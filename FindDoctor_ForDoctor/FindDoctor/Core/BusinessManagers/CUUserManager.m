@@ -70,7 +70,7 @@ SINGLETON_IMPLENTATION(CUUserManager);
 {
     // param
     NSMutableDictionary * param = [NSMutableDictionary dictionary];
-    [param setObjectSafely:@"ios" forKey:@"from"];
+    [param setObjectSafely:kPlatformFrom forKey:@"from"];
     [param setObjectSafely:@"0" forKey:@"token"];
     [param setObjectSafely:@"PhoneVerify" forKey:@"require"];
     [param setObjectSafely:@(10000) forKey:@"interfaceID"];
@@ -97,7 +97,7 @@ SINGLETON_IMPLENTATION(CUUserManager);
 {
     // param
     NSMutableDictionary * param = [NSMutableDictionary dictionary];
-    [param setObjectSafely:@"ios" forKey:@"from"];
+    [param setObjectSafely:kPlatformFrom forKey:@"from"];
     [param setObjectSafely:@"0" forKey:@"token"];
     [param setObjectSafely:@"DoctorLogin" forKey:@"require"];
     [param setObjectSafely:@(20101) forKey:@"interfaceID"];
@@ -152,7 +152,7 @@ SINGLETON_IMPLENTATION(CUUserManager);
 {
     // param
     NSMutableDictionary * param = [NSMutableDictionary dictionary];
-    [param setObjectSafely:@"ios doctor" forKey:@"from"];
+    [param setObjectSafely:kPlatformFrom forKey:@"from"];
     [param setObjectSafely:@"V1.0" forKey:@"version"];
     [param setObjectSafely:[SNPlatformManager deviceId] forKey:@"deviceinfo"];
     [param setObjectSafely:@"0" forKey:@"token"];

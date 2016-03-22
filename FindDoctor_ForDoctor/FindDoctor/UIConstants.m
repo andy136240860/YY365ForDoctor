@@ -39,5 +39,5 @@ CGFloat vPadding_Top_TabbarItemImg = 2.0;
 
 CGFloat YueZhenRecordCellHight = 155;
 
-int startPageNum = 0;
 int pageSize = 20;
+int startPageNum = 0;

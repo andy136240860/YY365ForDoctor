@@ -106,4 +106,22 @@
 - (void)setCenterY:(CGFloat)newY {
     self.center = CGPointMake(self.center.x, newY);
 }
+
+- (CGFloat)maxY {
+    return CGRectGetMaxY(self.frame);
+}
+
+- (CGFloat)maxX {
+    return CGRectGetMaxX(self.frame);
+}
+
+- (void)setMaxY :(CGFloat)newY  {
+    CGRect frame = self.frame;
+    self.frame = CGRectMake(frame.origin.x, newY - frame.size.height, frame.size.width, frame.size.height);
+}
+
+- (void)setMaxX :(CGFloat)newX  {
+    CGRect frame = self.frame;
+    self.frame = CGRectMake(newX - frame.size.width, frame.origin.y, frame.size.width, frame.size.height);
+}
 @end

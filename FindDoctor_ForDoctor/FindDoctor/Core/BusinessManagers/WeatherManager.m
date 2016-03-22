@@ -16,8 +16,6 @@ SINGLETON_IMPLENTATION(WeatherManager);
 
 - (void)getWeatherWithResultBlock:(SNServerAPIResultBlock)resultBlock pageName:(NSString *)pageName
 {
-    NSMutableDictionary * param = [NSMutableDictionary dictionary];
-    
     SNServerAPIManager *apiManager = [[SNServerAPIManager alloc]initWithServer:@"http://www.weather.com.cn/"];
     
     [apiManager GET:@"data/sk/101270101.html" parameters:nil callbackRunInGlobalQueue:YES parser:nil parseMethod:nil resultBlock:^(SNHTTPRequestOperation *request, SNServerAPIResultData *result) {

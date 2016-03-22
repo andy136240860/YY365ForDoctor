@@ -273,7 +273,7 @@
     [self endEdit];
     [self showProgressView];
     
-    __weak LoginViewController * blockSelf = self;
+    __weak __block LoginViewController * blockSelf = self;
     SNServerAPIResultBlock handler = ^(SNHTTPRequestOperation *request, SNServerAPIResultData *result)
     {
         [blockSelf hideProgressView];
@@ -288,6 +288,9 @@
                     [TipHandler showHUDText:@"登录成功" inView:blockSelf.view];
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"loginSuccess" object:nil];
                 }
+            }
+            else {
+                [TipHandler showHUDText:[NSString stringWithFormat:@"%@",[result.responseObject valueForKey:@"data"]] inView:blockSelf.view];
             }
         }
         else

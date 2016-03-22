@@ -31,7 +31,7 @@
 #import "CurrentTreatmentViewController.h"
 #import "CurrentTreatmentListModel.h"
 #import "HomeViewController.h"
-#import "UserViewController2.h"
+#import "UserViewController.h"
 
 #import "OrderManager+ThirdPay.h"
 
@@ -246,7 +246,7 @@
     HomeViewController *homeVC = [[HomeViewController alloc] initWithPageName:@"HomeViewController"];
     homeVC.customTabBarItem = [self tabBarItemAtIndex:1];
     
-    UserViewController2 *userVC = [[UserViewController2 alloc] initWithPageName:@"UserViewController2"];
+    UserViewController *userVC = [[UserViewController alloc] initWithPageName:@"UserViewController"];
     userVC.customTabBarItem = [self tabBarItemAtIndex:2];
     
     self.tabController = [[SNTabViewController alloc] initWithHeight:Height_Tabbar];
@@ -326,7 +326,7 @@
 }
 
 #pragma mark - MKMapView Delegate
-
+//
 //处理位置坐标更新
 //- (void)didUpdateUserLocation:(BMKUserLocation *)userLocation
 //{
@@ -346,10 +346,10 @@
 //        [_geoSearcher reverseGeoCode:option];
 //    }
 //}
-
+//
 //- (void)didFailToLocateUserWithError:(NSError *)error
 //{}
-
+//
 //- (void)onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKReverseGeoCodeResult *)result errorCode:(BMKSearchErrorCode)error
 //{
 //    if (error == BMK_SEARCH_NO_ERROR) {

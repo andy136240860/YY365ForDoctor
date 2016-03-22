@@ -37,6 +37,8 @@
 //@property (nonatomic,strong) NSMutableArray * heightOfCells;
 @property (nonatomic,strong) NSMutableDictionary * heightDictOfCells;
 
+@property (nonatomic,strong) UIView * emptyView;
+
 - (void)setShouldHaveTab;
 - (void)loadNavigationBar;
 - (void)loadContentView;

@@ -120,4 +120,6 @@
 #define ktopPadding 6
 #define ksubTextWeith (ksubViewWeith - 2*kleftPadding)
 
+#define kPlatformFrom @"APP_IOS_DOCTOR"
+
 typedef void(^CUCommomButtonAction)(void);
