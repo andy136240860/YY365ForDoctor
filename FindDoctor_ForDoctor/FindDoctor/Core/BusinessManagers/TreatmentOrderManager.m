@@ -28,7 +28,6 @@ SINGLETON_IMPLENTATION(TreatmentOrderManager);
 
 @implementation TreatmentOrderManager (Network)
 
-// 通过timestamp 获取clinic
 - (void)FangHaoForGetClinicWithResultBlock:(SNServerAPIResultBlock)resultBlock pageName:(NSString *)pageName
 {
 #if !LOCAL
@@ -48,18 +47,17 @@ SINGLETON_IMPLENTATION(TreatmentOrderManager);
     
     [[AppCore sharedInstance].apiManager POST:URL_AfterBase parameters:param callbackRunInGlobalQueue:YES parser:nil parseMethod:nil resultBlock:^(SNHTTPRequestOperation *request, SNServerAPIResultData *result){
         if (!result.hasError){
-            NSInteger errorCode = [[result.responseObject valueForKeySafely:@"errorCode"] integerValue];
+            NSInteger errorCode = [result.responseObject integerForKeySafely:@"errorCode"];
             if (errorCode == 0) {
-                NSArray *array = [result.responseObject valueForKeySafely:@"data"];
+                NSArray *recvList = [result.responseObject arrayForKeySafely:@"data"];
                 NSMutableArray *clinicArray = [NSMutableArray new];
-                for (int i = 0; i < array.count; i++) {
-                    NSDictionary *dic = [array objectAtIndexSafely:i];
+                [recvList enumerateObjectsUsingBlockSafety:^(id  _Nonnull obj, NSUInteger idx, BOOL *stop) {
                     Clinic *clinic = [[Clinic alloc]init];
-                    clinic.ID = [[dic valueForKeySafely:@"dataID"] integerValue];
-                    clinic.name = [dic valueForKeySafely:@"name"];
+                    clinic.ID = [obj integerForKeySafely:@"dataID"];
+                    clinic.name = [obj stringForKeySafely:@"name"];
                     [clinicArray addObjectSafely:clinic];
-                    result.parsedModelObject = clinicArray;
-                }
+                }];
+                result.parsedModelObject = clinicArray;
             }
             else {
             
@@ -106,15 +104,15 @@ SINGLETON_IMPLENTATION(TreatmentOrderManager);
     
     [[AppCore sharedInstance].apiManager POST:URL_AfterBase parameters:param callbackRunInGlobalQueue:YES parser:nil parseMethod:nil resultBlock:^(SNHTTPRequestOperation *request, SNServerAPIResultData *result){
         if (!result.hasError){
-            NSInteger err_code = [[result.responseObject valueForKeySafely:@"errorCode"] integerValue];
+            NSInteger err_code = [result.responseObject integerForKeySafely:@"errorCode"];
             if (err_code == 0) {
-                NSMutableArray *array = [[result.responseObject valueForKeySafely:@"data"] valueForKeySafely:@"usedTime"];
+                NSArray *array = [[result.responseObject dictionaryForKeySafely:@"data"] arrayForKeySafely:@"usedTime"];
                 clinic.timeUesdArray = [NSMutableArray new];
                 for (int i = 0; i < array.count; i++) {
                     NSMutableDictionary *dic = [array objectAtIndex:i];
                     TimeUesd *timeused = [[TimeUesd alloc]init];
-                    timeused.startTime = [[dic valueForKeySafely:@"startTime"] longLongValue];
-                    timeused.endTime = [[dic valueForKeySafely:@"endTime"] longLongValue];
+                    timeused.startTime = [dic longlongForKeySafely:@"startTime"];
+                    timeused.endTime = [dic longlongForKeySafely:@"endTime"];
                     [clinic.timeUesdArray addObject:timeused];
                 }
                 result.parsedModelObject = clinic;
@@ -182,24 +180,24 @@ SINGLETON_IMPLENTATION(TreatmentOrderManager);
     [[AppCore sharedInstance].apiManager POST:URL_AfterBase parameters:param callbackRunInGlobalQueue:YES parser:nil parseMethod:nil resultBlock:^(SNHTTPRequestOperation *request, SNServerAPIResultData *result){
         if (!result.hasError){
             SNBaseListModel *listModel = [[SNBaseListModel alloc] init];
-            NSInteger errorCode = [[result.responseObject valueForKeySafely:@"errorCode"] integerValue];
+            NSInteger errorCode = [result.responseObject integerForKeySafely:@"errorCode"];
             if (errorCode == 0){
-                NSMutableArray *dataArray = [result.responseObject valueForKeySafely:@"data"];
+                NSArray *dataArray = [result.responseObject arrayForKeySafely:@"data"];
                 for (int i = 0; i < dataArray.count ; i++) {
                     NSMutableDictionary *dic = [dataArray objectAtIndex:i];
                     TreatmentOrder *treatmentOrder = [[TreatmentOrder alloc]init];
                     treatmentOrder.clinic = [[Clinic alloc]init];
-                    treatmentOrder.subject = [dic valueForKeyPathSafely:@"DiagnosisSubject"];
-                    treatmentOrder.clinic.address = [dic valueForKeyPathSafely:@"address"];
-                    treatmentOrder.clinic.name = [dic valueForKeyPathSafely:@"name"];
-                    treatmentOrder.fee = [[dic valueForKeyPathSafely:@"fee"] integerValue];
-                    treatmentOrder.num = [[dic valueForKeyPathSafely:@"num"] integerValue];
-                    treatmentOrder.orderno = [[dic valueForKeyPathSafely:@"releaseID"] longLongValue];
-                    treatmentOrder.startTime = [[dic valueForKeyPathSafely:@"startTime"] longLongValue];
-                    treatmentOrder.endTime = [[dic valueForKeyPathSafely:@"endTime"] longLongValue];
-                    treatmentOrder.editState = [[dic valueForKeyPathSafely:@"state"] integerValue];
+                    treatmentOrder.subject = [dic stringForKeySafely:@"DiagnosisSubject"];
+                    treatmentOrder.clinic.address = [dic stringForKeySafely:@"address"];
+                    treatmentOrder.clinic.name = [dic stringForKeySafely:@"name"];
+                    treatmentOrder.fee = [dic integerForKeySafely:@"fee"];
+                    treatmentOrder.num = [dic integerForKeySafely:@"num"];
+                    treatmentOrder.orderno = [dic longlongForKeySafely:@"releaseID"];
+                    treatmentOrder.startTime = [dic longlongForKeySafely:@"startTime"];
+                    treatmentOrder.endTime = [dic longlongForKeySafely:@"endTime"];
+                    treatmentOrder.editState = [dic integerForKeySafely:@"state"];
                     
-                    long long inttime = [[dic valueForKeyPathSafely:@"startTime"] longLongValue];
+                    long long inttime = [dic longlongForKeySafely:@"startTime"];
                     NSDate *date = [NSDate dateWithTimeIntervalSince1970:inttime];
                     date = [date dateAtStartOfDay];
                     treatmentOrder.timestamp = [date timeIntervalSince1970];
@@ -211,7 +209,6 @@ SINGLETON_IMPLENTATION(TreatmentOrderManager);
                         }
                     }
                     [listModel.items addObject:treatmentOrder]; // 筛选排除重复
-                    
                 }
                 result.parsedModelObject = listModel;
             }
@@ -239,9 +236,6 @@ SINGLETON_IMPLENTATION(TreatmentOrderManager);
     
     [[AppCore sharedInstance].apiManager POST:URL_AfterBase parameters:param callbackRunInGlobalQueue:YES parser:nil parseMethod:nil resultBlock:^(SNHTTPRequestOperation *request, SNServerAPIResultData *result){
         if (!result.hasError){
-        
-            
-            
         }
         resultBlock(nil, result);
     } forKey:@"deleteOrder" forPageNameGroup:pageName];
@@ -271,17 +265,17 @@ SINGLETON_IMPLENTATION(TreatmentOrderManager);
     [[AppCore sharedInstance].apiManager POST:URL_AfterBase parameters:param callbackRunInGlobalQueue:YES parser:nil parseMethod:nil resultBlock:^(SNHTTPRequestOperation *request, SNServerAPIResultData *result){
         if (!result.hasError){
             SNBaseListModel *listModel = [[SNBaseListModel alloc] init];
-            NSDictionary *dic = [[result.responseObject valueForKeySafely:@"data"] valueForKeyPathSafely:@"list"];
+            NSDictionary *dic = [[result.responseObject dictionaryForKeySafely:@"data"] dictionaryForKeySafely:@"list"];
             
             TreatmentOrder *treatmentOrder = [[TreatmentOrder alloc]init];
             treatmentOrder.clinic = [[Clinic alloc]init];
-            treatmentOrder.subject = [dic valueForKeyPathSafely:@"DiagnosisSubject"];
-            treatmentOrder.clinic.address = [dic valueForKeyPathSafely:@"address"];
-            treatmentOrder.clinic.name = [dic valueForKeyPathSafely:@"name"];
-            treatmentOrder.fee = [[dic valueForKeyPathSafely:@"fee"] integerValue];
-            treatmentOrder.num = [[dic valueForKeyPathSafely:@"number"] integerValue];
+            treatmentOrder.subject = [dic stringForKeySafely:@"DiagnosisSubject"];
+            treatmentOrder.clinic.address = [dic stringForKeySafely:@"address"];
+            treatmentOrder.clinic.name = [dic stringForKeySafely:@"name"];
+            treatmentOrder.fee = [dic integerForKeySafely:@"fee"];
+            treatmentOrder.num = [dic integerForKeySafely:@"number"];
             
-            long long inttime = [[dic valueForKeyPathSafely:@"releasestarttime"] longLongValue]/1000;
+            long long inttime = [dic longlongForKeySafely:@"releasestarttime"]/1000;
             NSDate *date = [NSDate dateWithTimeIntervalSince1970:inttime-3600*8];
             date = [date dateAtStartOfDay];
             treatmentOrder.timestamp = [date timeIntervalSince1970];

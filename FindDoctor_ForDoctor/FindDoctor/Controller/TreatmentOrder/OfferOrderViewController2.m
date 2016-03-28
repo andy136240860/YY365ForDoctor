@@ -18,7 +18,7 @@
 #import "TimeSegChooseView.h"
 #import "MBProgressHUD.h"
 
-@interface OfferOrderViewController2 ()<UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate,MBProgressHUDDelegate>{
+@interface OfferOrderViewController2 ()<UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate,MBProgressHUDDelegate,UIAlertViewDelegate>{
     UIScrollView *contentScrollView;
     
     YYTextView *calendarTextView;
@@ -50,13 +50,21 @@
 
 
 - (void)viewWillAppear:(BOOL)animated{
-    [self showHUD];
+    [self showProgressView];
     
+    __weak __block OfferOrderViewController2 *blockSelf = self;
     [[TreatmentOrderManager sharedInstance] FangHaoForGetClinicWithResultBlock:^(SNHTTPRequestOperation *request, SNServerAPIResultData *result) {
         if (!result.hasError) {
-            [self hideHUD];
+            [blockSelf hideProgressView];
             clinicArray = result.parsedModelObject;
-            clinicTexView.contentTextField.text = [clinicArray[0] name];
+            if (clinicArray.count) {
+                clinicTexView.contentTextField.text = [clinicArray[0] name];
+            }
+            else{
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"当前城市无诊疗点可用" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                alert.tag = 100;
+                [alert show];
+            }
         }
     } pageName:@"OfferOrderViewController2"];
     
@@ -182,6 +190,12 @@ int scrollViewY = 0;
     [contentScrollView addSubview:feeTexView];
     
     [contentScrollView setContentSize:CGSizeMake(kScreenWidth, CGRectGetMaxY(feeTexView.frame) + 15)];
+    
+    calendarTextView.hidden = YES;
+    timeSegChooseView.hidden = YES;
+    clinicTexView.hidden = YES;
+    numberTexView.hidden = YES;
+    feeTexView.hidden = YES;
 }
 
 // 弹出日历
@@ -321,6 +335,12 @@ int scrollViewY = 0;
                         timeSegChooseView.startTimeTextView.contentTextField.text =  [[NSDate dateWithTimeIntervalSince1970:_data.startTime] stringWithDateFormat:@"HH:mm"];
                         timeSegChooseView.endTimeTextView.contentTextField.text =  [[NSDate dateWithTimeIntervalSince1970:_data.endTime] stringWithDateFormat:@"HH:mm"];
                     }
+                    
+                    calendarTextView.hidden = NO;
+                    timeSegChooseView.hidden = NO;
+                    clinicTexView.hidden = NO;
+                    numberTexView.hidden = NO;
+                    feeTexView.hidden = NO;
                 }
             } pageName:@"OfferOrderViewController2"];
             break;
@@ -522,7 +542,7 @@ int scrollViewY = 0;
     [[TreatmentOrderManager sharedInstance] FangHaoWithDate:timestamp clinic_id:clinicID num:[numberTexView.contentTextField.text integerValue] fee:(NSInteger)([feeTexView.contentTextField.text doubleValue]*100) orderNo:orderNo startTime:startTime endTime:endTime resultBlock:^(SNHTTPRequestOperation *request, SNServerAPIResultData *result) {
         [self hideProgressView];
         if (!result.hasError) {
-            NSInteger err = [[result.responseObject objectForKey:@"errorCode"] integerValue];
+            NSInteger err = [result.responseObject integerForKeySafely:@"errorCode"];
             if (orderNo == 0) {
                 if (err == 0) {
                     [TipHandler showTipOnlyTextWithNsstring:@"放号成功"];
@@ -546,10 +566,6 @@ int scrollViewY = 0;
             }
         }
     } pageName:@"OfferOrderViewController2"];
-
-    
-    
-
 }
 
 - (void)backToRoot{
@@ -571,21 +587,12 @@ int scrollViewY = 0;
     [numberTexView.contentTextField resignFirstResponder];
 }
 
-- (void)showHUD
-{
-    if (_hud == nil) {
-        _hud = [[MBProgressHUD alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
-        _hud.center = CGPointMake(CGRectGetWidth(self.view.bounds)/2, CGRectGetHeight(self.view.bounds)/2);
-        [self.view addSubview:_hud];
-        [self.view bringSubviewToFront:_hud];
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (alertView.tag == 100) {
+        if (buttonIndex == 0) {
+            [self backToRoot];
+        }
     }
-    
-    [_hud show:YES];
-}
-
-- (void)hideHUD
-{
-    [_hud hide:NO];
 }
 
 @end

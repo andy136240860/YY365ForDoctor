@@ -56,29 +56,28 @@ SINGLETON_IMPLENTATION(TreatmentListAndDetailManager);
     [[AppCore sharedInstance].apiManager POST:URL_AfterBase parameters:param callbackRunInGlobalQueue:YES parser:nil parseMethod:nil resultBlock:^(SNHTTPRequestOperation *request, SNServerAPIResultData *result){
 #if !LOCAL
         if (!result.hasError){
-            NSInteger err_code = [[result.responseObject valueForKeySafely:@"errorCode"] integerValue];
+            NSInteger err_code = [result.responseObject integerForKeySafely:@"errorCode"];
             if (err_code == 0) {
                 SNBaseListModel *listModel = [[SNBaseListModel alloc] init];
-                NSMutableArray *data = [result.responseObject valueForKeySafely:@"data"];
-                NSLog(@"data.count = %d",data.count);
+                NSArray *data = [result.responseObject arrayForKeySafely:@"data"];
                 for(int i = 0;i < data.count ; i++ ){
                     NSMutableDictionary *dic = [data objectAtIndex:i];
                     Patient *zhenLiaoRecord = [[Patient alloc] init];
-                    zhenLiaoRecord.diagnosisFee = [[dic objectForKeySafely:@"fee"] integerValue];
-                    zhenLiaoRecord.UserName = [dic objectForKeySafely:@"userName"];
-                    zhenLiaoRecord.UserSex = [[dic objectForKeySafely:@"userSex"] integerValue];
-                    zhenLiaoRecord.UserAge = [[dic objectForKeySafely:@"userAge"] integerValue];
-                    zhenLiaoRecord.UserCellPhone = [dic objectForKey:@"userPhone"];
+                    zhenLiaoRecord.diagnosisFee = [dic integerForKeySafely:@"fee"];
+                    zhenLiaoRecord.UserName = [dic stringForKeySafely:@"userName"];
+                    zhenLiaoRecord.UserSex = [dic integerForKeySafely:@"userSex"];
+                    zhenLiaoRecord.UserAge = [dic integerForKeySafely:@"userAge"];
+                    zhenLiaoRecord.UserCellPhone = [dic stringForKeySafely:@"userPhone"];
                     zhenLiaoRecord.diagnosisID = [dic objectForKeySafely:@"diagnosisID"];
-                    zhenLiaoRecord.state = [[dic objectForKeySafely:@"state"] integerValue];
-                    zhenLiaoRecord.diagnosisTime = [[dic objectForKeySafely:@"diagnosisTime"] integerValue];
+                    zhenLiaoRecord.state = [dic integerForKeySafely:@"state"];
+                    zhenLiaoRecord.diagnosisTime = [dic integerForKeySafely:@"diagnosisTime"];
                     if (zhenLiaoRecord.diagnosisTime == 0) {
-                        zhenLiaoRecord.diagnosisTime = [[dic objectForKeySafely:@"orderStartTime"] integerValue];
+                        zhenLiaoRecord.diagnosisTime = [dic integerForKeySafely:@"orderStartTime"];
                     }
-                    zhenLiaoRecord.submitTime = [[dic objectForKeySafely:@"submitTime"] integerValue];
-                    zhenLiaoRecord.doctorName = [dic objectForKeySafely:@"doctorName"];
-                    zhenLiaoRecord.doctorTitle = [dic objectForKeySafely:@"title"];
-                    zhenLiaoRecord.clinicAddress = [dic objectForKeySafely:@"clinicAddress"];
+                    zhenLiaoRecord.submitTime = [dic integerForKeySafely:@"submitTime"];
+                    zhenLiaoRecord.doctorName = [dic stringForKeySafely:@"doctorName"];
+                    zhenLiaoRecord.doctorTitle = [dic stringForKeySafely:@"title"];
+                    zhenLiaoRecord.clinicAddress = [dic stringForKeySafely:@"clinicAddress"];
                     zhenLiaoRecord.clinicName = [dic objectForKeySafely:@"clinicName"];
                     zhenLiaoRecord.illnessDescription = [NSString stringWithFormat:@"%@",[dic objectForKeySafely:@"illnessDescription"]];
                     
@@ -94,7 +93,7 @@ SINGLETON_IMPLENTATION(TreatmentListAndDetailManager);
                     zhenLiaoRecord.orderEndTime = [[dic objectForKeySafely:@"orderEndTime"] integerValue];
                     
                     zhenLiaoRecord.recipeData = [NSMutableArray new];
-                    NSMutableArray *recipeDataArray = [dic objectForKeySafely:@"recipeData"];
+                    NSArray *recipeDataArray = [dic arrayForKeySafely:@"recipeData"];
                     for (int i = 0 ; i < recipeDataArray.count; i++) {
                         NSMutableDictionary *recipeDataDic = recipeDataArray[i];
                         CUHerbSelect *herb = [[CUHerbSelect alloc]init];
@@ -144,10 +143,10 @@ SINGLETON_IMPLENTATION(TreatmentListAndDetailManager);
     
     [[AppCore sharedInstance].apiManager POST:URL_AfterBase parameters:param callbackRunInGlobalQueue:YES parser:nil parseMethod:nil resultBlock:^(SNHTTPRequestOperation *request, SNServerAPIResultData *result){
         if (!result.hasError){
-            NSInteger err_code = [[result.responseObject valueForKeySafely:@"errorCode"] integerValue];
+            NSInteger err_code = [result.responseObject integerForKeySafely:@"errorCode"];
             if (err_code == 0) {
                 SNBaseListModel *listModel = [[SNBaseListModel alloc] init];
-                NSMutableArray *data = [result.responseObject valueForKeySafely:@"data"];
+                NSArray *data = [result.responseObject arrayForKeySafely:@"data"];
                 NSLog(@"data.count = %d",data.count);
                 for(int i = 0;i < data.count ; i++ ){
                     NSMutableDictionary *dic = [data objectAtIndex:i];
@@ -181,7 +180,7 @@ SINGLETON_IMPLENTATION(TreatmentListAndDetailManager);
                     
                     
                     zhenLiaoRecord.recipeData = [NSMutableArray new];
-                    NSMutableArray *recipeDataArray = [dic objectForKeySafely:@"recipeData"];
+                    NSArray *recipeDataArray = [dic arrayForKeySafely:@"recipeData"];
                     for (int i = 0 ; i < recipeDataArray.count; i++) {
                         NSMutableDictionary *recipeDataDic = recipeDataArray[i];
                         CUHerbSelect *herb = [[CUHerbSelect alloc]init];
@@ -274,10 +273,10 @@ SINGLETON_IMPLENTATION(TreatmentListAndDetailManager);
     
     [[AppCore sharedInstance].apiManager POST:URL_AfterBase parameters:param callbackRunInGlobalQueue:YES parser:nil parseMethod:nil resultBlock:^(SNHTTPRequestOperation *request, SNServerAPIResultData *result){
         if (!result.hasError){
-            NSInteger err_code = [[result.responseObject valueForKeySafely:@"errorCode"] integerValue];
+            NSInteger err_code = [result.responseObject integerForKeySafely:@"errorCode"];
             if (err_code == 0) {
                 SNBaseListModel *listModel = [[SNBaseListModel alloc] init];
-                NSMutableArray *data = [result.responseObject valueForKeySafely:@"data"];
+                NSArray *data = [result.responseObject arrayForKeySafely:@"data"];
                 NSLog(@"data.count = %d",data.count);
                 for(int i = 0;i < data.count ; i++ ){
                     NSMutableDictionary *dic = [data objectAtIndex:i];
@@ -300,7 +299,7 @@ SINGLETON_IMPLENTATION(TreatmentListAndDetailManager);
                     zhenLiaoRecord.clinicName = [dic objectForKeySafely:@"clinicName"];
                     zhenLiaoRecord.illnessDescription = [NSString stringWithFormat:@"%@",[dic objectForKeySafely:@"illnessDescription"]];
                     if ([[[dic valueForKey:@"illnessPic"] class] isKindOfClass:[NSString class]]) {
-                        zhenLiaoRecord.illnessPic = [[dic valueForKey:@"illnessPic"] componentsSeparatedByString:@","];
+                        zhenLiaoRecord.illnessPic = [[dic stringForKeySafely:@"illnessPic"] componentsSeparatedByString:@","];
                     }
                     zhenLiaoRecord.orderNo =[[dic objectForKeySafely:@"orderNo"] integerValue];
                     zhenLiaoRecord.diagnosisContent = [NSString stringWithFormat:@"%@",[dic objectForKeySafely:@"diagnosisContent"]];
@@ -311,7 +310,7 @@ SINGLETON_IMPLENTATION(TreatmentListAndDetailManager);
                     zhenLiaoRecord.state = 4;
                     
                     zhenLiaoRecord.recipeData = [NSMutableArray new];
-                    NSMutableArray *recipeDataArray = [dic objectForKeySafely:@"recipeData"];
+                    NSArray *recipeDataArray = [dic arrayForKeySafely:@"recipeData"];
                     for (int i = 0 ; i < recipeDataArray.count; i++) {
                         NSMutableDictionary *recipeDataDic = recipeDataArray[i];
                         CUHerbSelect *herb = [[CUHerbSelect alloc]init];
@@ -408,9 +407,9 @@ SINGLETON_IMPLENTATION(TreatmentListAndDetailManager);
     
     [[AppCore sharedInstance].apiManager POST:URL_AfterBase parameters:param callbackRunInGlobalQueue:YES parser:nil parseMethod:nil resultBlock:^(SNHTTPRequestOperation *request, SNServerAPIResultData *result){
         if (!result.hasError){
-            NSInteger err_code = [[result.responseObject valueForKeySafely:@"errorCode"] integerValue];
+            NSInteger err_code = [result.responseObject integerForKeySafely:@"errorCode"];
             if (err_code == 0) {
-                NSMutableArray *dataArray = [[result.responseObject valueForKeySafely:@"data"] valueForKeySafely:@"msgCompany"];
+                NSArray *dataArray = [[result.responseObject dictionaryForKeySafely:@"data"] arrayForKeySafely:@"msgCompany"];
                 NSMutableArray *resultArray = [NSMutableArray new];
                 for (int i = 0; i < dataArray.count; i++) {
                     NSMutableDictionary *dic = [dataArray objectAtIndex:i];
@@ -421,7 +420,7 @@ SINGLETON_IMPLENTATION(TreatmentListAndDetailManager);
                     //                    [resultArray addObjectSafely:data];
                 }
                 
-                NSMutableArray *dataArray2 = [[result.responseObject valueForKeySafely:@"data"] valueForKeySafely:@"msgClinic"];
+                NSArray *dataArray2 = [[result.responseObject dictionaryForKeySafely:@"data"] arrayForKeySafely:@"msgClinic"];
                 for (int i = 0; i < dataArray2.count; i++) {
                     NSMutableDictionary *dic = [dataArray2 objectAtIndex:i];
                     TipMessageData *data = [[TipMessageData alloc]init];
@@ -429,7 +428,7 @@ SINGLETON_IMPLENTATION(TreatmentListAndDetailManager);
                     [resultArray addObjectSafely:data];
                 }
                 
-                NSMutableArray *dataArray3 = [[result.responseObject valueForKeySafely:@"data"] valueForKeySafely:@"msgReleaseDiagnosis"];
+                NSArray *dataArray3 = [[result.responseObject dictionaryForKeySafely:@"data"] arrayForKeySafely:@"msgReleaseDiagnosis"];
                 for (int i = 0; i < dataArray3.count; i++) {
                     NSMutableDictionary *dic = [dataArray3 objectAtIndex:i];
                     TipMessageData *data = [[TipMessageData alloc]init];
@@ -438,7 +437,7 @@ SINGLETON_IMPLENTATION(TreatmentListAndDetailManager);
                     [resultArray addObjectSafely:data];
                 }
                 
-                NSMutableArray *dataArray4 = [[result.responseObject valueForKeySafely:@"data"] valueForKeySafely:@"msgUserOrderDiagnosis"];
+                NSArray *dataArray4 = [[result.responseObject dictionaryForKeySafely:@"data"] arrayForKeySafely:@"msgUserOrderDiagnosis"];
                 for (int i = 0; i < dataArray4.count; i++) {
                     NSMutableDictionary *dic = [dataArray4 objectAtIndex:i];
                     TipMessageData *data = [[TipMessageData alloc]init];
@@ -491,10 +490,10 @@ SINGLETON_IMPLENTATION(TreatmentListAndDetailManager);
     [[AppCore sharedInstance].apiManager POST:URL_AfterBase parameters:param callbackRunInGlobalQueue:YES parser:nil parseMethod:nil resultBlock:^(SNHTTPRequestOperation *request, SNServerAPIResultData *result){
 #if !LOCAL
         if (!result.hasError){
-            NSInteger err_code = [[result.responseObject valueForKeySafely:@"errorCode"] integerValue];
+            NSInteger err_code = [result.responseObject integerForKeySafely:@"errorCode"];
             if (err_code == 0) {
-                NSMutableDictionary  *dic = [result.responseObject valueForKeySafely:@"data"];
-                if([dic isKindOfClass:[NSDictionary class]]){
+                NSDictionary *dic = [result.responseObject dictionaryForKeySafely:@"data"];
+                if(dic){
                     NSMutableArray *dataArray1 = [NSMutableArray new];
                     id obj = [dic objectForKey:@"moneyRecords"];
                     if (obj){
@@ -572,17 +571,17 @@ SINGLETON_IMPLENTATION(TreatmentListAndDetailManager);
     [[AppCore sharedInstance].apiManager POST:URL_AfterBase parameters:param callbackRunInGlobalQueue:YES parser:nil parseMethod:nil resultBlock:^(SNHTTPRequestOperation *request, SNServerAPIResultData *result){
 #if !LOCAL
         if (!result.hasError){
-            NSInteger err_code = [[result.responseObject valueForKeySafely:@"errorCode"] integerValue];
+            NSInteger err_code = [result.responseObject integerForKeySafely:@"errorCode"];
             if (err_code == 0) {
                 CommentListModel *listModel = [[CommentListModel alloc]init];
                 Doctor *doctor = [[Doctor alloc]init];
                 listModel.data = doctor;
-                NSMutableDictionary  *dic = [result.responseObject valueForKeySafely:@"data"];
-                if([dic isKindOfClass:[NSDictionary class]]){
-                    NSMutableArray *arr = [dic objectForKey:@"flagList"];
+                NSDictionary  *dic = [result.responseObject dictionaryForKeySafely:@"data"];
+                if(dic){
+                    NSArray *arr = [dic arrayForKeySafely:@"flagList"];
                     NSMutableArray *recv = [NSMutableArray new];
                     
-                    [arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    [arr enumerateObjectsUsingBlockSafety:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                         FlagListInfo *item = [[FlagListInfo alloc]init];
                         item.ID = [[obj valueForKey:@"ID"] integerValue];
                         item.icon = [obj valueForKey:@"icon"];
@@ -594,7 +593,7 @@ SINGLETON_IMPLENTATION(TreatmentListAndDetailManager);
                     }];
                     doctor.flagList = recv;
                     
-                    arr = [dic objectForKey:@"obtainFlagList"];
+                    arr = [dic arrayForKeySafely:@"obtainFlagList"];
                     recv = [NSMutableArray new];
                     
                     if ([arr isKindOfClass:[NSMutableArray class]]) {
@@ -610,7 +609,7 @@ SINGLETON_IMPLENTATION(TreatmentListAndDetailManager);
                     arr = [dic objectForKey:@"remarkList"];
                     recv = [NSMutableArray new];
                     
-                    [arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    [arr enumerateObjectsUsingBlockSafety:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                         CommentListInfo *item = [[CommentListInfo alloc]init];
                         item.content = [NSString stringWithFormat:@"%@",[obj valueForKey:@"content"]];
                         item.flagName = [obj valueForKey:@"flagName"];

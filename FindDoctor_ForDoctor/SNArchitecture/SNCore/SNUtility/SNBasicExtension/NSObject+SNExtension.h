@@ -10,6 +10,14 @@
 - (id)valueForKeySafely:(NSString *)key;
 - (id)valueForKeyPathSafely:(NSString *)keyPath;
 
+- (NSString *)stringForKeySafely:(NSString *)key;
+- (NSInteger)integerForKeySafely:(NSString *)key;
+- (long long)longlongForKeySafely:(NSString *)key;
+- (NSDictionary *)dictionaryForKeySafely:(NSString *)key;
+- (NSArray *)arrayForKeySafely:(NSString *)key;
+
+- (void)enumerateObjectsUsingBlockSafety:(void (^)(id  _Nonnull obj, NSUInteger idx, BOOL *stop))block;
+
 @end
 
 @interface NSObject (SNExtension)

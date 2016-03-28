@@ -184,7 +184,7 @@
          [self hideHUD];
          
          if (!result.hasError) {
-             NSInteger errorCode = [[result.responseObject valueForKey:@"errorCode"] integerValue];
+             NSInteger errorCode = [result.responseObject integerForKeySafely:@"errorCode"];
              if(errorCode == 0){
 //                 codetoken = [[result.responseObject valueForKey:@"data"] valueForKey:@"codetoken"];
 //                 NSLog(@"code = %@\ncodetoken = %@",[[result.responseObject valueForKey:@"data"] valueForKey:@"code"],[[result.responseObject valueForKey:@"data"] valueForKey:@"codetoken"]);
@@ -279,7 +279,7 @@
         [blockSelf hideProgressView];
         if (!result.hasError)
         {
-            NSInteger err_code = [[result.responseObject valueForKey:@"errorCode"] integerValue];
+            NSInteger err_code = [result.responseObject integerForKeySafely:@"errorCode"];
             if (err_code == 0) {
                 if ([CUUserManager sharedInstance].user.doctorId == -1){
                     [TipHandler showHUDText:@"对不起，您还并未签约，请联系客服" inView:blockSelf.view];

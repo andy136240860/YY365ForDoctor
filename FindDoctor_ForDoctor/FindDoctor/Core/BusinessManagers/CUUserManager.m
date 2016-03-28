@@ -113,8 +113,8 @@ SINGLETON_IMPLENTATION(CUUserManager);
     [dataParam setObjectSafely:[SNPlatformManager deviceId] forKey:@"device"];
     [dataParam setObjectSafely:[SNPlatformManager deviceIPAdress] forKey:@"ip"];
     [dataParam setObjectSafely:@"1.0.1" forKey:@"region"];
-    [dataParam setObjectSafely:@(-1) forKey:@"latitude"];
-    [dataParam setObjectSafely:@(-1) forKey:@"longtitude"];
+    [dataParam setObjectSafely:kCurrentLat forKey:@"latitude"];
+    [dataParam setObjectSafely:kCurrentLng forKey:@"longtitude"];
     
     [param setObjectSafely:[dataParam JSONString] forKey:@"data"];
     __block CUUserManager * blockSelf = self;
@@ -123,142 +123,142 @@ SINGLETON_IMPLENTATION(CUUserManager);
         if (!result.hasError)
         {
             // 赋值user数据
-            NSInteger err_code = [[result.responseObject valueForKey:@"errorCode"]integerValue];
+            NSInteger err_code = [result.responseObject integerForKeySafely:@"errorCode"];
             if(err_code == 0){
-                NSDictionary *data = [result.responseObject valueForKey:@"data"];
+                NSDictionary *data = [result.responseObject dictionaryForKeySafely:@"data"];
                 
                 //                    blockSelf.user.cellPhone = [data valueForKey:@"phone"];
-                blockSelf.user.userId = [[data valueForKey:@"accID"] intValue];
-                blockSelf.user.doctorId = [[data valueForKey:@"accID"] intValue];
-                blockSelf.user.nickName = [data valueForKey:@"name"];
-                blockSelf.user.icon = [data valueForKey:@"icon"];
+                blockSelf.user.userId = [data integerForKeySafely:@"accID"];
+                blockSelf.user.doctorId = [data integerForKeySafely:@"accID"];
+                blockSelf.user.nickName = [data stringForKeySafely:@"name"];
+                blockSelf.user.icon = [data stringForKeySafely:@"icon"];
                 NSLog(@"cellPhone:%@",blockSelf.user.cellPhone);
                 NSLog(@"userId:%d",blockSelf.user.userId );
                 NSLog(@"doctorId:%d",blockSelf.user.doctorId );
-                blockSelf.user.token = [data valueForKey:@"token"];
+                blockSelf.user.token = [data stringForKeySafely:@"token"];
                 
                 [blockSelf save];
             }
             else{
-                [TipHandler showTipOnlyTextWithNsstring:[result.responseObject valueForKey:@"data"]];
+                [TipHandler showTipOnlyTextWithNsstring:[result.responseObject stringForKeySafely:@"data"]];
             }
 
         }
         resultBlock(request,result);
     } forKey:URL_AfterBase forPageNameGroup:pageName];
 }
+//
+//- (void)loginWithAccountName:(NSString *)name password:(NSString *)password resultBlock:(SNServerAPIResultBlock)resultBlock pageName:(NSString *)pageName
+//{
+//    // param
+//    NSMutableDictionary * param = [NSMutableDictionary dictionary];
+//    [param setObjectSafely:kPlatformFrom forKey:@"from"];
+//    [param setObjectSafely:@"V1.0" forKey:@"version"];
+//    [param setObjectSafely:[SNPlatformManager deviceId] forKey:@"deviceinfo"];
+//    [param setObjectSafely:@"0" forKey:@"token"];
+//    [param setObjectSafely:@"login_my" forKey:@"require"];
+//    [param setObjectSafely:@"0" forKey:@"lantitude"];
+//    [param setObjectSafely:@"0" forKey:@"lontitude"];
+//    [param setObjectSafely:@"phonecode" forKey:@"logintype"];
+//    [param setObjectSafely:@"ture" forKey:@"ios"];
+//    
+//    NSMutableDictionary * dataParam = [NSMutableDictionary dictionary];
+//    [dataParam setValue:name forKey:@"phone"];
+//    [dataParam setValue:password forKey:@"code"];
+//    [dataParam setValue:@"0" forKey:@"email"];
+//    [dataParam setValue:@"0" forKey:@"account"];
+//    [dataParam setValue:@"0" forKey:@"accountid"];
+//    [dataParam setValue:@"phonemsg_from_doctor" forKey:@"logintype"];
+//    [param setObjectSafely:[dataParam JSONString] forKey:@"data"];
+//
+//    
+//    CUUserParser * parser = [[CUUserParser alloc] init];
+//    __block CUUserManager * blockSelf = self;
+//    
+//    [[AppCore sharedInstance].apiManager POST:URL_AfterBase parameters:param callbackRunInGlobalQueue:YES parser:parser parseMethod:@selector(parseLoginWithDict:) resultBlock:^(SNHTTPRequestOperation *request, SNServerAPIResultData *result) {
+//        NSLog(@"%@",result.responseObject);
+//        
+//        if (!result.hasError)
+//        {
+//            // 赋值user数据
+//            
+//            blockSelf.user.token = [result.responseObject valueForKey:@"token"];
+//            
+//            NSDictionary *data = [result.responseObject valueForKey:@"data"];
+//    
+//            blockSelf.user.cellPhone = [data valueForKey:@"phone"];
+//            blockSelf.user.userId = [[data valueForKey:@"no"] intValue];
+//            blockSelf.user.doctorId = [[data valueForKey:@"iddoctor"] intValue];
+//            blockSelf.user.nickName = [data valueForKey:@"name"];
+//            blockSelf.user.icon = [data valueForKey:@"icon"];
+//            
+//            NSLog(@"cellPhone:%@",blockSelf.user.cellPhone);
+//            NSLog(@"userId:%d",blockSelf.user.userId );
+//            NSLog(@"doctorId:%d",blockSelf.user.doctorId );
+//            
+//            [blockSelf save];
+//        }
+//        resultBlock(request,result);
+//    } forKey:URL_AfterBase forPageNameGroup:pageName];
+//}
 
-- (void)loginWithAccountName:(NSString *)name password:(NSString *)password resultBlock:(SNServerAPIResultBlock)resultBlock pageName:(NSString *)pageName
-{
-    // param
-    NSMutableDictionary * param = [NSMutableDictionary dictionary];
-    [param setObjectSafely:kPlatformFrom forKey:@"from"];
-    [param setObjectSafely:@"V1.0" forKey:@"version"];
-    [param setObjectSafely:[SNPlatformManager deviceId] forKey:@"deviceinfo"];
-    [param setObjectSafely:@"0" forKey:@"token"];
-    [param setObjectSafely:@"login_my" forKey:@"require"];
-    [param setObjectSafely:@"0" forKey:@"lantitude"];
-    [param setObjectSafely:@"0" forKey:@"lontitude"];
-    [param setObjectSafely:@"phonecode" forKey:@"logintype"];
-    [param setObjectSafely:@"ture" forKey:@"ios"];
-    
-    NSMutableDictionary * dataParam = [NSMutableDictionary dictionary];
-    [dataParam setValue:name forKey:@"phone"];
-    [dataParam setValue:password forKey:@"code"];
-    [dataParam setValue:@"0" forKey:@"email"];
-    [dataParam setValue:@"0" forKey:@"account"];
-    [dataParam setValue:@"0" forKey:@"accountid"];
-    [dataParam setValue:@"phonemsg_from_doctor" forKey:@"logintype"];
-    [param setObjectSafely:[dataParam JSONString] forKey:@"data"];
-
-    
-    CUUserParser * parser = [[CUUserParser alloc] init];
-    __block CUUserManager * blockSelf = self;
-    
-    [[AppCore sharedInstance].apiManager POST:URL_AfterBase parameters:param callbackRunInGlobalQueue:YES parser:parser parseMethod:@selector(parseLoginWithDict:) resultBlock:^(SNHTTPRequestOperation *request, SNServerAPIResultData *result) {
-        NSLog(@"%@",result.responseObject);
-        
-        if (!result.hasError)
-        {
-            // 赋值user数据
-            
-            blockSelf.user.token = [result.responseObject valueForKey:@"token"];
-            
-            NSDictionary *data = [result.responseObject valueForKey:@"data"];
-    
-            blockSelf.user.cellPhone = [data valueForKey:@"phone"];
-            blockSelf.user.userId = [[data valueForKey:@"no"] intValue];
-            blockSelf.user.doctorId = [[data valueForKey:@"iddoctor"] intValue];
-            blockSelf.user.nickName = [data valueForKey:@"name"];
-            blockSelf.user.icon = [data valueForKey:@"icon"];
-            
-            NSLog(@"cellPhone:%@",blockSelf.user.cellPhone);
-            NSLog(@"userId:%d",blockSelf.user.userId );
-            NSLog(@"doctorId:%d",blockSelf.user.doctorId );
-            
-            [blockSelf save];
-        }
-        resultBlock(request,result);
-    } forKey:URL_AfterBase forPageNameGroup:pageName];
-}
-
-// 登出
-- (void)logoutWithUser:(CUUser *)user resultBlock:(SNServerAPIResultBlock)resultBlock pageName:(NSString *)pageName
-{
-    // param
-    NSMutableDictionary * param = [NSMutableDictionary dictionary];
-    [param setObjectSafely:user.token forKey:Key_Token];
-    
-    CUUserParser * parser = [[CUUserParser alloc] init];
-    __block CUUserManager * blockSelf = self;
-    
-    [[AppCore sharedInstance].apiManager POST:URL_AfterBase parameters:param callbackRunInGlobalQueue:YES parser:parser parseMethod:@selector(parseLogoutWithDict:) resultBlock:^(SNHTTPRequestOperation *request, SNServerAPIResultData *result) {
-        if (!result.hasError)
-        {
-            // 赋值user数据
-            [blockSelf clear];
-            [blockSelf save];
-        }
-        resultBlock(request,result);
-    }  forKey:URL_AfterBase forPageNameGroup:pageName];
-}
+//// 登出
+//- (void)logoutWithUser:(CUUser *)user resultBlock:(SNServerAPIResultBlock)resultBlock pageName:(NSString *)pageName
+//{
+//    // param
+//    NSMutableDictionary * param = [NSMutableDictionary dictionary];
+//    [param setObjectSafely:user.token forKey:Key_Token];
+//    
+//    CUUserParser * parser = [[CUUserParser alloc] init];
+//    __block CUUserManager * blockSelf = self;
+//    
+//    [[AppCore sharedInstance].apiManager POST:URL_AfterBase parameters:param callbackRunInGlobalQueue:YES parser:parser parseMethod:@selector(parseLogoutWithDict:) resultBlock:^(SNHTTPRequestOperation *request, SNServerAPIResultData *result) {
+//        if (!result.hasError)
+//        {
+//            // 赋值user数据
+//            [blockSelf clear];
+//            [blockSelf save];
+//        }
+//        resultBlock(request,result);
+//    }  forKey:URL_AfterBase forPageNameGroup:pageName];
+//}
 
 // 获取用户信息
-- (void)getUserInfo:(NSString *)token resultBlock:(SNServerAPIResultBlock)resultBlock// pageName:(NSString *)pageName
-{
-    // param
-    NSMutableDictionary * param = [NSMutableDictionary dictionary];
-    [param setObjectSafely:token forKey:Key_Token];
-    
-    CUUserParser * parser = [[CUUserParser alloc] init];
-    __block CUUserManager * blockSelf = self;
-    [[AppCore sharedInstance].apiManager POST:URL_AfterBase parameters:param callbackRunInGlobalQueue:YES parser:parser parseMethod:@selector(parseGetUserInfoWithDict:) resultBlock:^(SNHTTPRequestOperation *request, SNServerAPIResultData *result) {
-        if (!result.hasError)
-        {
-//            // 赋值user数据
-//            NSString * profile = ((CUUser *)result.parsedModelObject).profile;
-//            NSString * nickName = ((CUUser *)result.parsedModelObject).nickName;
-//            NSString * hiddenCellPhone = ((CUUser *)result.parsedModelObject).hiddenCellPhone;
-//            
-//            if (profile != nil)
-//            {
-//                blockSelf.user.profile = profile;
-//            }
-//            if (nickName != nil)
-//            {
-//                 blockSelf.user.nickName = nickName;
-//            }
-//            if (hiddenCellPhone != nil)
-//            {
-//                blockSelf.user.hiddenCellPhone = hiddenCellPhone;
-//            }
-//            blockSelf.user.userId = ((CUUser *)result.parsedModelObject).userId;
-//            blockSelf.user.points = ((CUUser *)result.parsedModelObject).points;
-//            [blockSelf save];
-        }
-        resultBlock(request,result);
-    }   forKey:URL_AfterBase];
-}
+//- (void)getUserInfo:(NSString *)token resultBlock:(SNServerAPIResultBlock)resultBlock// pageName:(NSString *)pageName
+//{
+//    // param
+//    NSMutableDictionary * param = [NSMutableDictionary dictionary];
+//    [param setObjectSafely:token forKey:Key_Token];
+//    
+//    CUUserParser * parser = [[CUUserParser alloc] init];
+//    __block CUUserManager * blockSelf = self;
+//    [[AppCore sharedInstance].apiManager POST:URL_AfterBase parameters:param callbackRunInGlobalQueue:YES parser:parser parseMethod:@selector(parseGetUserInfoWithDict:) resultBlock:^(SNHTTPRequestOperation *request, SNServerAPIResultData *result) {
+//        if (!result.hasError)
+//        {
+////            // 赋值user数据
+////            NSString * profile = ((CUUser *)result.parsedModelObject).profile;
+////            NSString * nickName = ((CUUser *)result.parsedModelObject).nickName;
+////            NSString * hiddenCellPhone = ((CUUser *)result.parsedModelObject).hiddenCellPhone;
+////            
+////            if (profile != nil)
+////            {
+////                blockSelf.user.profile = profile;
+////            }
+////            if (nickName != nil)
+////            {
+////                 blockSelf.user.nickName = nickName;
+////            }
+////            if (hiddenCellPhone != nil)
+////            {
+////                blockSelf.user.hiddenCellPhone = hiddenCellPhone;
+////            }
+////            blockSelf.user.userId = ((CUUser *)result.parsedModelObject).userId;
+////            blockSelf.user.points = ((CUUser *)result.parsedModelObject).points;
+////            [blockSelf save];
+//        }
+//        resultBlock(request,result);
+//    }   forKey:URL_AfterBase];
+//}
 
 // 修改用户信息
 - (void)updateUserInfo:(CUUser *)user resultBlock:(SNServerAPIResultBlock)resultBlock pageName:(NSString *)pageName

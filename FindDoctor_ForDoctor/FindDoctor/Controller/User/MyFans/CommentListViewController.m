@@ -96,7 +96,7 @@
         [blockSelf.freshControl endRefreshing];
         if (!result.hasError)
         {
-            NSInteger err_code = [[result.responseObject valueForKeySafely:@"errorCode"] integerValue];
+            NSInteger err_code = [result.responseObject integerForKeySafely:@"errorCode"];
             if (err_code == 0){
                 // height
                 [self.heightDictOfCells removeAllObjects];

@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "NSDataProtocol.h"
 
+NS_ASSUME_NONNULL_BEGIN
 
 @interface NSArray (Safety)
 
@@ -35,6 +36,7 @@
 - (id)pop;
 
 
+
 @end
 
 @interface NSArray (SNExtension)
@@ -55,3 +57,5 @@
 - (NSData*)data;
 
 @end
+
+NS_ASSUME_NONNULL_END

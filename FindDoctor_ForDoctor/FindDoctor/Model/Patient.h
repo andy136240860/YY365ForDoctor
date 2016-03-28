@@ -27,7 +27,7 @@ typedef NS_ENUM(NSInteger, ZhenLiaoRecordSortType) {
 @property (nonatomic, strong) NSString *doctorIcon;
 
 @property (nonatomic, strong) NSString *illnessDescription;  //病症描述(from patient)
-@property (nonatomic, strong) NSMutableArray *illnessPic;  //病症图片(from patient)
+@property (nonatomic, strong) NSArray *illnessPic;  //病症图片(from patient)
 
 @property NSInteger orderNo;   //预约号
 

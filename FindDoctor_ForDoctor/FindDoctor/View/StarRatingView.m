@@ -152,9 +152,4 @@
     [self tapImage:tempRate+0.5];
     return [super continueTrackingWithTouch:touch withEvent:event];
 }
-
-- (void)tapImageWithDrag:(UIButton *)sender{
-    
-}
-
 @end

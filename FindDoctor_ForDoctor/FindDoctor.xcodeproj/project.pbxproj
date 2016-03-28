@@ -2877,7 +2877,7 @@
 				TargetAttributes = {
 					3ED8563D1A9376D400516900 = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = GT9CXCH43L;
+						DevelopmentTeam = M8XN28D3G2;
 					};
 					E10706DF1B0E2F2F0048FAB8 = {
 						CreatedOnToolsVersion = 6.1;
@@ -3441,8 +3441,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Chongqing Youqiku Iot Technology Co., Ltd.";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Chongqing Youqiku Iot Technology Co., Ltd.";
+				CODE_SIGN_IDENTITY = "iPhone Developer: ShengJian Lai (UC94U4573S)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: ShengJian Lai (UC94U4573S)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -3471,7 +3471,7 @@
 					"-Objc",
 					"-all_loaded",
 				);
-				PROVISIONING_PROFILE = "9ca59782-cea6-49e4-a1c6-f09baf80827a";
+				PROVISIONING_PROFILE = "044e4271-dfc0-4875-9573-54a1f0e853c8";
 				SDKROOT = iphoneos9.2;
 			};
 			name = Debug;
@@ -3493,8 +3493,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Chongqing Youqiku Iot Technology Co., Ltd.";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Chongqing Youqiku Iot Technology Co., Ltd.";
+				CODE_SIGN_IDENTITY = "iPhone Developer: ShengJian Lai (UC94U4573S)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: ShengJian Lai (UC94U4573S)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -3516,7 +3516,7 @@
 					"-Objc",
 					"-all_loaded",
 				);
-				PROVISIONING_PROFILE = "9ca59782-cea6-49e4-a1c6-f09baf80827a";
+				PROVISIONING_PROFILE = "044e4271-dfc0-4875-9573-54a1f0e853c8";
 				SDKROOT = iphoneos9.2;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -3527,8 +3527,8 @@
 			baseConfigurationReference = 1A983DAFDAAC84247B2A59E3 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Chongqing Youqiku Iot Technology Co., Ltd.";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Chongqing Youqiku Iot Technology Co., Ltd.";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3571,9 +3571,9 @@
 					"$(PROJECT_DIR)/FindDoctor/Utitlity/UpmpPay/libs",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.uqku.demo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.uyi365.ForDoctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9ca59782-cea6-49e4-a1c6-f09baf80827a";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "../SNArchitecture ../SNArchitecture/SNCore/SNUtility";
 			};
@@ -3584,8 +3584,8 @@
 			baseConfigurationReference = 0E40EF0F0D7C5493CCAAEEF1 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Chongqing Youqiku Iot Technology Co., Ltd.";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Chongqing Youqiku Iot Technology Co., Ltd.";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3628,9 +3628,9 @@
 					"$(PROJECT_DIR)/FindDoctor/Utitlity/UpmpPay/libs",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.uqku.demo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.uyi365.ForDoctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9ca59782-cea6-49e4-a1c6-f09baf80827a";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "../SNArchitecture ../SNArchitecture/SNCore/SNUtility";
 			};

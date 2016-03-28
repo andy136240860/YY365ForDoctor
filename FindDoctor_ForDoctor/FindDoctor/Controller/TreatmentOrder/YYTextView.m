@@ -58,7 +58,9 @@ int textFontSize = 14;
 }
 
 - (void)clickBlockAction{
-    _clickBlock();
+    if (_clickBlock) {
+        _clickBlock();
+    }
 }
 
 @end

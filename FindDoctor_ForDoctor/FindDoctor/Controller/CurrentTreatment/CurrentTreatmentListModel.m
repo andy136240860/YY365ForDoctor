@@ -60,7 +60,7 @@
     [[TreatmentListAndDetailManager sharedInstance] getCurrentTreatmentListWithPageNum:self.pageInfo.currentPage + 1  pageSize:pageSize resultBlock:^(SNHTTPRequestOperation *request, SNServerAPIResultData *result) {
         if (!result.hasError)
         {
-            NSInteger err_code = [[result.responseObject valueForKeySafely:@"errorCode"] integerValue];
+            NSInteger err_code = [result.responseObject integerForKeySafely:@"errorCode"];
             if (err_code == 0){
                 SNBaseListModel * list = result.parsedModelObject;
                 [self.items addObjectsFromArray:list.items];

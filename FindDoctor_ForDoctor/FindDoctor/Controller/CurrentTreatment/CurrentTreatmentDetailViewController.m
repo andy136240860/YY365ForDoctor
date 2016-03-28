@@ -338,7 +338,7 @@
         temPrecipe_sentence = [temPrecipe_sentence substringFromIndex:1];
         [[TreatmentOrderManager sharedInstance] medicineWithOrderNumber:[_data.diagnosisID longLongValue] recipeData:self.prescriptionView.prescriptionArray number:[_medicineNumberView.contentTextField.text integerValue] diagnose:zhenduanTextView.text resultBlock:^(SNHTTPRequestOperation *request, SNServerAPIResultData *result) {
             if (!result.hasError) {
-                NSInteger err_code = [[result.responseObject valueForKeySafely:@"errorCode"] integerValue];
+                NSInteger err_code = [result.responseObject integerForKeySafely:@"errorCode"];
                 if (err_code == 0){
                     [TipHandler showTipOnlyTextWithNsstring:@"提交成功"];
                     [self performSelector:@selector(backToRootView) withObject:nil afterDelay:1.0f];
@@ -386,7 +386,7 @@
             NSString *ftppath = ftppathArray[0];
             [[TreatmentOrderManager sharedInstance] medicineWithOrderNumber:[_data.diagnosisID longLongValue] ftppath:ftppath  number:[_medicineNumberView.contentTextField.text integerValue] diagnose:zhenduanTextView.text resultBlock:^(SNHTTPRequestOperation *request, SNServerAPIResultData *result) {
                 if (!result.hasError) {
-                    NSInteger errorCode = [[result.responseObject valueForKeySafely:@"errorCode"] integerValue];
+                    NSInteger errorCode = [result.responseObject integerForKeySafely:@"errorCode"];
                     if (errorCode == 0){
                         [TipHandler showTipOnlyTextWithNsstring:@"提交成功"];
                         [self performSelector:@selector(backToRootView) withObject:nil afterDelay:1.0f];
