@@ -95,9 +95,11 @@ int ButtonHeight = 30;
     NSString *labelStr = [NSString stringWithFormat:@""];
     for (int i = 0; i < _prescriptionArray.count; i++) {
         CUHerbSelect *herb = [_prescriptionArray objectAtIndex:i];
-        labelStr = [labelStr stringByAppendingFormat:@"\n%@%d%@",herb.name,herb.weight,herb.unit];
+        labelStr = [labelStr stringByAppendingFormat:@"\n%@\t%d%@",herb.name,herb.weight,herb.unit];
     }
-    labelStr = [labelStr substringFromIndex:1];
+    if(_prescriptionArray.count){
+        labelStr = [labelStr substringFromIndex:1];
+    }
     NSMutableParagraphStyle *paragraph = [NSMutableParagraphStyle new];
     paragraph.lineBreakMode = NSLineBreakByWordWrapping;
     paragraph.lineSpacing = 7;

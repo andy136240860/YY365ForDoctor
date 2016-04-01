@@ -1,0 +1,30 @@
+dependencies: \
+  /Users/guo/Documents/YY365ForDoctor/FindDoctor_ForDoctor/FindDoctor/Controller/TreatmentOrder/OfferOrderViewController2.m \
+  /Users/guo/Documents/YY365ForDoctor/FindDoctor_ForDoctor/FindDoctor/Controller/TreatmentOrder/OfferOrderViewController2.h \
+  /Users/guo/Documents/YY365ForDoctor/FindDoctor_ForDoctor/SNArchitecture/SNMVC/SNArchitectureController/SNBaseViewController/CUViewController.h \
+  /Users/guo/Documents/YY365ForDoctor/FindDoctor_ForDoctor/SNArchitecture/SNMVC/SNArchitectureController/Slider/SlideDefines/SNViewController.h \
+  /Users/guo/Documents/YY365ForDoctor/FindDoctor_ForDoctor/SNArchitecture/SNMVC/SNArchitectureController/Slider/SlideController/SNSlideControllerDelegate.h \
+  /Users/guo/Documents/YY365ForDoctor/FindDoctor_ForDoctor/SNArchitecture/SNMVC/SNArchitectureController/Slider/SlideDefines/SNSlideDefines.h \
+  /Users/guo/Documents/YY365ForDoctor/FindDoctor_ForDoctor/SNArchitecture/SNMVC/SNArchitectureController/Slider/SlideNavigationController/SNSlideNavigationControllerDelegate.h \
+  /Users/guo/Documents/YY365ForDoctor/FindDoctor_ForDoctor/SNArchitecture/SNMVC/SNArchitectureController/Slider/SlideDefines/SNView.h \
+  /Users/guo/Documents/YY365ForDoctor/FindDoctor_ForDoctor/SNArchitecture/SNMVC/SNArchitectureController/SNTab/SNTabBarItem.h \
+  /Users/guo/Documents/YY365ForDoctor/FindDoctor_ForDoctor/SNArchitecture/SNMVC/SNArchitectureController/Slider/SlideNavigationController/SNSlideNavigationController.h \
+  /Users/guo/Documents/YY365ForDoctor/FindDoctor_ForDoctor/SNArchitecture/SNMVC/SNArchitectureController/Slider/SlideDefines/SNNavigationBar.h \
+  /Users/guo/Documents/YY365ForDoctor/FindDoctor_ForDoctor/SNArchitecture/SNMVC/SNArchitectureController/SNBaseViewController/SNViewController+Nav.h \
+  /Users/guo/Documents/YY365ForDoctor/FindDoctor_ForDoctor/SNArchitecture/SNUIComponent/ProgressHUD/MBProgressHUD.h \
+  /Users/guo/Documents/YY365ForDoctor/FindDoctor_ForDoctor/FindDoctor/Model/TreatmentOrder.h \
+  /Users/guo/Documents/YY365ForDoctor/FindDoctor_ForDoctor/FindDoctor/Model/Clinic.h \
+  /Users/guo/Documents/YY365ForDoctor/FindDoctor_ForDoctor/FindDoctor/Controller/TreatmentOrder/TimeSegButtonsView.h \
+  /Users/guo/Documents/YY365ForDoctor/FindDoctor_ForDoctor/FindDoctor/View/SZCalendarPicker/SZCalendarPicker.h \
+  /Users/guo/Documents/YY365ForDoctor/FindDoctor_ForDoctor/FindDoctor/Controller/TreatmentOrder/YYTextView.h \
+  /Users/guo/Documents/YY365ForDoctor/FindDoctor_ForDoctor/FindDoctor/Core/BusinessManagers/TreatmentOrderManager.h \
+  /Users/guo/Documents/YY365ForDoctor/FindDoctor_ForDoctor/SNArchitecture/SNMVC/SNBusinessMananger.h \
+  /Users/guo/Documents/YY365ForDoctor/FindDoctor_ForDoctor/SNArchitecture/SNMVC/SNServerAPIDefine.h \
+  /Users/guo/Documents/YY365ForDoctor/FindDoctor_ForDoctor/SNArchitecture/SNMVC/SNServerAPIManager.h \
+  /Users/guo/Documents/YY365ForDoctor/FindDoctor_ForDoctor/SNArchitecture/SNCore/SNNetWork/SNHTTPRequestOperation.h \
+  /Users/guo/Documents/YY365ForDoctor/FindDoctor_ForDoctor/SNArchitecture/SNCore/SNNetWork/SNHTTPRequestOperationManager.h \
+  /Users/guo/Documents/YY365ForDoctor/FindDoctor_ForDoctor/SNArchitecture/SNMVC/SNServerAPIDataParser.h \
+  /Users/guo/Documents/YY365ForDoctor/FindDoctor_ForDoctor/SNArchitecture/SNMVC/SNServerAPIResultData.h \
+  /Users/guo/Documents/YY365ForDoctor/FindDoctor_ForDoctor/FindDoctor/Controller/CurrentTreatment/CURecipe/View/CYAlertView.h \
+  /Users/guo/Documents/YY365ForDoctor/FindDoctor_ForDoctor/SNArchitecture/SNUIComponent/TipHandler/TipHandler.h \
+  /Users/guo/Documents/YY365ForDoctor/FindDoctor_ForDoctor/FindDoctor/Controller/TreatmentOrder/View/TimeSegChooseView.h

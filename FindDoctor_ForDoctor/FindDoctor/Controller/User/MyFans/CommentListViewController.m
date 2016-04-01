@@ -124,7 +124,7 @@
         }
         else
         {
-            [TipHandler showHUDText:[result.error.userInfo valueForKey:NSLocalizedDescriptionKey] inView:blockSelf.view];
+            [TipHandler showHUDText:@"连接服务器失败，请检查网络" inView:blockSelf.view];
             
         }
         

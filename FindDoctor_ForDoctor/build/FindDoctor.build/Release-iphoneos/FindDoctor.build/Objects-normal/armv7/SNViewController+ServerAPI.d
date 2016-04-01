@@ -1,0 +1,19 @@
+dependencies: \
+  /Users/guo/Documents/YY365ForDoctor/FindDoctor_ForDoctor/FindDoctor/Controller/SNViewController+ServerAPI.m \
+  /Users/guo/Documents/YY365ForDoctor/FindDoctor_ForDoctor/FindDoctor/Controller/SNViewController+ServerAPI.h \
+  /Users/guo/Documents/YY365ForDoctor/FindDoctor_ForDoctor/SNArchitecture/SNMVC/SNArchitectureController/Slider/SlideDefines/SNViewController.h \
+  /Users/guo/Documents/YY365ForDoctor/FindDoctor_ForDoctor/SNArchitecture/SNMVC/SNArchitectureController/Slider/SlideController/SNSlideControllerDelegate.h \
+  /Users/guo/Documents/YY365ForDoctor/FindDoctor_ForDoctor/SNArchitecture/SNMVC/SNArchitectureController/Slider/SlideDefines/SNSlideDefines.h \
+  /Users/guo/Documents/YY365ForDoctor/FindDoctor_ForDoctor/SNArchitecture/SNMVC/SNArchitectureController/Slider/SlideNavigationController/SNSlideNavigationControllerDelegate.h \
+  /Users/guo/Documents/YY365ForDoctor/FindDoctor_ForDoctor/SNArchitecture/SNMVC/SNArchitectureController/Slider/SlideDefines/SNView.h \
+  /Users/guo/Documents/YY365ForDoctor/FindDoctor_ForDoctor/SNArchitecture/SNMVC/SNArchitectureController/SNTab/SNTabBarItem.h \
+  /Users/guo/Documents/YY365ForDoctor/FindDoctor_ForDoctor/SNArchitecture/SNMVC/SNArchitectureController/Slider/SlideNavigationController/SNSlideNavigationController.h \
+  /Users/guo/Documents/YY365ForDoctor/FindDoctor_ForDoctor/SNArchitecture/SNMVC/SNArchitectureController/Slider/SlideDefines/SNNavigationBar.h \
+  /Users/guo/Documents/YY365ForDoctor/FindDoctor_ForDoctor/FindDoctor/Core/AppCore.h \
+  /Users/guo/Documents/YY365ForDoctor/FindDoctor_ForDoctor/SNArchitecture/SNMVC/SNServerAPIManager.h \
+  /Users/guo/Documents/YY365ForDoctor/FindDoctor_ForDoctor/SNArchitecture/SNCore/SNNetWork/SNHTTPRequestOperation.h \
+  /Users/guo/Documents/YY365ForDoctor/FindDoctor_ForDoctor/SNArchitecture/SNCore/SNNetWork/SNHTTPRequestOperationManager.h \
+  /Users/guo/Documents/YY365ForDoctor/FindDoctor_ForDoctor/SNArchitecture/SNMVC/SNServerAPIDataParser.h \
+  /Users/guo/Documents/YY365ForDoctor/FindDoctor_ForDoctor/SNArchitecture/SNMVC/SNServerAPIResultData.h \
+  /Users/guo/Documents/YY365ForDoctor/FindDoctor_ForDoctor/SNArchitecture/SNMVC/SNBusinessMananger.h \
+  /Users/guo/Documents/YY365ForDoctor/FindDoctor_ForDoctor/SNArchitecture/SNCore/SNStorage/File/SNFileAccessManager.h

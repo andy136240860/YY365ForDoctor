@@ -67,7 +67,7 @@ SINGLETON_IMPLENTATION(TreatmentListAndDetailManager);
                     zhenLiaoRecord.UserName = [dic stringForKeySafely:@"userName"];
                     zhenLiaoRecord.UserSex = [dic integerForKeySafely:@"userSex"];
                     zhenLiaoRecord.UserAge = [dic integerForKeySafely:@"userAge"];
-                    zhenLiaoRecord.UserCellPhone = [dic stringForKeySafely:@"userPhone"];
+                    zhenLiaoRecord.UserCellPhone = [dic valueForKey:@"userPhone"];
                     zhenLiaoRecord.diagnosisID = [dic objectForKeySafely:@"diagnosisID"];
                     zhenLiaoRecord.state = [dic integerForKeySafely:@"state"];
                     zhenLiaoRecord.diagnosisTime = [dic integerForKeySafely:@"diagnosisTime"];
@@ -461,10 +461,8 @@ SINGLETON_IMPLENTATION(TreatmentListAndDetailManager);
                 [[AppDelegate app] launchMainView];
 #endif
             }
-            
-            resultBlock(nil, result);
-            
         }
+        resultBlock(nil, result);
     } forKey:@"HomeTipList" forPageNameGroup:pageName];
 }
 

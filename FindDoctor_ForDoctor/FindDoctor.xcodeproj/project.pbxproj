@@ -204,6 +204,7 @@
 		BC556A091BA937B400ECB709 /* button_release_num@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC556A081BA937B400ECB709 /* button_release_num@2x.png */; };
 		BC556A0B1BA9515E00ECB709 /* HomeTipViewInterval@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC556A0A1BA9515E00ECB709 /* HomeTipViewInterval@2x.png */; };
 		BC5AA5591BE5DF800044EE8C /* MyAccountMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5AA5581BE5DF800044EE8C /* MyAccountMainViewController.m */; };
+		BC5B800B1CAA2A8300F0EC40 /* HFRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5B800A1CAA2A8300F0EC40 /* HFRequestModel.m */; };
 		BC5DE8B21C000CA80014C098 /* DefaultHeaderImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC5DE8B11C000CA80014C098 /* DefaultHeaderImage@2x.png */; };
 		BC7983A71C02EC7700655C72 /* Checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC7983A61C02EC7700655C72 /* Checkmark@2x.png */; };
 		BC7BF6C61BA1E092005849A2 /* settingButtom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC7BF6C51BA1E092005849A2 /* settingButtom@2x.png */; };
@@ -826,6 +827,8 @@
 		BC556A0A1BA9515E00ECB709 /* HomeTipViewInterval@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HomeTipViewInterval@2x.png"; sourceTree = "<group>"; };
 		BC5AA5571BE5DF800044EE8C /* MyAccountMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyAccountMainViewController.h; path = User/MyAccount/MyAccountMainViewController.h; sourceTree = "<group>"; };
 		BC5AA5581BE5DF800044EE8C /* MyAccountMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyAccountMainViewController.m; path = User/MyAccount/MyAccountMainViewController.m; sourceTree = "<group>"; };
+		BC5B80091CAA2A8300F0EC40 /* HFRequestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HFRequestModel.h; sourceTree = "<group>"; };
+		BC5B800A1CAA2A8300F0EC40 /* HFRequestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HFRequestModel.m; sourceTree = "<group>"; };
 		BC5DE8B11C000CA80014C098 /* DefaultHeaderImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DefaultHeaderImage@2x.png"; sourceTree = "<group>"; };
 		BC7983A61C02EC7700655C72 /* Checkmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Checkmark@2x.png"; sourceTree = "<group>"; };
 		BC7BF6C51BA1E092005849A2 /* settingButtom@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settingButtom@2x.png"; sourceTree = "<group>"; };
@@ -2695,6 +2698,8 @@
 				BC8CD4751C2A7E1B0075D1FD /* MyAccount.m */,
 				BCE0B2091C4F851E00BC5A7E /* Patient.h */,
 				BCE0B20A1C4F851E00BC5A7E /* Patient.m */,
+				BC5B80091CAA2A8300F0EC40 /* HFRequestModel.h */,
+				BC5B800A1CAA2A8300F0EC40 /* HFRequestModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3412,6 +3417,7 @@
 				BC5AA5591BE5DF800044EE8C /* MyAccountMainViewController.m in Sources */,
 				3EFB22361AB5B43F000872F3 /* SNTopTabViewController.m in Sources */,
 				E10EDC751B8B5D570035B6E7 /* Disease.m in Sources */,
+				BC5B800B1CAA2A8300F0EC40 /* HFRequestModel.m in Sources */,
 				BC833F371BD650A500D76319 /* MedicinalMaterialsForPrescriptionConfirm.m in Sources */,
 				E1EB1D811B70A43B0048B8EB /* CUUserParser.m in Sources */,
 				3EDEBA721A961C4800E72809 /* SNNetWorkReachability.m in Sources */,
@@ -3441,8 +3447,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: ShengJian Lai (UC94U4573S)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: ShengJian Lai (UC94U4573S)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -3471,7 +3477,7 @@
 					"-Objc",
 					"-all_loaded",
 				);
-				PROVISIONING_PROFILE = "044e4271-dfc0-4875-9573-54a1f0e853c8";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos9.2;
 			};
 			name = Debug;
@@ -3493,8 +3499,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: ShengJian Lai (UC94U4573S)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: ShengJian Lai (UC94U4573S)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -3516,7 +3522,7 @@
 					"-Objc",
 					"-all_loaded",
 				);
-				PROVISIONING_PROFILE = "044e4271-dfc0-4875-9573-54a1f0e853c8";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos9.2;
 				VALIDATE_PRODUCT = YES;
 			};

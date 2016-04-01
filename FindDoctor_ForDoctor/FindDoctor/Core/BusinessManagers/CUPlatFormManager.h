@@ -22,6 +22,7 @@ SINGLETON_DECLARE(CUPlatFormManager);
 // 获取当前版本号 ,新版本信息.
 + (NSString *)currentAppVersion;
 + (NSInteger)appVersionNumInBundle;
++ (NSInteger)changeVersionFromStringToInt:(NSString *)version;
 - (void)sychronizeVersion;
 
 @end

@@ -77,7 +77,6 @@
 - (void)initData{
     contentTableViewCellIcon = @[@"button_fans",@"button_appointments",@"button_clinics",@"button_advise",@"button_accounts",@"button_prise"];
     contentTableViewCellText = @[@"我的放号",@"约诊记录",@"诊疗记录",@"我的点评",@"我的账户",@"退出登录"];
-    
 }
 
 #pragma mark - didLogin == NO
@@ -137,7 +136,6 @@
         [resignButton addTarget:self action:@selector(resignAction) forControlEvents:UIControlEventTouchUpInside];
         [cell addSubview:resignButton];
         return cell;
-
     }
 
     UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
@@ -201,8 +199,6 @@
     
         case 6 :
         {
-            [[CUUserManager sharedInstance] clear];
-            [[AppDelegate app] launchMainView];
             break;
         }
             

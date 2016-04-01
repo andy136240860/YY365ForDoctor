@@ -37,6 +37,7 @@
 
 #import "LoginViewController.h"
 #import "LoginView.h"
+#import "JSONKit.h"
 
 
 @interface AppDelegate ()
@@ -71,6 +72,8 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
+    
+    [self postRequestVersionCheck];
     
     // TODO:暂时关闭基础组件
     // 地图
@@ -379,5 +382,81 @@
 //    _geoSearcher = [[BMKGeoCodeSearch alloc]init];
 //    _geoSearcher.delegate = (id)self;
 //}
+
+#pragma mark --------- 临时 ---------
+
+//版本检查
+- (void)postRequestVersionCheck{
+    
+    NSURL* url = [NSURL URLWithString:@"http://uyi365.com/baseFrame/base/VersionCheck.jmw"];
+    NSMutableURLRequest * postRequest=[NSMutableURLRequest requestWithURL:url];
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    [param setObjectSafely:kPlatformFrom forKey:@"from"];
+    //    [param setObjectSafely:@"VersionCheck" forKey:@"require"];
+    //    [param setObjectSafely:@(1111111111) forKey:@"interfaceID"];
+    //    [param setObjectSafely:@((NSInteger)[NSDate timeIntervalSince1970]) forKey:@"timestamp"];
+    NSMutableDictionary *dataParam = [NSMutableDictionary dictionary];
+    [dataParam setObjectSafely:[CUPlatFormManager currentAppVersion] forKey:@"appVersion"];
+    [dataParam setObjectSafely:[[[UIDevice currentDevice] identifierForVendor] UUIDString] forKey:@"deviceID"];
+    [dataParam setObjectSafely:[[UIDevice currentDevice] systemVersion] forKey:@"SystemVersion"];
+    [param setObjectSafely:[dataParam JSONString] forKey:@"data"];
+    
+    NSLog(@"%@",param);
+    NSString *bodyData = [param JSONString];
+    [postRequest setHTTPBody:[NSData dataWithBytes:[bodyData UTF8String] length:strlen([bodyData UTF8String])]];
+    [postRequest setHTTPMethod:@"POST"];
+    [postRequest setValue:@"application/json; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+    
+    __block __weak typeof(self) weakSelf = self;
+    
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    [NSURLConnection sendAsynchronousRequest:postRequest queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (!connectionError) {
+                NSDictionary *dict =[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
+                NSDictionary * dataDict = [dict dictionaryForKeySafely:@"data"];
+                NSString * appVersion = [dataDict stringForKeySafely:@"version"];
+                if([weakSelf checkIfNeedUpdateWithAppVersion:appVersion]){
+                    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"版本更新" message:[NSString stringWithFormat:@"重要更新版本%@,请前往App Store进行更新,否则将无法正常使用",appVersion] delegate:weakSelf cancelButtonTitle:@"退出" otherButtonTitles:@"下载", nil];
+                    [alert show];
+                }
+            }else{
+                return ;
+            }
+        });
+    }];
+    
+}
+
+//比较版本号，检查是否更新
+- (BOOL)checkIfNeedUpdateWithAppVersion : (NSString *)appVersion{
+    NSInteger oldVer =  [CUPlatFormManager appVersionNumInBundle];
+    NSInteger newVer =  [CUPlatFormManager changeVersionFromStringToInt:appVersion];
+    if (newVer > oldVer) {
+        return YES;
+    }
+    return NO;
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 0) {
+        [self exitApp];
+    }
+    if (buttonIndex == 1) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://itunes.apple.com/app/id1091982091"]];
+    }
+}
+
+//退出APP
+- (void)exitApp{
+    [UIView animateWithDuration:0.4f animations:^{
+        self.window.alpha = 0;
+        CGFloat y = self.window.bounds.size.height;
+        CGFloat x = self.window.bounds.size.width / 2;
+        self.window.frame = CGRectMake(x, y, 0, 0);
+    } completion:^(BOOL finished) {
+        exit(0);
+    }];
+}
 
 @end

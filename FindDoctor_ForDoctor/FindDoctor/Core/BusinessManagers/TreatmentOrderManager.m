@@ -212,8 +212,8 @@ SINGLETON_IMPLENTATION(TreatmentOrderManager);
                 }
                 result.parsedModelObject = listModel;
             }
-            resultBlock(nil, result);
         }
+        resultBlock(nil, result);
     } forKey:@"getList" forPageNameGroup:pageName];
 
 }

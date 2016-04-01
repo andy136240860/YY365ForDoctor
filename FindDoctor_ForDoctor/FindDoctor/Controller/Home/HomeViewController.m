@@ -80,11 +80,9 @@
             else{
                 [TipHandler showHUDText:[result.responseObject valueForKeySafely:@"data"]  inView:self.view];
             }
-
-//            [tipTableView setNeedsDisplay];
         }
         else{
-            [TipHandler showHUDText:@"网络错误" inView:self.view];
+            [TipHandler showHUDText:@"连接服务器失败，请检查网络" inView:self.view];
         }
         
     } pageName:@"HomeViewController"];

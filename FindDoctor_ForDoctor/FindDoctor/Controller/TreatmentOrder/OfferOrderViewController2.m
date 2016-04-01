@@ -54,8 +54,8 @@
     
     __weak __block OfferOrderViewController2 *blockSelf = self;
     [[TreatmentOrderManager sharedInstance] FangHaoForGetClinicWithResultBlock:^(SNHTTPRequestOperation *request, SNServerAPIResultData *result) {
+        [blockSelf hideProgressView];
         if (!result.hasError) {
-            [blockSelf hideProgressView];
             clinicArray = result.parsedModelObject;
             if (clinicArray.count) {
                 clinicTexView.contentTextField.text = [clinicArray[0] name];
