@@ -115,7 +115,7 @@
     password = [[UITextField alloc]init];
     password.frame = CGRectMake((kScreenWidth-passwordBackground.frameWidth)/2 + 50, CGRectGetMaxY(view.frame)+intervalY-3, passwordBackground.frameWidth - 50, passwordBackground.frameHeight);
     password.backgroundColor = [UIColor clearColor];
-    password.placeholder = @"请输入验证码";
+    password.placeholder = @"不用输入密码";
     password.tintColor = [UIColor whiteColor];
     password.delegate = self;
     password.clearButtonMode = UITextFieldViewModeUnlessEditing;
@@ -123,10 +123,11 @@
     password.keyboardType = UIKeyboardTypeNumberPad;
     password.textColor = [UIColor whiteColor];
     [password setValue:[UIColor colorWithRed:1 green:1 blue:1 alpha:0.3] forKeyPath:@"_placeholderLabel.textColor"];
-    [_contentScrollView addSubview:passwordBackground];
-    [_contentScrollView addSubview:password];
+//    [_contentScrollView addSubview:passwordBackground];
+//    [_contentScrollView addSubview:password];
     
     _codeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    _codeButton.hidden = YES;
     _codeButton.frame = CGRectMake(CGRectGetMaxX(password.frame) - kCodeButtonWith, CGRectGetMinY(password.frame), kCodeButtonWith, CGRectGetHeight(password.frame));
     [_codeButton setBackgroundImage:[UIImage imageNamed:@"login_code_bg"] forState:UIControlStateNormal];
     [_codeButton setBackgroundImage:[UIImage imageNamed:@"login_code_bg"] forState:UIControlStateDisabled];
@@ -140,24 +141,24 @@
     _codeLabel.textAlignment = NSTextAlignmentCenter;
     _codeLabel.textColor = [UIColor whiteColor];
     _codeLabel.text = @"获取验证码";
-    [_contentScrollView addSubview:_codeLabel];
+//    [_contentScrollView addSubview:_codeLabel];
     
     UIButton *loginButton = [[UIButton alloc]initWithFrame:CGRectMake((kScreenWidth-passwordBackground.frameWidth)/2, CGRectGetMaxY(view.frame)+intervalY*2, passwordBackground.frameWidth, 42)];
     loginButton.layer.backgroundColor = [UIColor clearColor].CGColor;
     loginButton.layer.cornerRadius = 21.f;
     loginButton.layer.borderColor = [UIColor whiteColor].CGColor;
     loginButton.layer.borderWidth = 1.f;
-    [loginButton setTitle:@"登           陆" forState:UIControlStateNormal];
+    [loginButton setTitle:@"谭晟专用版免密码登陆" forState:UIControlStateNormal];
     [loginButton addTarget:self action:@selector(confirmButtonAction) forControlEvents:UIControlEventTouchUpInside];
     [_contentScrollView addSubview:loginButton];
 }
 
 - (void)confirmButtonAction{
-    if(self.userName.text.length == 11 && self.password.text.length >1 ){
+    if(self.userName.text.length == 11){
         [self Login];
     }
     else{
-        UIAlertView *tempAlert = [[UIAlertView alloc]initWithTitle:nil message:@"手机号或验证码填写错误" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+        UIAlertView *tempAlert = [[UIAlertView alloc]initWithTitle:nil message:@"手机号填写错误" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
         [tempAlert show];
     }
 }

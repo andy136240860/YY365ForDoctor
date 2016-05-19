@@ -11,6 +11,7 @@
 #import "AppCore.h"
 #import "CUUserParser.h"
 #import "SNPlatFormManager.h"
+#import "CUPlatFormManager.h"
 #import "SNNetworkClient.h"
 #import "JSONKit.h"
 #import "TipHandler.h"
@@ -99,20 +100,20 @@ SINGLETON_IMPLENTATION(CUUserManager);
     NSMutableDictionary * param = [NSMutableDictionary dictionary];
     [param setObjectSafely:kPlatformFrom forKey:@"from"];
     [param setObjectSafely:@"0" forKey:@"token"];
-    [param setObjectSafely:@"DoctorLogin" forKey:@"require"];
-    [param setObjectSafely:@(20101) forKey:@"interfaceID"];
+    [param setObjectSafely:@"DoctorLoginAccount" forKey:@"require"];
+    [param setObjectSafely:@(20102) forKey:@"interfaceID"];
     [param setObjectSafely:@((NSInteger)[NSDate timeIntervalSince1970]) forKey:@"timestamp"];
 
     
     NSMutableDictionary * dataParam = [NSMutableDictionary dictionary];
     [dataParam setObjectSafely:@(0) forKey:@"accID"];
-    [dataParam setObjectSafely:cellPhone forKey:@"phone"];
-    [dataParam setObjectSafely:code forKey:@"phoneCode"];
+    [dataParam setObjectSafely:cellPhone forKey:@"account"];
+    [dataParam setObjectSafely:[[@"uyi365" MD5] uppercaseString] forKey:@"code"];
     [dataParam setObjectSafely:[SNPlatformManager deviceString] forKey:@"clientType"];
-    [dataParam setObjectSafely:@"1.0.1" forKey:@"clientVer"];
+    [dataParam setObjectSafely:[CUPlatFormManager currentAppVersion] forKey:@"clientVer"];
     [dataParam setObjectSafely:[SNPlatformManager deviceId] forKey:@"device"];
     [dataParam setObjectSafely:[SNPlatformManager deviceIPAdress] forKey:@"ip"];
-    [dataParam setObjectSafely:@"1.0.1" forKey:@"region"];
+    [dataParam setObjectSafely:@"成都市" forKey:@"region"];
     [dataParam setObjectSafely:kCurrentLat forKey:@"latitude"];
     [dataParam setObjectSafely:kCurrentLng forKey:@"longtitude"];
     

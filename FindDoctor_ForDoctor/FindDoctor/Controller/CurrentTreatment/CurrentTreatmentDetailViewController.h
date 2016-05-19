@@ -12,15 +12,7 @@
 
 @interface CurrentTreatmentDetailViewController : CUViewController<UITextViewDelegate,UIActionSheetDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 {
-//    //输入框
-//    UITextView *_textEditor;
-//    
-//    //下拉菜单
     UIActionSheet *myActionSheet;
-//
-//    
-//    //图片2进制路径
-//    NSString* filePath;
 }
 
 @property  (strong,nonatomic) Patient *data;

@@ -262,7 +262,7 @@
     picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     picker.delegate = self;
     //设置选择后的图片可被编辑
-    picker.allowsEditing = YES;
+    picker.allowsEditing = NO;
 //    picker.view.tag = sender.tag;
     [self presentModalViewController:picker animated:YES];
 }

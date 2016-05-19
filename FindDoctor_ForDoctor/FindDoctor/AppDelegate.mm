@@ -388,7 +388,7 @@
 //版本检查
 - (void)postRequestVersionCheck{
     
-    NSURL* url = [NSURL URLWithString:@"http://uyi365.com/baseFrame/base/VersionCheck.jmw"];
+    NSURL* url = [NSURL URLWithString:@"http://uyi365.com/baseFrame/base/g_VersionCheck.jmw"];
     NSMutableURLRequest * postRequest=[NSMutableURLRequest requestWithURL:url];
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     [param setObjectSafely:kPlatformFrom forKey:@"from"];
@@ -403,8 +403,8 @@
     
     NSLog(@"%@",param);
     NSString *bodyData = [param JSONString];
-    [postRequest setHTTPBody:[NSData dataWithBytes:[bodyData UTF8String] length:strlen([bodyData UTF8String])]];
-    [postRequest setHTTPMethod:@"POST"];
+    //[postRequest setHTTPBody:[NSData dataWithBytes:[bodyData UTF8String] length:strlen([bodyData UTF8String])]];
+    [postRequest setHTTPMethod:@"GET"];
     [postRequest setValue:@"application/json; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
     
     __block __weak typeof(self) weakSelf = self;
@@ -415,7 +415,7 @@
             if (!connectionError) {
                 NSDictionary *dict =[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
                 NSDictionary * dataDict = [dict dictionaryForKeySafely:@"data"];
-                NSString * appVersion = [dataDict stringForKeySafely:@"version"];
+                NSString * appVersion = [dataDict stringForKeySafely:@"APP_IOS_USER"];
                 if([weakSelf checkIfNeedUpdateWithAppVersion:appVersion]){
                     UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"版本更新" message:[NSString stringWithFormat:@"重要更新版本%@,请前往App Store进行更新,否则将无法正常使用",appVersion] delegate:weakSelf cancelButtonTitle:@"退出" otherButtonTitles:@"下载", nil];
                     [alert show];
@@ -443,7 +443,7 @@
         [self exitApp];
     }
     if (buttonIndex == 1) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://itunes.apple.com/app/id1091982091"]];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://itunes.apple.com/app/id1090790909"]];
     }
 }
 
@@ -458,5 +458,6 @@
         exit(0);
     }];
 }
+
 
 @end

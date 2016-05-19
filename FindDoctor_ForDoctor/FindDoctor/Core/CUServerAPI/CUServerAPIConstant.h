@@ -43,7 +43,6 @@
 #elif defined(CollegeUnion_Distribution)
 
 #define URL_Base @"http://www.uyi365.com"
-//#define URL_Base @"http://192.168.1.101:8888"
 
 #endif
 
