@@ -2882,6 +2882,7 @@
 				TargetAttributes = {
 					3ED8563D1A9376D400516900 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = M8XN28D3G2;
 					};
 					E10706DF1B0E2F2F0048FAB8 = {
 						CreatedOnToolsVersion = 6.1;
@@ -3446,8 +3447,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Sichuan Hanfang Fengxing Technology Co., Ltd. (M8XN28D3G2)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Sichuan Hanfang Fengxing Technology Co., Ltd. (M8XN28D3G2)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -3476,7 +3477,7 @@
 					"-Objc",
 					"-all_loaded",
 				);
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "22a41bff-dd58-407d-801b-617739dc8c3a";
 				SDKROOT = iphoneos9.2;
 			};
 			name = Debug;
@@ -3498,8 +3499,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Sichuan Hanfang Fengxing Technology Co., Ltd. (M8XN28D3G2)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Sichuan Hanfang Fengxing Technology Co., Ltd. (M8XN28D3G2)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -3521,7 +3522,7 @@
 					"-Objc",
 					"-all_loaded",
 				);
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "22a41bff-dd58-407d-801b-617739dc8c3a";
 				SDKROOT = iphoneos9.2;
 				VALIDATE_PRODUCT = YES;
 			};

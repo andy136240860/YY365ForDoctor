@@ -54,6 +54,7 @@
 //    BMKLocationService *_locService;
 //    BMKGeoCodeSearch   *_geoSearcher;
     BOOL isLogin;
+    NSOperationQueue *_myQueue;
 }
 
 + (AppDelegate *)app
@@ -388,44 +389,45 @@
 //版本检查
 - (void)postRequestVersionCheck{
     
-    NSURL* url = [NSURL URLWithString:@"http://uyi365.com/baseFrame/base/g_VersionCheck.jmw"];
+    NSURL* url = [NSURL URLWithString:@"http://www.uyi365.com/baseFrame/base/g_VersionCheck.jmw?from=APP_IOS_DOCTOR"];
     NSMutableURLRequest * postRequest=[NSMutableURLRequest requestWithURL:url];
-    NSMutableDictionary *param = [NSMutableDictionary dictionary];
-    [param setObjectSafely:kPlatformFrom forKey:@"from"];
-    //    [param setObjectSafely:@"VersionCheck" forKey:@"require"];
-    //    [param setObjectSafely:@(1111111111) forKey:@"interfaceID"];
-    //    [param setObjectSafely:@((NSInteger)[NSDate timeIntervalSince1970]) forKey:@"timestamp"];
-    NSMutableDictionary *dataParam = [NSMutableDictionary dictionary];
-    [dataParam setObjectSafely:[CUPlatFormManager currentAppVersion] forKey:@"appVersion"];
-    [dataParam setObjectSafely:[[[UIDevice currentDevice] identifierForVendor] UUIDString] forKey:@"deviceID"];
-    [dataParam setObjectSafely:[[UIDevice currentDevice] systemVersion] forKey:@"SystemVersion"];
-    [param setObjectSafely:[dataParam JSONString] forKey:@"data"];
     
-    NSLog(@"%@",param);
-    NSString *bodyData = [param JSONString];
-    //[postRequest setHTTPBody:[NSData dataWithBytes:[bodyData UTF8String] length:strlen([bodyData UTF8String])]];
     [postRequest setHTTPMethod:@"GET"];
     [postRequest setValue:@"application/json; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
-    
+    postRequest.cachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
     __block __weak typeof(self) weakSelf = self;
-    
-    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-    [NSURLConnection sendAsynchronousRequest:postRequest queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-        dispatch_async(dispatch_get_main_queue(), ^{
+
+    _myQueue = [[NSOperationQueue alloc] init];
+    [NSURLConnection sendAsynchronousRequest:postRequest queue:_myQueue completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
             if (!connectionError) {
                 NSDictionary *dict =[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
                 NSDictionary * dataDict = [dict dictionaryForKeySafely:@"data"];
-                NSString * appVersion = [dataDict stringForKeySafely:@"APP_IOS_USER"];
-                if([weakSelf checkIfNeedUpdateWithAppVersion:appVersion]){
-                    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"版本更新" message:[NSString stringWithFormat:@"重要更新版本%@,请前往App Store进行更新,否则将无法正常使用",appVersion] delegate:weakSelf cancelButtonTitle:@"退出" otherButtonTitles:@"下载", nil];
+                NSString * appVersion = [dataDict stringForKeySafely:@"name"];
+                NSInteger forceupdate = [[dataDict objectForKeySafely:@"forceupdate"] integerValue];
+                NSString * message = [dataDict stringForKeySafely:@"message"];
+                //必要更新
+                if (forceupdate == 1) {
+                    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:nil message:message delegate:weakSelf cancelButtonTitle:@"退出" otherButtonTitles:@"下载", nil];
+                    alert.tag = 10000;
+                    alert.delegate = self;
                     [alert show];
+                }
+                //非必要更新
+                else{
+                    if([weakSelf checkIfNeedUpdateWithAppVersion:appVersion]){
+                        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:nil message:message delegate:weakSelf cancelButtonTitle:@"取消" otherButtonTitles:@"下载", nil];
+                        alert.tag = 20000;
+                        alert.delegate = self;
+                        [alert show];
+                    }else{
+                        return ;
+                    }
+                    
                 }
             }else{
                 return ;
             }
-        });
     }];
-    
 }
 
 //比较版本号，检查是否更新

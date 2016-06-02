@@ -293,11 +293,32 @@
 
         [picker dismissViewControllerAnimated:YES completion:nil];
         [picker removeFromParentViewController];
-        
+        UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
         prescriptionView.image = image;
         [self resetFrame];
     }
     
+}
+
+- (void)image:(UIImage*)image didFinishSavingWithError:(NSError*)error contextInfo:(void*)contextInfo
+{
+//    UIAlertView *alert;
+//    
+//    if (error)
+//    {
+//        alert = [[UIAlertView alloc] initWithTitle:@"错误"
+//                                           message:@"保存失败"
+//                                          delegate:self cancelButtonTitle:@"确定"
+//                                 otherButtonTitles:nil];
+//    }
+//    else
+//    {
+//        alert = [[UIAlertView alloc] initWithTitle:@"成功"
+//                                           message:@"保存成功"
+//                                          delegate:self cancelButtonTitle:@"确定"
+//                                 otherButtonTitles:nil];
+//    }
+//    [alert show];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
