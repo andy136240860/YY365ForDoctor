@@ -14,10 +14,10 @@
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
-		<key>uqku.xcscheme</key>
+		<key>doctor.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>2</integer>
+			<integer>4</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
@@ -28,6 +28,46 @@
 			<true/>
 		</dict>
 		<key>BC2B3DC01C32859E0062AC17</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BC2F40D01D01774B00943506</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BC2F40D41D01778800943506</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BC2F40D81D0177B400943506</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BC2F40E01D01783C00943506</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BC2F40ED1D01785400943506</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BC2F41051D01785400943506</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BC2F41101D01785400943506</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BC2F41211D01787500943506</key>
 		<dict>
 			<key>primary</key>
 			<true/>
