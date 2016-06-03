@@ -3477,7 +3477,7 @@
 					"-Objc",
 					"-all_loaded",
 				);
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "22a41bff-dd58-407d-801b-617739dc8c3a";
 				SDKROOT = iphoneos9.2;
 			};
 			name = Debug;
@@ -3522,7 +3522,7 @@
 					"-Objc",
 					"-all_loaded",
 				);
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "22a41bff-dd58-407d-801b-617739dc8c3a";
 				SDKROOT = iphoneos9.2;
 				VALIDATE_PRODUCT = YES;
 			};

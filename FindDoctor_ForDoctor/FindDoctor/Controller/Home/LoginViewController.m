@@ -24,6 +24,9 @@
 #import "TipHandler+HUD.h"
 #import "UIImage+Color.h"
 
+#define codeLoginTag 10
+#define passwordLoginTag 20
+
 @interface LoginViewController ()<UITextFieldDelegate>
 
 {
@@ -32,6 +35,8 @@
     UILabel *_codeLabel;
     UIButton *_codeButton;
     NSString *codetoken;
+    
+    UIButton * _loginStyleBtn;
 }
 
 @property (nonatomic,strong) UITextField *userName;
@@ -150,14 +155,22 @@
     [loginButton setTitle:@"登           陆" forState:UIControlStateNormal];
     [loginButton addTarget:self action:@selector(confirmButtonAction) forControlEvents:UIControlEventTouchUpInside];
     [_contentScrollView addSubview:loginButton];
+    
+    _loginStyleBtn = [[UIButton alloc] initWithFrame:CGRectMake(kScreenWidth - ((kScreenWidth - userName.frameWidth)/2 + 80 - 10), loginButton.maxY + 24, 80, 20)];
+    [_loginStyleBtn setTitle:@"密码登陆" forState:UIControlStateNormal];
+    _loginStyleBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+    [_loginStyleBtn addTarget:self action:@selector(switchLoginStyleAction) forControlEvents:UIControlEventTouchUpInside];
+    _loginStyleBtn.tag = passwordLoginTag;
+    _loginStyleBtn.backgroundColor = [UIColor clearColor];
+    [_contentScrollView addSubview:_loginStyleBtn];
 }
 
 - (void)confirmButtonAction{
     if(self.userName.text.length == 11 && self.password.text.length >1 ){
-        [self Login];
+        [self loginButtonAction];
     }
     else{
-        UIAlertView *tempAlert = [[UIAlertView alloc]initWithTitle:nil message:@"手机号或验证码填写错误" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+        UIAlertView *tempAlert = [[UIAlertView alloc]initWithTitle:nil message:@"检查下手机号对不对哦" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
         [tempAlert show];
     }
 }
@@ -268,7 +281,7 @@
 }
 
 
-- (void)Login
+- (void)requestWithCode
 {
     [self endEdit];
     [self showProgressView];
@@ -299,80 +312,92 @@
         }
     };
     
-    [[CUUserManager sharedInstance] loginWithCellPhone:self.userName.text code:(NSString *)self.password.text codetoken:codetoken resultBlock:handler pageName:@"LoginViewController"];
+    [[CUUserManager sharedInstance] loginWithCellPhone:self.userName.text code:(NSString *)self.password.text codetoken:codetoken resultBlock:handler pageName:self.pageName];
 }
 
-//
-//- (void)Login
-//{
-//    [self endEdit];
-//    [self showProgressView];
-//    
-//    __weak LoginViewController * blockSelf = self;
-//    SNServerAPIResultBlock handler = ^(SNHTTPRequestOperation *request, SNServerAPIResultData *result)
-//    {
-//        if (result.hasError) {
-//            if (result.errorType == SNServerAPIErrorType_NetWorkFailure) {
-//                [TipHandler showHUDText:@"网络错误" inView:blockSelf.view];
-//            }
-//            if (result.errorType == SNServerAPIErrorType_DataError) {
-//                [TipHandler showHUDText:@"用户名或密码错误" inView:blockSelf.view];
-//            }
-//            
-//        }
-//        if (!result.hasError)
-//        {
-//            NSInteger err_code = [[result.responseObject valueForKey:@"err_code"] integerValue];
-//            switch (err_code) {
-//                case 1:
-//                {
-//                    [TipHandler showHUDText:@"用户名不存在" inView:blockSelf.view];
-//                    break;
-//                }
-//
-//                case 2:{
-//                    [TipHandler showHUDText:@"密码错误" inView:blockSelf.view];
-//                    break;
-//                }
-//
-//                case 0:{
-//                    [[CUUserManager sharedInstance] getUserInfo:[CUUserManager sharedInstance].user.token resultBlock:^(SNHTTPRequestOperation *request, SNServerAPIResultData *result) {
-//                        
-//                        [blockSelf hideProgressView];
-//                        
-//                        [TipHandler showHUDText:@"登录成功" inView:blockSelf.view];
-//
-//                        [[NSNotificationCenter defaultCenter] postNotificationName:@"loginSuccess" object:nil];
-//                    }];
-//                    break;
-//                }
-//                
-//                default:{
-//                    [TipHandler showHUDText:@"密码错误" inView:blockSelf.view];
-//                    break;
-//                }
-//
-//            }
-//
-//            //调用userInfo
-//        }
-//        else
-//        {
-//            [blockSelf hideProgressView];
-//            [TipHandler showHUDText:[result.error.userInfo valueForKey:NSLocalizedDescriptionKey] inView:blockSelf.contentView];
-//        }
-//    };
-//    
-//    if (self.verifyCode) {
-//        [[CUUserManager sharedInstance] loginWithCellPhone:self.userName.text varifyCode:[self.password.text integerValue] resultBlock:handler pageName:@"LoginViewController"];
-//    }
-//    else {
-//        NSString *password = [[self.password.text MD5] uppercaseString];
-//        
-////        NSString *password = self.password.text;
-//        [[CUUserManager sharedInstance] loginWithAccountName:self.userName.text password:password resultBlock:handler pageName:@"LoginViewController"];
-//    }
-//}
+- (void)requestWithPassword
+{
+    [self endEdit];
+    [self showProgressView];
+    
+    __weak __block LoginViewController * blockSelf = self;
+    SNServerAPIResultBlock handler = ^(SNHTTPRequestOperation *request, SNServerAPIResultData *result)
+    {
+        [blockSelf hideProgressView];
+        if (!result.hasError)
+        {
+            NSInteger err_code = [result.responseObject integerForKeySafely:@"errorCode"];
+            if (err_code == 0) {
+                if ([CUUserManager sharedInstance].user.doctorId == -1){
+                    [TipHandler showHUDText:@"对不起，您还并未签约，请联系客服" inView:blockSelf.view];
+                }
+                else {
+                    [TipHandler showHUDText:@"登录成功" inView:blockSelf.view];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"loginSuccess" object:nil];
+                }
+            }
+            else {
+                [TipHandler showHUDText:[NSString stringWithFormat:@"%@",[result.responseObject valueForKey:@"data"]] inView:blockSelf.view];
+            }
+        }
+        else
+        {
+            [TipHandler showHUDText:[result.error.userInfo valueForKey:NSLocalizedDescriptionKey] inView:blockSelf.contentView];
+        }
+    };
+    
+    [[CUUserManager sharedInstance] loginWithAccountName:self.userName.text password:self.password.text resultBlock:handler pageName:self.pageName];
+}
+
+- (void)switchLoginStyleAction{
+    if (_loginStyleBtn.tag == codeLoginTag) {
+        //切换为验证码登陆
+        _codeButton.hidden = NO;
+        _codeLabel.hidden = NO;
+        password.text = nil;
+        password.placeholder = @"请输入验证码";
+        password.secureTextEntry = NO;
+        password.keyboardType = UIKeyboardTypeNumberPad;
+        [_loginStyleBtn setTitle:@"密码登陆" forState:UIControlStateNormal];
+        _loginStyleBtn.tag = passwordLoginTag;
+        
+    }else{
+        //切换为密码登陆
+        _codeButton.hidden = YES;
+        _codeLabel.hidden = YES;
+        password.placeholder = @"请输入密码";
+        password.text = nil;
+        password.secureTextEntry = YES;
+        password.keyboardType = UIKeyboardTypeDefault;
+        [_loginStyleBtn setTitle:@"验证码登陆" forState:UIControlStateNormal];
+        _loginStyleBtn.tag = codeLoginTag;
+        
+    }
+    
+}
+
+- (void)loginButtonAction{
+    if (_loginStyleBtn.tag == passwordLoginTag) {
+        if ([password.text isEmpty]) {
+            [TipHandler showTipOnlyTextWithNsstring:@"请输入验证码"];
+            return;
+        }
+        else {
+            [self requestWithCode];
+            
+        }
+    }else if (_loginStyleBtn.tag == codeLoginTag){
+        if ([password.text isEmpty]) {
+            [TipHandler showTipOnlyTextWithNsstring:@"请输入密码"];
+            return;
+        }
+        else {
+            [self requestWithPassword];
+            
+        }
+    }
+    
+}
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
     if (textField.frame.origin.y - (self.view.frame.size.height - 253 -textField.frame.size.height) < 0){

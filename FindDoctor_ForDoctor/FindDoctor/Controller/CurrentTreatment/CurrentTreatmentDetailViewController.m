@@ -293,7 +293,7 @@
 
         [picker dismissViewControllerAnimated:YES completion:nil];
         [picker removeFromParentViewController];
-        
+        UIImageWriteToSavedPhotosAlbum(image, self, nil, nil);
         prescriptionView.image = image;
         [self resetFrame];
     }
