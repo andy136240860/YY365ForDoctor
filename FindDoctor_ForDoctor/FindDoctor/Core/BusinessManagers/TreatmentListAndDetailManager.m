@@ -137,6 +137,8 @@ SINGLETON_IMPLENTATION(TreatmentListAndDetailManager);
     NSLog(@"%ld",(long)[CUUserManager sharedInstance].user.userId);
     
     [dataParam setObjectSafely:@([CUUserManager sharedInstance].user.userId) forKey:@"accID"];
+    [dataParam setObjectSafely:@(pageSize) forKey:@"pageNum"];
+    [dataParam setObjectSafely:@(pageNum + 1) forKey:@"pageID"];
     [param setObjectSafely:[dataParam JSONString] forKey:@"data"];
     
     NSLog(@"%@",param);
@@ -146,7 +148,8 @@ SINGLETON_IMPLENTATION(TreatmentListAndDetailManager);
             NSInteger err_code = [result.responseObject integerForKeySafely:@"errorCode"];
             if (err_code == 0) {
                 SNBaseListModel *listModel = [[SNBaseListModel alloc] init];
-                NSArray *data = [result.responseObject arrayForKeySafely:@"data"];
+                NSArray *data = [[result.responseObject dictionaryForKeySafely:@"data"] arrayForKeySafely:@"dataList"];
+                listModel.pageInfo.totalCount = [[[result.responseObject dictionaryForKeySafely:@"data"] valueForKeySafely:@"totalNum"] integerValue];
                 NSLog(@"data.count = %d",data.count);
                 for(int i = 0;i < data.count ; i++ ){
                     NSMutableDictionary *dic = [data objectAtIndex:i];
@@ -266,7 +269,9 @@ SINGLETON_IMPLENTATION(TreatmentListAndDetailManager);
     
     NSLog(@"%ld",(long)[CUUserManager sharedInstance].user.userId);
     
-    [dataParam setObjectSafely:@([CUUserManager sharedInstance].user.userId) forKey:@"accID"];  
+    [dataParam setObjectSafely:@([CUUserManager sharedInstance].user.userId) forKey:@"accID"];
+    [dataParam setObjectSafely:@(pageSize) forKey:@"pageNum"];
+    [dataParam setObjectSafely:@(pageNum + 1) forKey:@"pageID"];
     [param setObjectSafely:[dataParam JSONString] forKey:@"data"];
     
     NSLog(@"%@",param);
@@ -276,7 +281,8 @@ SINGLETON_IMPLENTATION(TreatmentListAndDetailManager);
             NSInteger err_code = [result.responseObject integerForKeySafely:@"errorCode"];
             if (err_code == 0) {
                 SNBaseListModel *listModel = [[SNBaseListModel alloc] init];
-                NSArray *data = [result.responseObject arrayForKeySafely:@"data"];
+                NSArray *data = [[result.responseObject dictionaryForKeySafely:@"data"] arrayForKeySafely:@"dataList"];
+                listModel.pageInfo.totalCount = [[[result.responseObject dictionaryForKeySafely:@"data"] valueForKeySafely:@"totalNum"] integerValue];
                 NSLog(@"data.count = %d",data.count);
                 for(int i = 0;i < data.count ; i++ ){
                     NSMutableDictionary *dic = [data objectAtIndex:i];
@@ -513,10 +519,6 @@ SINGLETON_IMPLENTATION(TreatmentListAndDetailManager);
                 }
             }
             else if (err_code < 0){
-#if useErrCodeForLogout
-                [[CUUserManager sharedInstance] clear];
-                [[AppDelegate app] launchMainView];
-#endif
             }
         }
         resultBlock(nil, result);

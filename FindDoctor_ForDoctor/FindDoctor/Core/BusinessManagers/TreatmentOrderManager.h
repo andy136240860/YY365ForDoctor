@@ -38,7 +38,7 @@ SINGLETON_DECLARE(TreatmentOrderManager);
                 endTime:(NSTimeInterval)endTime
             resultBlock:(SNServerAPIResultBlock)resultBlock pageName:(NSString *)pageName;
 // 获取放号列表
-- (void)getListWithresultBlock:(SNServerAPIResultBlock)resultBlock pageName:(NSString *)pageName;
+- (void)getListWithPageSize:(NSInteger)pageSize CurrentPage:(NSInteger)currentPage resultBlock:(SNServerAPIResultBlock)resultBlock pageName:(NSString *)pageName;
 
 // 放号删除
 - (void)deleteOrderWithOrderNumber:(long long)orderNo resultBlock:(SNServerAPIResultBlock)resultBlock pageName:(NSString *)pageName;

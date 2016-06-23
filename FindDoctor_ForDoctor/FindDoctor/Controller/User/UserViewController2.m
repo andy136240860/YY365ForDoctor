@@ -94,14 +94,8 @@
 }
 
 - (void)myAccountAction{
-    {
-        [[TreatmentListAndDetailManager sharedInstance] getMyAccountWithResultBlock:^(SNHTTPRequestOperation *request, SNServerAPIResultData *result) {
-            MyAccountMainViewController   *myAccountVC = [[MyAccountMainViewController alloc]initWithPageName:@"MyAccountMainViewController"];
-            myAccountVC.data = result.parsedModelObject;
-            [self.slideNavigationController pushViewController:myAccountVC animated:YES];
-        } pageName:@"MyAccount"];
-
-    }
+    MyAccountMainViewController   *myAccountVC = [[MyAccountMainViewController alloc]initWithPageName:@"MyAccountMainViewController"];
+    [self.slideNavigationController pushViewController:myAccountVC animated:YES];
 }
 
 - (void)resignAction{

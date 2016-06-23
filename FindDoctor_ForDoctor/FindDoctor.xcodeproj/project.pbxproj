@@ -3533,8 +3533,8 @@
 			baseConfigurationReference = 1A983DAFDAAC84247B2A59E3 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Chongqing Youqiku Iot Technology Co., Ltd.";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Chongqing Youqiku Iot Technology Co., Ltd.";
+				CODE_SIGN_IDENTITY = "iPhone Developer: ShengJian Lai (UC94U4573S)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: ShengJian Lai (UC94U4573S)";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3577,9 +3577,9 @@
 					"$(PROJECT_DIR)/FindDoctor/Utitlity/UpmpPay/libs",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.uqku.demo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.uyi365.ForDoctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9ca59782-cea6-49e4-a1c6-f09baf80827a";
+				PROVISIONING_PROFILE = "2eac14fc-4bd7-494f-a284-6b870f63cab3";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "../SNArchitecture ../SNArchitecture/SNCore/SNUtility";
 			};
@@ -3590,8 +3590,8 @@
 			baseConfigurationReference = 0E40EF0F0D7C5493CCAAEEF1 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Chongqing Youqiku Iot Technology Co., Ltd.";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Chongqing Youqiku Iot Technology Co., Ltd.";
+				CODE_SIGN_IDENTITY = "iPhone Developer: ShengJian Lai (UC94U4573S)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: ShengJian Lai (UC94U4573S)";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3634,9 +3634,9 @@
 					"$(PROJECT_DIR)/FindDoctor/Utitlity/UpmpPay/libs",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.uqku.demo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.uyi365.ForDoctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9ca59782-cea6-49e4-a1c6-f09baf80827a";
+				PROVISIONING_PROFILE = "2eac14fc-4bd7-494f-a284-6b870f63cab3";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "../SNArchitecture ../SNArchitecture/SNCore/SNUtility";
 			};

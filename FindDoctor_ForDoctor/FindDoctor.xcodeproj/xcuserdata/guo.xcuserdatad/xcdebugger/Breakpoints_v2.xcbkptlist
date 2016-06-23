@@ -80,11 +80,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FindDoctor/Core/BusinessManagers/TreatmentOrderManager.m"
-            timestampString = "480843058.756199"
+            timestampString = "488272458.751391"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "267"
-            endingLineNumber = "267"
+            startingLineNumber = "271"
+            endingLineNumber = "271"
             landmarkName = "-getOrderDetailWithOrderNumber:resultBlock:pageName:"
             landmarkType = "5">
          </BreakpointContent>
@@ -191,13 +191,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "FindDoctor/Controller/Home/LoginViewController.m"
-            timestampString = "486611267.769156"
+            filePath = "FindDoctor/Core/BusinessManagers/CUUserManager.m"
+            timestampString = "488260687.355595"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "320"
-            endingLineNumber = "320"
-            landmarkName = "-requestWithPassword"
+            startingLineNumber = "179"
+            endingLineNumber = "179"
+            landmarkName = "-loginWithAccountName:password:resultBlock:pageName:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -207,13 +207,125 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "FindDoctor/Core/BusinessManagers/CUUserManager.m"
-            timestampString = "486611279.666041"
+            filePath = "FindDoctor/Core/BusinessManagers/TreatmentOrderManager.m"
+            timestampString = "488261330.974213"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "154"
-            endingLineNumber = "154"
-            landmarkName = "-loginWithAccountName:password:resultBlock:pageName:"
+            startingLineNumber = "182"
+            endingLineNumber = "182"
+            landmarkName = "-getListWithPageSize:CurrentPage:resultBlock:pageName:"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[TreatmentOrderManager(Network) getListWithPageSize:CurrentPage:resultBlock:pageName:]"
+                  moduleName = "FindDoctor"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/guo/Documents/YY365ForDoctor/FindDoctor_ForDoctor/FindDoctor/Core/BusinessManagers/TreatmentOrderManager.m"
+                  timestampString = "488273252.647565"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "183"
+                  endingLineNumber = "183"
+                  offsetFromSymbolStart = "1522">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__87-[TreatmentOrderManager(Network) getListWithPageSize:CurrentPage:resultBlock:pageName:]_block_invoke"
+                  moduleName = "FindDoctor"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/guo/Documents/YY365ForDoctor/FindDoctor_ForDoctor/FindDoctor/Core/BusinessManagers/TreatmentOrderManager.m"
+                  timestampString = "488273252.647704"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "184"
+                  endingLineNumber = "184"
+                  offsetFromSymbolStart = "74">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FindDoctor/Core/BusinessManagers/TreatmentOrderManager.m"
+            timestampString = "488270705.782084"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "184"
+            endingLineNumber = "184"
+            landmarkName = "-getListWithPageSize:CurrentPage:resultBlock:pageName:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FindDoctor/Core/BusinessManagers/TreatmentOrderManager.m"
+            timestampString = "488272633.895079"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "217"
+            endingLineNumber = "217"
+            landmarkName = "-getListWithPageSize:CurrentPage:resultBlock:pageName:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SNArchitecture/SNMVC/SNBaseListModel.m"
+            timestampString = "488273041.120256"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "-hasNext"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FindDoctor/Core/BusinessManagers/TreatmentListAndDetailManager.m"
+            timestampString = "488273099.890556"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "332"
+            endingLineNumber = "332"
+            landmarkName = "-getZhenLiaoRecordListWithPageNum:pageSize:resultBlock:pageName:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FindDoctor/Controller/User/OfferOrderList/TreatmentOrderListModel.m"
+            timestampString = "488273251.516005"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "-gotoNextPage:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

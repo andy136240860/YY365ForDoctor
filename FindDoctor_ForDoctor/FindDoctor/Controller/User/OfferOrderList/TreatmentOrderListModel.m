@@ -36,7 +36,7 @@
 
 - (void)gotoFirstPage:(SNServerAPIResultBlock)resultBlock
 {
-    [[TreatmentOrderManager sharedInstance] getListWithresultBlock:^(SNHTTPRequestOperation *request, SNServerAPIResultData *result) {
+    [[TreatmentOrderManager sharedInstance] getListWithPageSize:self.pageInfo.pageSize CurrentPage:0 resultBlock:^(SNHTTPRequestOperation *request, SNServerAPIResultData *result) {
         if (!result.hasError)
         {
             SNBaseListModel * list = result.parsedModelObject;
@@ -48,6 +48,7 @@
             SNPageInfo * info = list.pageInfo;
             self.pageInfo.pageSize = info.pageSize;
             self.pageInfo.totalPage = info.totalPage;
+            self.pageInfo.totalCount = info.totalCount;
             self.pageInfo.currentPage = startPageNum;
         }
         resultBlock(request,result);
@@ -57,7 +58,7 @@
 
 - (void)gotoNextPage:(SNServerAPIResultBlock)resultBlock
 {
-    [[TreatmentOrderManager sharedInstance] getListWithresultBlock:^(SNHTTPRequestOperation *request, SNServerAPIResultData *result) {
+    [[TreatmentOrderManager sharedInstance] getListWithPageSize:self.pageInfo.pageSize CurrentPage:self.pageInfo.currentPage+1 resultBlock:^(SNHTTPRequestOperation *request, SNServerAPIResultData *result) {
         if (!result.hasError)
         {
             SNBaseListModel * list = result.parsedModelObject;
@@ -66,6 +67,7 @@
             SNPageInfo * info = list.pageInfo;
             self.pageInfo.pageSize = info.pageSize;
             self.pageInfo.totalPage = info.totalPage;
+            self.pageInfo.totalCount = info.totalCount;
             self.pageInfo.currentPage++;
         }
         resultBlock(request,result);

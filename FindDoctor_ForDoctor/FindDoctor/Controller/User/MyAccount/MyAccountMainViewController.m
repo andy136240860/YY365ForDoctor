@@ -9,6 +9,7 @@
 #import "MyAccountMainViewController.h"
 #import "TotalMoneyView.h"
 #import "ListMoneyView.h"
+#import "TreatmentListAndDetailManager.h"
 
 @interface MyAccountMainViewController ()
 {
@@ -25,10 +26,16 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    costView.fee = [NSString stringWithFormat:@"%.2lf",_data.totalCost];
-    incomeView.fee = [NSString stringWithFormat:@"%.2lf",_data.totalIncome];
-    [incomeView show];
-    [costView show];
+    __weak __block MyAccountMainViewController *blockSelf = self;
+    {
+        [[TreatmentListAndDetailManager sharedInstance] getMyAccountWithResultBlock:^(SNHTTPRequestOperation *request, SNServerAPIResultData *result) {
+            blockSelf.data = result.parsedModelObject;
+            costView.fee = [NSString stringWithFormat:@"%.2lf",blockSelf.data.totalCost];
+            incomeView.fee = [NSString stringWithFormat:@"%.2lf",blockSelf.data.totalIncome];
+            [incomeView show];
+            [costView show];
+        } pageName:@"MyAccount"];
+    }
 }
 
 - (void)viewDidLoad {

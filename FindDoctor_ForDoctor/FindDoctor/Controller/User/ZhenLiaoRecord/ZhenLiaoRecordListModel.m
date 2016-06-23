@@ -47,6 +47,7 @@
             SNPageInfo * info = list.pageInfo;
             self.pageInfo.pageSize = info.pageSize;
             self.pageInfo.totalPage = info.totalPage;
+            self.pageInfo.totalCount = info.totalCount;
             self.pageInfo.currentPage = startPageNum;
         }
         resultBlock(request,result);
@@ -64,6 +65,7 @@
             SNPageInfo * info = list.pageInfo;
             self.pageInfo.pageSize = info.pageSize;
             self.pageInfo.totalPage = info.totalPage;
+            self.pageInfo.totalCount = info.totalCount;
             self.pageInfo.currentPage++;
         }
         resultBlock(request,result);

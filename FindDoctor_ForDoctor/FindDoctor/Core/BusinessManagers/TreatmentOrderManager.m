@@ -164,7 +164,7 @@ SINGLETON_IMPLENTATION(TreatmentOrderManager);
 }
 
 //放号列表
-- (void)getListWithresultBlock:(SNServerAPIResultBlock)resultBlock pageName:(NSString *)pageName{
+- (void)getListWithPageSize:(NSInteger)pageSize CurrentPage:(NSInteger)currentPage resultBlock:(SNServerAPIResultBlock)resultBlock pageName:(NSString *)pageName{
     NSMutableDictionary * param = [NSMutableDictionary dictionary];
     [param setObjectSafely:kPlatformFrom forKey:@"from"];
     [param setObjectSafely:[CUUserManager sharedInstance].user.token forKey:@"token"];
@@ -175,6 +175,9 @@ SINGLETON_IMPLENTATION(TreatmentOrderManager);
     NSMutableDictionary * dataParam = [NSMutableDictionary dictionary];
     
     [dataParam setObjectSafely:@([CUUserManager sharedInstance].user.userId) forKey:@"accID"];
+    [dataParam setObjectSafely:@(pageSize) forKey:@"pageNum"];
+    [dataParam setObjectSafely:@(currentPage + 1) forKey:@"pageID"];
+    
     [param setObjectSafely:[dataParam JSONString] forKey:@"data"];
     
     [[AppCore sharedInstance].apiManager POST:URL_AfterBase parameters:param callbackRunInGlobalQueue:YES parser:nil parseMethod:nil resultBlock:^(SNHTTPRequestOperation *request, SNServerAPIResultData *result){
@@ -182,7 +185,8 @@ SINGLETON_IMPLENTATION(TreatmentOrderManager);
             SNBaseListModel *listModel = [[SNBaseListModel alloc] init];
             NSInteger errorCode = [result.responseObject integerForKeySafely:@"errorCode"];
             if (errorCode == 0){
-                NSArray *dataArray = [result.responseObject arrayForKeySafely:@"data"];
+                NSArray *dataArray = [[result.responseObject dictionaryForKeySafely:@"data"] arrayForKeySafely:@"dataList"];
+                listModel.pageInfo.totalCount = [[[result.responseObject dictionaryForKeySafely:@"data"] valueForKeySafely:@"totalNum"] integerValue];
                 for (int i = 0; i < dataArray.count ; i++) {
                     NSMutableDictionary *dic = [dataArray objectAtIndex:i];
                     TreatmentOrder *treatmentOrder = [[TreatmentOrder alloc]init];
